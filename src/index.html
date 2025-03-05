@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -6,8 +6,72 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- CSS Plugins -->
+  <link rel="stylesheet" href="assets/css/plugins/bootstrap-grid.css">
+  <link rel="stylesheet" href="assets/css/plugins/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/plugins/swiper.min.css">
+  <link rel="stylesheet" href="assets/css/plugins/fancybox.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <app-root></app-root>
-</body>
-</html>
+  <app-root id="swup"></app-root>
+
+  <!-- JavaScript Plugins compatibles Angular -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery en premier -->
+  <script src="assets/js/plugins/swiper.min.js" defer></script>
+  <script src="assets/js/plugins/gsap.min.js" defer></script>
+  <script src="assets/js/plugins/ScrollTrigger.min.js" defer></script>
+  <script src="assets/js/plugins/ScrollTo.min.js" defer></script>
+  <script src="assets/js/plugins/fancybox.min.js" defer></script> <!-- Ajout du script Fancybox -->
+  <script src="assets/js/main.js" defer></script>
+
+  <!-- Swup JS -->
+  <script src="https://unpkg.com/swup@3" defer></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", function () {
+        const swup = new Swup({
+            containers: ["#swup"],
+            linkSelector: 'a[data-swup-preload]'
+        });
+    
+        swup.on('contentReplaced', () => {
+            console.log("Swup a chargé une nouvelle page !");
+            
+            // Réactiver Swiper
+            if (typeof Swiper !== 'undefined') {
+                new Swiper('.swiper-container', {
+                    loop: true,
+                    autoplay: {
+                        delay: 3000,
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    }
+                });
+            }
+    
+            // Réactiver les animations GSAP
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                ScrollTrigger.refresh();
+            }
+    
+            // Réactiver Fancybox
+            if (typeof Fancybox !== 'undefined') {
+                Fancybox.bind("[data-fancybox]", {});
+            }
+    
+            // Réactiver le menu
+            let menuToggle = document.querySelector('.menu-toggle');
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function () {
+                    document.body.classList.toggle('menu-open');
+                });
+            }
+        });
+    });
+    </script>
+    </body>
+    </html>
++
