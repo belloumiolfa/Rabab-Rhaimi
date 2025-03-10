@@ -19,27 +19,27 @@ import { ContentComponent } from './modules/showcase/components/content/content.
 
 
 export const routes: Routes = [
-    { path: '', component: AppComponent,
-        children:[
-            { path: 'home-2', component: ContentComponent ,},
-            { path: 'portfolio-1', component: Portfolio1Component },
-            { path: 'portfolio-2', component: Portfolio2Component },
-            { path: 'portfolio-3', component: Portfolio3Component },
-            { path: 'project-1', component: Project1Component },
-            { path: 'project-2', component: Project2Component },
-            { path: 'project-3', component: Project3Component },
-            { path: 'project-4', component: Project4Component },
-            { path: 'project-5', component: Project5Component },
-            { path: 'project-6', component: Project6Component },
-            { path: 'team', component: TeamsComponent },
-            { path: 'contact', component: ContactComponent },
-            { path: 'publication', component: PublicationComponent },
-            { path: 'blog', component: BlogComponent },
-            { path: 'services', component: Service1Component },
-            { path: 'service', component: Service2Component },
-        ]
-     },
-
-    { path: "", redirectTo: "/home-2", pathMatch: "full" }, // Optional: default route 
-
+  { path: '', component: AppComponent,
+    children: [
+      { path: 'home-2', component: ContentComponent },
+      { path: 'portfolio-1', component: Portfolio1Component },
+      { path: 'portfolio-2', component: Portfolio2Component },
+      { path: 'portfolio-3', component: Portfolio3Component },
+      { path: 'project-1', component: Project1Component },
+      { path: 'project-2', component: Project2Component },
+      { path: 'project-3', component: Project3Component },
+      { path: 'project-4', component: Project4Component },
+      { path: 'project-5', component: Project5Component },
+      { path: 'project-6', component: Project6Component },
+      { path: 'team', component: TeamsComponent },
+      { path: 'contact', component: ContactComponent },
+      { path: 'publication', component: PublicationComponent },
+      { path: 'blog', component: BlogComponent },
+      { path: 'services', component: Service1Component },
+      { path: 'service', component: Service2Component },  
+       
+      { path: '', redirectTo: '/home-2', pathMatch: 'full' } // Default route
+    ]
+  }
 ];
+
