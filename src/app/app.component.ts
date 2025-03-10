@@ -43,6 +43,11 @@ gsap.registerPlugin(ScrollTrigger);
 export class AppComponent implements AfterViewInit {
   title = 'rabeb';
 
+  isMenuOpen: boolean = false;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
   @ViewChild('menuBtn') menuBtn!: ElementRef;
   @ViewChild('menu') menu!: ElementRef;
   @ViewChild('menuFrame') menuFrame!: ElementRef;
@@ -54,7 +59,7 @@ export class AppComponent implements AfterViewInit {
 
   ngOnInit() {
     this.swupService.initSwup();
-  }
+  } 
 
   ngAfterViewInit() {
     // Initialisation de Swup
@@ -87,7 +92,7 @@ export class AppComponent implements AfterViewInit {
       duration: 1
     });
 
-    // Vérification et gestion du menu principal
+    // Gestion du menu principal
     if (this.menuBtn && this.menu && this.menuFrame) {
       this.menuBtn.nativeElement.addEventListener('click', () => {
         this.menuBtn.nativeElement.classList.toggle('mil-active');

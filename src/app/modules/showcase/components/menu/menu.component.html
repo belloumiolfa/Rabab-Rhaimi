@@ -1,13 +1,18 @@
-<!-- menu -->
-<div class="mil-menu-frame" id="menu">
-    <!-- frame clone -->
+<div 
+    class="mil-menu-frame" 
+    [class.active]="isMenuOpen" 
+    (click)="closeMenu()"
+    id="menu">
+
+    <!-- Frame Clone -->
     <div class="mil-frame-top">
         <a routerLink="/" class="mil-logo">A.</a>
-        <div class="mil-menu-btn" #menuBtn>
+        <button class="mil-menu-btn" (click)="toggleMenu(); $event.stopPropagation()">
             <span></span>
-        </div>
+        </button>
     </div>
-    <!-- frame clone end -->
+
+    <!-- Menu Content -->
     <div class="container">
         <div class="mil-menu-content">
             <div class="row">
@@ -16,7 +21,8 @@
                     <nav class="mil-main-menu" id="swupMenu">
                         <ul>
                             <li class="mil-has-children mil-active">
-                                <a href="#." data-swup-preload>Homepage</a>
+                                <h2>Bienvenue sur mon site !</h2>
+                                <a routerLink="/" data-swup-preload>Homepage</a>
                                 <ul>
                                     <li><a routerLink="/" data-swup-preload>Landing page</a></li>
                                     <li><a routerLink="/home-2" data-swup-preload>Personal</a></li>
@@ -24,7 +30,7 @@
                                 </ul>
                             </li>
                             <li class="mil-has-children">
-                                <a href="#." data-swup-preload>Portfolio</a>
+                                <a routerLink="/portfolio-1" data-swup-preload>Portfolio</a>
                                 <ul>
                                     <li><a routerLink="/portfolio-1" data-swup-preload>Grid type 1</a></li>
                                     <li><a routerLink="/portfolio-2" data-swup-preload>Grid type 2</a></li>
@@ -32,21 +38,21 @@
                                 </ul>
                             </li>
                             <li class="mil-has-children">
-                                <a href="#." data-swup-preload>Services</a>
+                                <a routerLink="/services" data-swup-preload>Services</a>
                                 <ul>
                                     <li><a routerLink="/services" data-swup-preload>Services List</a></li>
                                     <li><a routerLink="/service" data-swup-preload>Single service</a></li>
                                 </ul>
                             </li>
                             <li class="mil-has-children">
-                                <a href="#." data-swup-preload>Newsletter</a>
+                                <a routerLink="/blog" data-swup-preload>Newsletter</a>
                                 <ul>
                                     <li><a routerLink="/blog" data-swup-preload>Blog List</a></li>
                                     <li><a routerLink="/publication" data-swup-preload>Publication</a></li>
                                 </ul>
                             </li>
                             <li class="mil-has-children">
-                                <a href="#." data-swup-preload>Other pages</a>
+                                <a routerLink="/team" data-swup-preload>Other pages</a>
                                 <ul>
                                     <li><a routerLink="/team" data-swup-preload>Team</a></li>
                                     <li><a routerLink="/contact" data-swup-preload>Contact</a></li>
@@ -65,53 +71,46 @@
                                 <div class="mil-animation mil-position-1 mil-scale" data-value-1="2" data-value-2="2"></div>
                             </div>
                         </div>
+
                         <div class="mil-menu-right">
                             <div class="row">
                                 <div class="col-lg-8 mil-mb-60">
-
                                     <h6 class="mil-muted mil-mb-30">Projects</h6>
-
                                     <ul class="mil-menu-list">
-                                        <li><a routerLink="/project-1" class="mil-light-soft" data-swup-preload>Interior design studio</a></li>
-                                        <li><a routerLink="/project-2" class="mil-light-soft" data-swup-preload>Home Security Camera</a></li>
-                                        <li><a routerLink="/project-3" class="mil-light-soft" data-swup-preload>Kemia Honest Skincare</a></li>
-                                        <li><a routerLink="/project-4" class="mil-light-soft" data-swup-preload>Cascade of Lava</a></li>
-                                        <li><a routerLink="/project-5" class="mil-light-soft" data-swup-preload>Air Pro by Molekule</a></li>
-                                        <li><a routerLink="/project-6" class="mil-light-soft" data-swup-preload>Tony's Chocolonely</a></li>
+                                        <li><a routerLink="/project-1" class="mil-light-soft">Interior design studio</a></li>
+                                        <li><a routerLink="/project-2" class="mil-light-soft">Home Security Camera</a></li>
+                                        <li><a routerLink="/project-3" class="mil-light-soft">Kemia Honest Skincare</a></li>
                                     </ul>
-
                                 </div>
                                 <div class="col-lg-4 mil-mb-60">
-
                                     <h6 class="mil-muted mil-mb-30">Useful links</h6>
-
                                     <ul class="mil-menu-list">
                                         <li><a href="#." class="mil-light-soft">Privacy Policy</a></li>
                                         <li><a href="#." class="mil-light-soft">Terms and conditions</a></li>
-                                        <li><a href="#." class="mil-light-soft">Cookie Policy</a></li>
                                         <li><a href="#." class="mil-light-soft">Careers</a></li>
                                     </ul>
-
                                 </div>
                             </div>
+
                             <div class="mil-divider mil-mb-60"></div>
+
                             <div class="row justify-content-between">
-
                                 <div class="col-lg-4 mil-mb-60">
-
                                     <h6 class="mil-muted mil-mb-30">Canada</h6>
-
-                                    <p class="mil-light-soft mil-up">71 South Los Carneros Road, California <span class="mil-no-wrap">+51 174 705 812</span></p>
-
+                                    <p class="mil-light-soft mil-up">
+                                        71 South Los Carneros Road, California 
+                                        <span class="mil-no-wrap">+51 174 705 812</span>
+                                    </p>
                                 </div>
                                 <div class="col-lg-4 mil-mb-60">
-
                                     <h6 class="mil-muted mil-mb-30">Germany</h6>
-
-                                    <p class="mil-light-soft">Leehove 40, 2678 MC De Lier, Netherlands <span class="mil-no-wrap">+31 174 705 811</span></p>
-
+                                    <p class="mil-light-soft">
+                                        Leehove 40, 2678 MC De Lier, Netherlands 
+                                        <span class="mil-no-wrap">+31 174 705 811</span>
+                                    </p>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
@@ -120,4 +119,3 @@
         </div>
     </div>
 </div>
-<!-- menu -->

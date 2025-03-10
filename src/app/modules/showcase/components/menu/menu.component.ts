@@ -26,8 +26,14 @@ import { CommonModule } from '@angular/common';
 })
 
 export class MenuComponent {
+  isMenuOpen: boolean = false;
+ toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 
+  closeMenu(): void {
+    if (this.isMenuOpen) {
+      this.isMenuOpen = false;
+    }
+  }
 }
-export const routes: Routes = [
-  
-];
