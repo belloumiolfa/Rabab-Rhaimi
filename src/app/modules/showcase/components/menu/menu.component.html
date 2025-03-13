@@ -1,13 +1,15 @@
 <div 
-    class="mil-menu-frame" 
-    [class.active]="isMenuOpen" 
+    #menuFrame
+    class="mil-menu-frame mil-menu" 
+    [class.mil-active]="isMenuOpen" 
     (click)="closeMenu()"
     id="menu">
 
     <!-- Frame Clone -->
     <div class="mil-frame-top">
         <a routerLink="/" class="mil-logo">A.</a>
-        <button class="mil-menu-btn" (click)="toggleMenu(); $event.stopPropagation()">
+        <button #menuBtn class="mil-menu-btn" 
+                (click)="toggleMenu(); $event.stopPropagation()">
             <span></span>
         </button>
     </div>
@@ -20,47 +22,51 @@
 
                     <nav class="mil-main-menu" id="swupMenu">
                         <ul>
-                            <li class="mil-has-children mil-active">
-                                <h2>Bienvenue sur mon site !</h2>
-                                <a routerLink="/" data-swup-preload>Homepage</a>
-                                <ul>
+                            <li class="mil-has-children" (click)="$event.preventDefault(); toggleSubMenu('homepage')">
+                                <a href="/" class="mil-submenu-link">Homepage</a>
+                                <ul class="mil-submenu" [class.mil-active]="isSubMenuActive('homepage')">
                                     <li><a routerLink="/" data-swup-preload>Landing page</a></li>
                                     <li><a routerLink="/home-2" data-swup-preload>Personal</a></li>
                                     <li><a routerLink="/portfolio-3" data-swup-preload>Portfolio slider</a></li>
                                 </ul>
                             </li>
-                            <li class="mil-has-children">
-                                <a routerLink="/portfolio-1" data-swup-preload>Portfolio</a>
-                                <ul>
-                                    <li><a routerLink="/portfolio-1" data-swup-preload>Grid type 1</a></li>
-                                    <li><a routerLink="/portfolio-2" data-swup-preload>Grid type 2</a></li>
-                                    <li><a routerLink="/portfolio-3" data-swup-preload>Slider</a></li>
-                                </ul>
-                            </li>
-                            <li class="mil-has-children">
-                                <a routerLink="/services" data-swup-preload>Services</a>
-                                <ul>
-                                    <li><a routerLink="/services" data-swup-preload>Services List</a></li>
-                                    <li><a routerLink="/service" data-swup-preload>Single service</a></li>
-                                </ul>
-                            </li>
-                            <li class="mil-has-children">
-                                <a routerLink="/blog" data-swup-preload>Newsletter</a>
-                                <ul>
-                                    <li><a routerLink="/blog" data-swup-preload>Blog List</a></li>
-                                    <li><a routerLink="/publication" data-swup-preload>Publication</a></li>
-                                </ul>
-                            </li>
-                            <li class="mil-has-children">
-                                <a routerLink="/team" data-swup-preload>Other pages</a>
-                                <ul>
-                                    <li><a routerLink="/team" data-swup-preload>Team</a></li>
-                                    <li><a routerLink="/contact" data-swup-preload>Contact</a></li>
-                                    <li><a href="404.html" data-swup-preload>404</a></li>
-                                </ul>
-                            </li>
+                      
+                          <li class="mil-has-children">
+                            <a href="#" class="mil-submenu-link">Portfolio</a>
+                            <ul class="mil-submenu">
+                              <li><a routerLink="/portfolio-1" data-swup-preload>Grid type 1</a></li>
+                              <li><a routerLink="/portfolio-2" data-swup-preload>Grid type 2</a></li>
+                              <li><a routerLink="/portfolio-3" data-swup-preload>Slider</a></li>
+                            </ul>
+                          </li>
+                      
+                          <li class="mil-has-children">
+                            <a href="#" class="mil-submenu-link">Services</a>
+                            <ul class="mil-submenu">
+                              <li><a routerLink="/services" data-swup-preload>Services List</a></li>
+                              <li><a routerLink="/service" data-swup-preload>Single service</a></li>
+                            </ul>
+                          </li>
+                      
+                          <li class="mil-has-children">
+                            <a href="#" class="mil-submenu-link">Newsletter</a>
+                            <ul class="mil-submenu">
+                              <li><a routerLink="/blog" data-swup-preload>Blog List</a></li>
+                              <li><a routerLink="/publication" data-swup-preload>Publication</a></li>
+                            </ul>
+                          </li>
+                      
+                          <li class="mil-has-children">
+                            <a href="#" class="mil-submenu-link">Other pages</a>
+                            <ul class="mil-submenu">
+                              <li><a routerLink="/team" data-swup-preload>Team</a></li>
+                              <li><a routerLink="/contact" data-swup-preload>Contact</a></li>
+                              <li><a href="404.html" data-swup-preload>404</a></li>
+                            </ul>
+                          </li>
                         </ul>
-                    </nav>
+                      </nav>
+                      
 
                 </div>
                 <div class="col-xl-7">

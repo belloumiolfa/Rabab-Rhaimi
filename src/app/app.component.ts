@@ -48,9 +48,9 @@ export class AppComponent implements AfterViewInit {
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
-  @ViewChild('menuBtn') menuBtn!: ElementRef;
-  @ViewChild('menu') menu!: ElementRef;
-  @ViewChild('menuFrame') menuFrame!: ElementRef;
+  @ViewChild('menuBtn', { static: true }) menuBtn!: ElementRef;
+@ViewChild('menuFrame', { static: true }) menuFrame!: ElementRef;
+
 
   swup!: Swup;
   afficherContenu = false;
@@ -92,39 +92,16 @@ export class AppComponent implements AfterViewInit {
       duration: 1
     });
 
-    // Gestion du menu principal
-    if (this.menuBtn && this.menu && this.menuFrame) {
-      this.menuBtn.nativeElement.addEventListener('click', () => {
+    // ✅ Gestion du menu corrigée
+    if (this.menuBtn && this.menuFrame) {
+      this.menuBtn.nativeElement.addEventListener('click', (event: Event) => {
+        event.stopPropagation(); // ✅ Empêche les conflits de clic
         this.menuBtn.nativeElement.classList.toggle('mil-active');
-        this.menu.nativeElement.classList.toggle('mil-active');
         this.menuFrame.nativeElement.classList.toggle('mil-active');
       });
     }
 
-    // Gestion des sous-menus
-    document.querySelectorAll('.mil-has-children a').forEach((menuItem) => {
-      const item = menuItem as HTMLElement;
-      item.addEventListener('click', () => {
-        document.querySelectorAll('.mil-has-children ul').forEach((ul) => {
-          const list = ul as HTMLElement;
-          list.classList.remove('mil-active');
-        });
-
-        document.querySelectorAll('.mil-has-children a').forEach((link) => {
-          const anchor = link as HTMLElement;
-          anchor.classList.remove('mil-active');
-        });
-
-        item.classList.toggle('mil-active');
-
-        const sibling = item.nextElementSibling as HTMLElement | null;
-        if (sibling && sibling.classList) {
-          sibling.classList.toggle('mil-active');
-        }
-      });
-    });
-
-    // Affichage du menu principal si présent
+    // ✅ Affichage du menu si présent dans le DOM
     const menu = document.getElementById('menu');
     if (menu) {
       menu.style.display = 'block';
@@ -135,9 +112,6 @@ export class AppComponent implements AfterViewInit {
 
     // Rafraîchir ScrollTrigger pour les animations dynamiques
     ScrollTrigger.refresh();
-  }
+}
 
-  toggleContenu() {
-    this.afficherContenu = !this.afficherContenu;
-  }
 }

@@ -703,7 +703,7 @@ main menu
 
 ***************************/
 
-document.querySelectorAll(".mil-has-children a").forEach(anchor => {
+document.querySelectorAll(".mil-has-children a ").forEach(anchor => {
     anchor.addEventListener("click", function () {
         document.querySelectorAll(".mil-has-children ul").forEach(ul => ul.classList.remove("mil-active"));
         document.querySelectorAll(".mil-has-children a").forEach(a => a.classList.remove("mil-active"));
