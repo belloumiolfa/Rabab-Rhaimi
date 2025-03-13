@@ -1,34 +1,36 @@
-import { AfterViewInit, Component } from '@angular/core';
-import { Swiper } from 'swiper';
-import { Autoplay, Pagination ,Navigation } from 'swiper/modules';  // ✅ Correct pour v11+
-
-Swiper.use([Autoplay, Pagination, Navigation]);
+import { Component, AfterViewInit } from '@angular/core';
+import Swiper from 'swiper';
 
 @Component({
   selector: 'app-partners',
-  standalone: true,
-  imports: [],  // ❌ Supprimer `SwiperModule`, ce n'est plus nécessaire
   templateUrl: './partners.component.html',
   styleUrls: ['./partners.component.css']
 })
-export class PartnersComponent implements AfterViewInit{
+export class PartnersComponent{
   ngAfterViewInit(): void {
-    new Swiper('.swiper', {
-      slidesPerView: 'auto',
+    const swiper = new Swiper('.mil-reviews-slider', {
+      slidesPerView: 1,
       spaceBetween: 30,
       loop: true,
       autoplay: {
-        delay: 2000,
+        delay: 3000,
         disableOnInteraction: false
       },
       pagination: {
-        el: '.swiper-pagination',
-        clickable: true
+        el: '.mil-revi-pagination',
+        clickable: true,
+        renderBullet: (index, className) => {
+          return `<div class="${className}">
+                    <img src="../../../../../assets/img/avatars/avatar${index + 1}.jpg" class="mil-avatar"/>
+                  </div>`;
+        }
       },
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
-      }
+      },
+      effect: 'fade'
     });
   }
+  
 }

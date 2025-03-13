@@ -1,4 +1,4 @@
-<!-- blog -->
+<!-- Blog -->
 <section>
     <div class="container mil-p-120-60">
         <div class="row align-items-center mil-mb-30">
@@ -7,54 +7,63 @@
             </div>
             <div class="col-lg-6 mil-mb-30">
                 <div class="mil-adaptive-right mil-up">
-                    <a href="blog.html" class="mil-link mil-dark mil-arrow-place">
-                        <span>View all</span>
+                    <!-- ✅ Utilisation correcte de routerLink -->
+                    <a routerLink="/publication" class="mil-link mil-dark mil-arrow-place">
+                        View all
                     </a>
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-lg-6">
 
-                <a href="publication.html" class="mil-blog-card mil-mb-60">
+                <div class="mil-blog-card mil-mb-60">
                     <div class="mil-cover-frame mil-up">
-                        <img src="img/blog/1.jpg" alt="cover">
+                        <img src="../../../../../assets/img/blog/1.jpg" alt="cover" class="image">
                     </div>
                     <div class="mil-post-descr">
                         <div class="mil-labels mil-up mil-mb-30">
                             <div class="mil-label mil-upper mil-accent">TECHNOLOGY</div>
-                            <div class="mil-label mil-upper">may 24 2023</div>
+                            <div class="mil-label mil-upper">May 24, 2023</div>
                         </div>
                         <h4 class="mil-up mil-mb-30">How to Become a Graphic Designer in 10 Simple Steps</h4>
-                        <p class="mil-post-text mil-up mil-mb-30">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius sequi commodi dignissimos optio, beatae, eos necessitatibus nisi. Nam cupiditate consectetur nostrum qui! Repellat natus nulla, nisi aliquid, asperiores impedit tempora sequi est reprehenderit cumque explicabo, dicta. Rem nihil ullam totam ea voluptas quibusdam repudiandae id ut at iure! Totam, a!</p>
+                        <p class="mil-post-text mil-up mil-mb-30">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        </p>
                         <div class="mil-link mil-dark mil-arrow-place mil-up">
-                            <span>Read more</span>
+                            <!-- ✅ Lien corrigé avec routerLink -->
+                            <a [routerLink]="'/publication'">Read more</a>
                         </div>
                     </div>
-                </a>
+                </div>
 
             </div>
+
             <div class="col-lg-6">
 
-                <a href="publication.html" class="mil-blog-card mil-mb-60">
+                <div class="mil-blog-card mil-mb-60">
                     <div class="mil-cover-frame mil-up">
-                        <img src="img/blog/2.jpg" alt="cover">
+                        <img src="../../../../../assets/img/blog/2.jpg" alt="cover" class="image">
                     </div>
                     <div class="mil-post-descr">
                         <div class="mil-labels mil-up mil-mb-30">
                             <div class="mil-label mil-upper mil-accent">TECHNOLOGY</div>
-                            <div class="mil-label mil-upper">may 24 2023</div>
+                            <div class="mil-label mil-upper">May 24, 2023</div>
                         </div>
                         <h4 class="mil-up mil-mb-30">16 Best Graphic Design Online and Offline Courses</h4>
-                        <p class="mil-post-text mil-up mil-mb-30">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius sequi commodi dignissimos optio, beatae, eos necessitatibus nisi. Nam cupiditate consectetur nostrum qui! Repellat natus nulla, nisi aliquid, asperiores impedit tempora sequi est reprehenderit cumque explicabo, dicta. Rem nihil ullam totam ea voluptas quibusdam repudiandae id ut at iure! Totam, a!</p>
+                        <p class="mil-post-text mil-up mil-mb-30">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        </p>
                         <div class="mil-link mil-dark mil-arrow-place mil-up">
-                            <span>Read more</span>
+                            <!-- ✅ Lien corrigé avec routerLink -->
+                            <a [routerLink]="'/publication'">Read more</a>
                         </div>
                     </div>
-                </a>
+                </div>
 
             </div>
         </div>
     </div>
 </section>
-<!-- blog end -->
+<!-- Blog end -->

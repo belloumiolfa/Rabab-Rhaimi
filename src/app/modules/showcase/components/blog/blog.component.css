@@ -1,0 +1,34 @@
+/* Container général */
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 300px;  /* Hauteur fixe pour uniformiser les images */
+    overflow: hidden;
+    border-radius: 12px; /* Coins arrondis pour un design moderne */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);  /* Légère ombre */
+}
+
+/* Image avec effet de zoom */
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintient les proportions sans déformation */
+    transition: transform 0.4s ease-in-out; /* Transition fluide */
+}
+
+/* Effet de zoom au survol */
+.image-container:hover .image {
+    transform: scale(1.1); /* Zoom léger */
+    filter: brightness(0.9); /* Effet d'obscurcissement léger pour plus d'impact */
+}
+
+/* Correction de l'espacement */
+.mil-blog-card {
+    margin-bottom: 30px;
+}
+
+/* Titre et texte bien espacés */
+.mil-post-descr {
+    padding: 20px;
+    text-align: left;
+}
