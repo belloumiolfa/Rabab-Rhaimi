@@ -16,9 +16,50 @@ import { Service1Component } from './modules/services/pages/service1/service1.co
 import { Service2Component } from './modules/services/pages/service2/service2.component';
 import { TeamsComponent } from './modules/teams/pages/teams/teams.component';
 import { ContentComponent } from './modules/showcase/components/content/content.component';
+import { CursorComponent } from './modules/showcase/components/cursor/cursor.component';
+import { PreloaderComponent } from './modules/showcase/components/preloader/preloader.component';
+import { ScrollbarComponent } from './modules/showcase/components/scrollbar/scrollbar.component';
+import { MenuComponent } from './modules/showcase/components/menu/menu.component';
+import { CurtainComponent } from './modules/showcase/components/curtain/curtain.component';
+import { FrameComponent } from './modules/showcase/components/frame/frame.component';
+import { BannerPubComponent } from './modules/blog/components/banner-pub/banner-pub.component';
+import { PubComponent } from './modules/blog/components/pub/pub.component';
+import { SimilarComponent } from './modules/blog/components/similar/similar.component';
+import { FooterComponent } from './modules/showcase/components/footer/footer.component';
+import { HiddenElementsComponent } from './modules/showcase/components/hidden-elements/hidden-elements.component';
 
 
 export const routes: Routes = [
+  { path: 'blog', component: BlogComponent },
+  { 
+    path: 'publication', 
+    component: PublicationComponent,
+    children: [
+      { path: 'cursor', component: CursorComponent  }, 
+      { path: 'preloader', component: PreloaderComponent },
+      { path: 'scrollbar', component: ScrollbarComponent  }, 
+      { path: 'menu', component: MenuComponent },
+      { path: 'curtain', component: CurtainComponent  }, 
+      { path: 'frame', component: FrameComponent },
+      { path: 'content', component: ContentComponent ,
+        children:[
+          { path: 'cursor', component: BannerPubComponent  }, 
+          { path: 'preloader', component: PubComponent },
+          { path: 'scrollbar', component: SimilarComponent  }, 
+          { path: 'menu', component: FooterComponent },
+          { path: 'curtain', component: HiddenElementsComponent  }, 
+        ]
+      }, 
+    ]
+  },
+  {
+    path: 'portfolio',
+    children: [
+      { path: 'portfolio-1', component: Portfolio1Component },
+      { path: 'portfolio-2', component: Portfolio2Component },
+      { path: 'portfolio-3', component: Portfolio3Component }
+    ]
+  },
   { path: '', component: AppComponent,
     children: [
       { path: 'home-2', component: ContentComponent },
@@ -34,7 +75,6 @@ export const routes: Routes = [
       { path: 'team', component: TeamsComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'publication', component: PublicationComponent },
-      { path: 'blog', component: BlogComponent },
       { path: 'services', component: Service1Component },
       { path: 'service', component: Service2Component },  
        
