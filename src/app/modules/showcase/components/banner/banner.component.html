@@ -1,53 +1,80 @@
- <!-- banner -->
- <section class="mil-banner mil-dark-bg">
-    <div class="mi-invert-fix">
-        <div class="mil-animation-frame">
-            <div class="mil-animation mil-position-1 mil-scale" data-value-1="7" data-value-2="1.6"></div>
-            <div class="mil-animation mil-position-2 mil-scale" data-value-1="4" data-value-2="1"></div>
-            <div class="mil-animation mil-position-3 mil-scale" data-value-1="1.2" data-value-2=".1"></div>
-        </div>
-
-        <div class="mil-gradient"></div>
-
-        <div class="container">
-            <div class="mil-banner-content mil-up">
-
-                <h1 class="mil-muted mil-mb-60">Designing <span class="mil-thin">a Better</span><br> World <span class="mil-thin">Today</span></h1>
-                <div class="row">
-                    <div class="col-md-7 col-lg-5">
-
-                        <p class="mil-light-soft mil-mb-60">Welcome to our world of endless imagination and boundless creativity. Together, let's embark on a remarkable journey where dreams become tangible realities.</p>
-
-                    </div>
-                </div>
-
-                <a href="services.html" class="mil-button mil-arrow-place mil-btn-space">
-                    <span>What we do</span>
-                </a>
-
-                <a href="portfolio-1.html" class="mil-link mil-muted mil-arrow-place">
-                    <span>View works</span>
-                </a>
-
-                <div class="mil-circle-text">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 300 300" enable-background="new 0 0 300 300" xml:space="preserve" class="mil-ct-svg mil-rotate" data-value="360">
-                        <defs>
-                            <path id="circlePath" d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0 " />
-                        </defs>
-                        <circle cx="150" cy="100" r="75" fill="none" />
-                        <g>
-                            <use xlink:href="#circlePath" fill="none" />
-                            <text style="letter-spacing: 6.5px">
-                                <!-- circle text -->
-                                <textPath xlink:href="#circlePath">Scroll down - Scroll down - </textPath>
-                            </text>
-                        </g>
-                    </svg>
-                    <a href="#about" class="mil-button mil-arrow-place mil-icon-button mil-arrow-down"></a>
-                </div>
-
-            </div>
-        </div>
+<section class="mil-banner mil-banner-with-bg">
+  <div class="mi-invert-fix">
+    <div class="mil-animation-frame">
+      <div class="mil-animation mil-position-1 mil-scale" data-value-1="7" data-value-2="1.6"></div>
+      <div class="mil-animation mil-position-2 mil-scale" data-value-1="4" data-value-2="1"></div>
+      <div class="mil-animation mil-position-3 mil-scale" data-value-1="1.2" data-value-2=".1"></div>
     </div>
+
+    <div class="mil-gradient"></div>
+
+    <!-- ✅ PADDING TOP AUGMENTÉ ICI -->
+    <div class="container" style="padding-top: 160px; padding-bottom: 120px;">
+      <div class="mil-banner-content mil-up">
+
+        <h1 class="mil-muted mil-mb-60" style="font-size: 52px; line-height: 1.2; color: #ffffff; font-weight: bold;">
+          Bienvenue
+          <span style="font-weight: 400; font-size: 48px;">sur le site </span><br>
+          <span style="font-size: 50px; font-weight: 600;">de Dr. Rabeb Hraimi</span><br>
+          <span class="mil-thin" style="font-size: 42px;">Dentiste spécialisée à Tunis</span>
+        </h1>
+
+        <div class="row mb-5">
+          <div class="col-md-8 col-lg-6">
+            <p class="mil-light-soft" style="font-size: 20px; color: #ffffff;">
+              Dr. Rabeb Hraimi est une dentiste expérimentée, spécialisée dans l’implantologie, le blanchiment dentaire, etc.<br>
+              Située à <strong>Medenine, en Tunisie</strong>, elle propose des soins personnalisés, alliant expertise, technologie moderne et approche humaine.
+            </p>
+          </div>
+        </div>
+
+        <!-- ✅ BOUTONS SÉPARÉS PAR GAP -->
+        <div class="d-flex flex-column flex-sm-row justify-content-start align-items-center">
+          <button (click)="redirectToLogin()"
+            class="mil-button mil-arrow-place text-center me-sm-3"
+            style="padding: 15px 40px; margin-right: 20px;">
+            <span style="display: inline-block; width: 100%; text-align: center; font-family: 'Segoe UI'; font-weight: 600;">
+              PRENDRE RENDEZ-VOUS
+            </span>
+          </button>
+        
+          <a href="portfolio-1.html"
+            class="mil-button mil-arrow-place text-center"
+            style="padding: 15px 40px;">
+            <span style="display: inline-block; width: 100%; text-align: center; font-family: 'Segoe UI'; font-weight: 600;">
+              VOIR TOUS LES SERVICES
+            </span>
+          </a>
+        </div>
+        
+
+        
+
+      </div>
+    </div>
+  </div>
 </section>
-<!-- banner end -->
+
+<style>
+  .mil-banner-with-bg {
+    background-image: url('../../../../../assets/img/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 1;
+  }
+
+  .mil-banner-with-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+  }
+
+  /* ✅ Pas besoin de gap-5 ici car gap-4 est appliqué en ligne */
+</style>

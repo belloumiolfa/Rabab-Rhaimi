@@ -1,0 +1,41 @@
+<div class="dashboard-container">
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <img 
+      [src]="getProfileImageUrl()" 
+      alt="Photo de profil" 
+      class="avatar" 
+    />      <h2>{{ userData.firstname }} {{ userData.name }}</h2>
+    </div>
+    
+
+    <ul class="sidebar-nav">
+      <li routerLink="/patient-dashboard/mes-rendez-vous" routerLinkActive="active">
+        <span class="icon">📆</span>
+        <span class="menu-text">Mes Rendez-vous</span>
+      </li>
+      
+      <li routerLink="/patient-dashboard/prendre-rdv" routerLinkActive="active">
+        <span class="icon">➕</span>
+        <span class="menu-text">Prendre un Rendez-vous</span>
+      </li>
+      <li routerLink="/patient-dashboard/dossier-medical" routerLinkActive="active">
+        <span class="icon">🗂️</span>
+        <span class="menu-text">Mon Dossier Médical</span>
+      </li>
+      <li routerLink="/patient-dashboard/mon-profil" routerLinkActive="active">
+        <span class="icon">👤</span>
+        <span class="menu-text">Mon Profil</span>
+      </li>
+      <li routerLink="/patient-dashboard/temoignages" routerLinkActive="active">
+        <span class="icon">💬</span>
+        <span class="menu-text">Témoignages</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 👇 Zone principale de contenu -->
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

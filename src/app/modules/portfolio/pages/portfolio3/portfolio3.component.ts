@@ -6,10 +6,11 @@ import { FrameComponent } from "../../../showcase/components/frame/frame.compone
 import { MenuComponent } from "../../../showcase/components/menu/menu.component";
 import { CurtainComponent } from "../../../showcase/components/curtain/curtain.component";
 import { HiddenElementsComponent } from "../../../showcase/components/hidden-elements/hidden-elements.component";
+import { Port3Component } from "../../components/port3/port3.component";
 
 @Component({
   selector: 'app-portfolio3',
-  imports: [CursorComponent, PreloaderComponent, ScrollbarComponent, FrameComponent, MenuComponent, CurtainComponent, HiddenElementsComponent],
+  imports: [CursorComponent, ScrollbarComponent, FrameComponent, MenuComponent, CurtainComponent, HiddenElementsComponent, Port3Component],
   templateUrl: './portfolio3.component.html',
   styleUrl: './portfolio3.component.css'
 })

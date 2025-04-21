@@ -1,0 +1,42 @@
+/* S'assure que chaque colonne force la même hauteur de carte */
+.mil-equal-height > [class*="col-"] {
+    display: flex;
+  }
+  
+  .mil-service-card-lg.mil-other-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    
+  }
+  
+  /* Responsive grid avec 3 cartes max par ligne */
+  @media (min-width: 992px) {
+    .mil-equal-height > .col-lg-4 {
+      max-width: 33.3333%;
+      flex: 0 0 33.3333%;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 991px) {
+    .mil-equal-height > .col-lg-4 {
+      max-width: 50%;
+      flex: 0 0 50%;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .mil-equal-height > .col-lg-4 {
+      max-width: 100%;
+      flex: 0 0 100%;
+    }
+  }
+  /* Espace au-dessus et au-dessous des cartes */
+
+  .col-lg-4{
+    padding: 20px 10px;
+
+  }

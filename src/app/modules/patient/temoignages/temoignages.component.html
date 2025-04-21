@@ -1,0 +1,51 @@
+<div class="testimonial-container">
+    <h1>💬 Témoignages</h1>
+  
+    <!-- Formulaire d'ajout -->
+    <form (ngSubmit)="submit()" class="testimonial-form">
+      <textarea [(ngModel)]="message" name="message" required placeholder="Exprime ton expérience..."></textarea>
+  
+      <div class="rating-submit">
+        <label for="rating">Note :</label>
+        <select [(ngModel)]="rating" name="rating" required>
+          <option [value]="5">⭐⭐⭐⭐⭐</option>
+          <option [value]="4">⭐⭐⭐⭐</option>
+          <option [value]="3">⭐⭐⭐</option>
+          <option [value]="2">⭐⭐</option>
+          <option [value]="1">⭐</option>
+        </select>
+        <button type="submit">Envoyer</button>
+      </div>
+    </form>
+  
+    <!-- Liste des témoignages -->
+    <div class="testimonial-list">
+      <div *ngFor="let t of testimonials" class="testimonial-card">
+        <div class="header">
+            <span class="author">🧑 {{ t.name }}</span>
+            <span class="rating">⭐ {{ t.rating }} / 5</span>
+          
+            <!-- ❌ Supprimer uniquement si c'est 'Moi' et 'pending' -->
+            <button *ngIf="t.status === 'Pending'"
+            (click)="deleteTestimonial(t.id)"
+            class="delete-btn"
+            title="Supprimer">
+      ❌
+    </button>
+          </div>
+          
+        <p class="message">"{{ t.message }}"</p>
+        <p class="status">
+          <strong>Status :</strong>
+          <span [ngClass]="{
+            'Pending': t.status === 'Pending',
+            'approved': t.status === 'approved',
+            'rejected': t.status === 'rejected'
+          }">
+            {{ t.status }}
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+  

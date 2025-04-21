@@ -1,0 +1,54 @@
+.section-title {
+    text-align: center;
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 30px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .no-records {
+    text-align: center;
+    color: #888;
+    font-size: 16px;
+  }
+  
+  .record-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .record-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 500px;
+    font-family: 'Segoe UI', sans-serif;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .record-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  }
+  
+  .record-header {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .record-date {
+    font-weight: 600;
+    color: #ff6600;
+  }
+  
+  .record-body p {
+    margin: 8px 0;
+    font-size: 15px;
+    color: #444;
+  }
+  

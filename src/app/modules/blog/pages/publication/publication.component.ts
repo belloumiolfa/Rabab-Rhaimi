@@ -13,7 +13,7 @@ import { BannerPubComponent } from "../../components/banner-pub/banner-pub.compo
 
 @Component({
   selector: 'app-publication',
-  imports: [HiddenElementsComponent, FooterComponent, FrameComponent, CurtainComponent, MenuComponent, ScrollbarComponent, PreloaderComponent, CursorComponent, SimilarComponent, PubComponent, BannerPubComponent],
+  imports: [HiddenElementsComponent, FooterComponent, FrameComponent, CurtainComponent, MenuComponent, ScrollbarComponent, CursorComponent, SimilarComponent, PubComponent, BannerPubComponent],
   templateUrl: './publication.component.html',
   styleUrl: './publication.component.css'
 })

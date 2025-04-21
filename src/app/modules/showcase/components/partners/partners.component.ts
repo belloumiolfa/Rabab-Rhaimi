@@ -1,36 +1,21 @@
-import { Component, AfterViewInit } from '@angular/core';
-import Swiper from 'swiper';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-partners',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './partners.component.html',
-  styleUrls: ['./partners.component.css']
+  styleUrl: './partners.component.css'
 })
-export class PartnersComponent{
-  ngAfterViewInit(): void {
-    const swiper = new Swiper('.mil-reviews-slider', {
-      slidesPerView: 1,
-      spaceBetween: 30,
-      loop: true,
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false
-      },
-      pagination: {
-        el: '.mil-revi-pagination',
-        clickable: true,
-        renderBullet: (index, className) => {
-          return `<div class="${className}">
-                    <img src="../../../../../assets/img/avatars/avatar${index + 1}.jpg" class="mil-avatar"/>
-                  </div>`;
-        }
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-      },
-      effect: 'fade'
-    });
-  }
-  
+export class PartnersComponent {
+  baseLogos = [
+    'assets/img/asso1.png',
+    'assets/img/asso2.png',
+    'assets/img/asso1.png',
+    'assets/img/asso2.png',
+  ];
+
+  // Répéter les logos pour faire une boucle visuellement infinie
+  repeatedLogos = [...this.baseLogos, ...this.baseLogos, ...this.baseLogos];
 }

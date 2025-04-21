@@ -1,0 +1,56 @@
+<div class="profile-container">
+    <!-- 📸 Image de couverture -->
+    <div class="cover-photo">
+        <div class="profile-photo">
+            <img 
+            [src]="getCoverPhotoUrl()" 
+            alt="Photo de couverture" 
+          />    </div>
+  
+    <!-- 🧑‍🦱 Image de profil -->
+    
+      
+      <!-- ✅ Photo de profil -->
+      <img 
+        [src]="getProfilePictureUrl()" 
+        alt="Photo de profil" 
+      />    </div>
+  
+    <!-- 📋 Infos utilisateur -->
+    <div class="profile-info">
+      <h2>{{ userData.firstname }} {{ userData.name }}</h2>
+      <p><strong>Email :</strong> {{ userData.email }}</p>
+      <p><strong>Téléphone :</strong> {{ userData.phone || 'Non renseigné' }}</p>
+      
+  
+      <button (click)="showModal = true">Modifier mon profil</button>
+    </div>
+  </div>
+  <div class="modal-overlay" *ngIf="showModal">
+    <div class="modal-content">
+      <h3>Modifier mon profil</h3>
+  
+      <label>Nom</label>
+      <input type="text" [(ngModel)]="formData.name" />
+  
+      <label>Prénom</label>
+      <input type="text" [(ngModel)]="formData.firstname" />
+  
+      <label>Téléphone</label>
+      <input type="text" [(ngModel)]="formData.phone" />
+  
+      <label>Photo de profil</label>
+      <input type="file" (change)="onFileChange($event, 'profile')" />
+  
+      <label>Photo de couverture</label>
+      <input type="file" (change)="onFileChange($event, 'cover')" />
+  
+      <div class="modal-buttons">
+        <button class="cancel" (click)="showModal = false">Annuler</button>
+        <button class="submit" (click)="updateProfile()">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+  
+  
+  

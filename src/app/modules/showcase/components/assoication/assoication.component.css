@@ -1,0 +1,39 @@
+.logo-slider-wrapper {
+  overflow: hidden;
+  width: 100%;
+  background-color: #f9f9f9;
+  padding: 20px 0;
+  position: relative;
+}
+
+.logo-slider-track {
+  display: flex;
+  animation: scroll-left 40s linear infinite;
+  width: max-content;
+  gap: 60px;
+}
+
+.logo-slide {
+  flex: 0 0 auto;
+  padding: 0 40px;
+}
+
+.logo-slide img {
+  height: 30px;
+  width: 80px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.logo-slide img:hover {
+  transform: scale(1.05);
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-33.333%); /* ← car 3x le contenu */
+  }
+}

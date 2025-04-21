@@ -1,72 +1,150 @@
 .mil-avatar {
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid transparent;
   cursor: pointer;
-  transition: transform 0.3s ease, border 0.3s ease;
+  padding: 4px; /* cadre blanc intérieur */
+  background-color: #ffffff;
+  transition: transform 0.3s ease;
+  box-sizing: border-box;
+  border: 4px solid transparent; /* préparer pour cadre orange */
 }
 
-.mil-avatar:hover {
-  transform: scale(1.1);
+.mil-avatar:hover,
+.swiper-pagination-bullet.active .mil-avatar {
+  border-color: #f90; /* cadre orange au hover ou actif */
+  transform: scale(1.05);
 }
 
-.swiper-pagination-bullet.active {
-  border-color: #f90; /* Cercle orange pour avatar actif */
+/* enlever tout style supplémentaire de swiper bullet */
+.swiper-pagination-bullet {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-/* SLIDER (TÉMOIGNAGES) */
-.swiper-slide {
-  display: none;
+.svgw {
+  text-align: center;
 }
 
-.swiper-slide.active {
-  display: block;
-}
-
-/* FLÈCHES DE NAVIGATION */
-.mil-slider-nav {
+.review-container {
   display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .mil-slider-arrow {
   cursor: pointer;
-  width: 40px;
-  height: 40px;
   background-color: #eee;
   border-radius: 50%;
+  width: 35px;
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #000;
-  font-size: 20px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: 0.3s;
 }
-.container-avatar{
-    display: flex;
-    align-items: center;
-margin-left: 25%;
-margin-top: 13%;
-margin-bottom: 10px;
+
+
+
+.mil-review-frame {
+  text-align: center;
+  max-width: 600px;
+}
+
+.mil-review-frame h5 {
+  font-size: 100px;
+  margin-bottom: 10px;
+}
+
+.mil-review-frame p {
+  font-size: 100px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+@media (max-width: 768px) {
+  .mil-avatar {
+    width: 45px;
+    height: 45px;
+  }
+
+  .mil-revi-pagination {
+    gap: 8px;
+    overflow-x: auto;
+  }
+
+  .review-container {
+    flex-direction: column;
+  }
+
+  .mil-slider-arrow {
+    width: 30px;
+    height: 30px;
+  }
+
+  .mil-review-frame h5 {
+    font-size: 16px;
+  }
+
+  .mil-review-frame p {
+    font-size: 13px;
+    padding: 0 10px;
+  }
+
+  .svgw svg {
+    width: 30px;
+  }
+
+  .mil-p-120-120 {
+    padding: 40px 10px !important;
+  }
+}
+.mil-slider-arrow {
+  cursor: pointer;
+  background-color: #f2f2f2; /* Gris clair comme sur ta capture */
+  border-radius: 50%;
+  width: 50px; /* légèrement plus grand */
+  height: 50px; /* légèrement plus grand */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-size: 24px; /* taille de flèche plus grande */
+  color: #000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .mil-slider-arrow:hover {
-  background-color: #f90;
-  color: #fff;
   transform: scale(1.1);
+  background-color: #e8e8e8;
 }
 
-/* DÉPLACEMENT DES AVATARS */
-.mil-review-frame {
-  margin-top: 30px; /* Plus d'espace entre les avatars et le texte */
-}
-.mil-revi-pagination {
+/* Espacement des flèches par rapport au texte */
+.review-container {
   display: flex;
-  justify-content: center; /* Centre horizontalement */
-  align-items: center; /* Centre verticalement */
-  gap: 15px; /* Espacement entre les avatars */
-  margin-bottom: 40px;
+  align-items: center;
+  justify-content: space-between; /* espacées clairement sur les côtés */
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.mil-review-frame {
+  flex: 1;
+  padding: 0 30px; /* espace clair entre texte et flèches */
+  text-align: center;
+}
+
+.mil-review-frame h5 {
+  font-size: 30px; /* texte du nom plus grand */
+  margin-bottom: 15px;
+}
+
+.mil-review-frame p {
+  font-size: 20px; /* texte de témoignage agrandi */
+  line-height: 1.6;
 }

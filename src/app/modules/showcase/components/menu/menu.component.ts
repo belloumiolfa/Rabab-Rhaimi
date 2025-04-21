@@ -26,13 +26,18 @@ export class MenuComponent {
     }
   }
 
-  toggleSubMenu(menuName: string): void {
-    this.activeSubMenu = this.activeSubMenu === menuName ? null : menuName;
-  }
+  
+  
 
-  isSubMenuActive(menuName: string): boolean {
-    return this.activeSubMenu === menuName;
-  }
+
+toggleSubMenu(name: string): void {
+  this.activeSubMenu = this.activeSubMenu === name ? null : name;
+}
+
+isSubMenuActive(name: string): boolean {
+  return this.activeSubMenu === name;
+}
+
   
 
 }

@@ -18,60 +18,9 @@
     <app-root></app-root>
 
     <!-- JavaScript Plugins compatibles Angular -->
-    <script src="assets/js/plugins/gsap.min.js" defer></script>
-    <script src="assets/js/plugins/ScrollTrigger.min.js" defer></script>
-    <script src="assets/js/plugins/ScrollTo.min.js" defer></script>
-    <script src="assets/js/main.js" defer></script>
+     
+    
 
-    <!-- Swup JS -->
-    <script src="https://unpkg.com/swup@3" defer></script>
-    <script defer>
-      document.addEventListener("DOMContentLoaded", function () {
-        const swup = new Swup({
-          containers: ["#swup"],
-          linkSelector: "a[data-swup-preload]",
-        });
-
-        swup.on("contentReplaced", () => {
-          console.log("Swup a chargé une nouvelle page !");
-
-          // Réactiver Swiper
-          if (typeof Swiper !== "undefined") {
-            new Swiper(".swiper-container", {
-              loop: true,
-              autoplay: {
-                delay: 3000,
-              },
-              pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-              },
-            });
-          }
-
-          // Réactiver les animations GSAP
-          if (
-            typeof gsap !== "undefined" &&
-            typeof ScrollTrigger !== "undefined"
-          ) {
-            ScrollTrigger.refresh();
-          }
-
-          // Réactiver Fancybox
-          if (typeof Fancybox !== "undefined") {
-            Fancybox.bind("[data-fancybox]", {});
-          }
-
-          // Réactiver le menu
-          let menuToggle = document.querySelector(".menu-toggle");
-          if (menuToggle) {
-            menuToggle.addEventListener("click", function () {
-              document.body.classList.toggle("menu-open");
-            });
-          }
-        });
-      });
-    </script>
+    
   </body>
 </html>
-+

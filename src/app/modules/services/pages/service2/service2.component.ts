@@ -11,10 +11,11 @@ import { Banner2Component } from "../../../portfolio/components/banner2/banner2.
 import { Service22Component } from "../../components/service22/service22.component";
 import { PriceComponent } from "../../components/price/price.component";
 import { OtherServiceComponent } from "../../components/other-service/other-service.component";
+import { BannerOServiceComponent } from "../../components/banner-o-service/banner-o-service.component";
 
 @Component({
   selector: 'app-service2',
-  imports: [CursorComponent, PreloaderComponent, ScrollbarComponent, MenuComponent, CurtainComponent, FrameComponent, HiddenElementsComponent, FooterComponent, Banner2Component, Service22Component, PriceComponent, OtherServiceComponent],
+  imports: [CursorComponent, ScrollbarComponent, MenuComponent, CurtainComponent, FrameComponent, HiddenElementsComponent, FooterComponent, Service22Component, OtherServiceComponent],
   templateUrl: './service2.component.html',
   styleUrl: './service2.component.css'
 })

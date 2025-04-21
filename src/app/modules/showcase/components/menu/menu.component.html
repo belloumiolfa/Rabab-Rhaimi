@@ -6,13 +6,13 @@
     id="menu">
 
     <!-- Frame Clone -->
-    <div class="mil-frame-top">
+    <!--<div class="mil-frame-top">
         <a routerLink="/" class="mil-logo">A.</a>
         <button #menuBtn class="mil-menu-btn" 
                 (click)="toggleMenu(); $event.stopPropagation()">
             <span></span>
         </button>
-    </div>
+    </div>-->
 
     <!-- Menu Content -->
     <div class="container">
@@ -22,51 +22,50 @@
 
                     <nav class="mil-main-menu" id="swupMenu">
                         <ul>
-                            <li class="mil-has-children" (click)="$event.preventDefault(); toggleSubMenu('homepage')">
-                                <a href="/" class="mil-submenu-link">Homepage</a>
+                            <li class="mil-has-children">
+                                <a href="#" class="mil-submenu-link" (click)="toggleSubMenu('homepage'); $event.preventDefault(); $event.stopPropagation()">Homepage</a>
                                 <ul class="mil-submenu" [class.mil-active]="isSubMenuActive('homepage')">
                                     <li><a routerLink="/" data-swup-preload>Landing page</a></li>
-                                    <li><a routerLink="/home-2" data-swup-preload>Personal</a></li>
-                                    <li><a routerLink="/portfolio-3" data-swup-preload>Portfolio slider</a></li>
+                                    <li><a routerLink="/" data-swup-preload>Personal</a></li>
+                                    <li><a routerLink="/gallery">Portfolio slider</a></li>
                                 </ul>
                             </li>
-                      
-                          <li class="mil-has-children">
-                            <a href="#" class="mil-submenu-link">Portfolio</a>
-                            <ul class="mil-submenu">
-                              <li><a routerLink="/portfolio-1" data-swup-preload>Grid type 1</a></li>
-                              <li><a routerLink="/portfolio-2" data-swup-preload>Grid type 2</a></li>
-                              <li><a routerLink="/portfolio-3" data-swup-preload>Slider</a></li>
-                            </ul>
-                          </li>
-                      
-                          <li class="mil-has-children">
-                            <a href="#" class="mil-submenu-link">Services</a>
-                            <ul class="mil-submenu">
-                              <li><a routerLink="/services" data-swup-preload>Services List</a></li>
-                              <li><a routerLink="/service" data-swup-preload>Single service</a></li>
-                            </ul>
-                          </li>
-                      
-                          <li class="mil-has-children">
-                            <a href="#" class="mil-submenu-link">Newsletter</a>
-                            <ul class="mil-submenu">
-                              <li><a routerLink="/blog" data-swup-preload>Blog List</a></li>
-                              <li><a routerLink="/publication" data-swup-preload>Publication</a></li>
-                            </ul>
-                          </li>
-                      
-                          <li class="mil-has-children">
-                            <a href="#" class="mil-submenu-link">Other pages</a>
-                            <ul class="mil-submenu">
-                              <li><a routerLink="/team" data-swup-preload>Team</a></li>
-                              <li><a routerLink="/contact" data-swup-preload>Contact</a></li>
-                              <li><a href="404.html" data-swup-preload>404</a></li>
-                            </ul>
-                          </li>
+
+                            <li class="mil-has-children">
+                                <a href="#" class="mil-submenu-link" (click)="toggleSubMenu('portfolio'); $event.preventDefault(); $event.stopPropagation()">Portfolio</a>
+                                <ul class="mil-submenu" [class.mil-active]="isSubMenuActive('portfolio')">
+                                    <li><a routerLink="/portfolio-1" data-swup-preload>Grid type 1</a></li>
+                                    <li><a routerLink="/portfolio-2" data-swup-preload>Grid type 2</a></li>
+                                    <li><a routerLink="/portfolio-3" data-swup-preload>Slider</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="mil-has-children">
+                                <a href="#" class="mil-submenu-link" (click)="toggleSubMenu('services'); $event.preventDefault(); $event.stopPropagation()">Services</a>
+                                <ul class="mil-submenu" [class.mil-active]="isSubMenuActive('services')">
+                                    <li><a routerLink="/services" data-swup-preload>Services List</a></li>
+                                    <li><a routerLink="/service" data-swup-preload>Single service</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="mil-has-children">
+                                <a href="#" class="mil-submenu-link" (click)="toggleSubMenu('newsletter'); $event.preventDefault(); $event.stopPropagation()">Newsletter</a>
+                                <ul class="mil-submenu" [class.mil-active]="isSubMenuActive('newsletter')">
+                                    <li><a routerLink="/blog" data-swup-preload>Blog List</a></li>
+                                    <li><a routerLink="/publication" data-swup-preload>Publication</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="mil-has-children">
+                                <a href="#" class="mil-submenu-link" (click)="toggleSubMenu('other'); $event.preventDefault(); $event.stopPropagation()">Other pages</a>
+                                <ul class="mil-submenu" [class.mil-active]="isSubMenuActive('other')">
+                                    <li><a routerLink="/team" data-swup-preload>Team</a></li>
+                                    <li><a routerLink="/contact" data-swup-preload>Contact</a></li>
+                                    <li><a href="404.html" data-swup-preload>404</a></li>
+                                </ul>
+                            </li>
                         </ul>
-                      </nav>
-                      
+                    </nav>
 
                 </div>
                 <div class="col-xl-7">

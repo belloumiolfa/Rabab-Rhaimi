@@ -1,0 +1,70 @@
+.dashboard-welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background: #f9f9f9;
+    padding: 30px;
+  }
+  
+  .welcome-card {
+    background: white;
+    padding: 40px 50px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 700px;
+    animation: fadeInUp 0.5s ease-out;
+  }
+  
+  .welcome-card h1 {
+    color: #ff6600;
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  
+  .welcome-card .intro {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 30px;
+  }
+  
+  .actions-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .action {
+    flex: 1 1 200px;
+    background: #fff5eb;
+    border-left: 5px solid #ff6600;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .action .emoji {
+    font-size: 30px;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .action p {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

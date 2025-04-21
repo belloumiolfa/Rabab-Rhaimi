@@ -11,34 +11,28 @@ import { Component } from '@angular/core';
 export class ReviewsComponent {
   reviews = [
     {
-      name: 'Sarah Newman',
-      position: 'Envato Market',
-      avatar: 'assets/img/avatars/avatar1.jpg',
-      text: 'This creative agency stands out with their exceptional talent and expertise...'
+      name: 'Yosser',
+
+      avatar: '../../../../../assets/img/faces/face6.jpg',
+      text: 'Un médecin très professionnel, très attentionné et connaît très bien son métier, avec un bon suivi des patients'
     },
     {
-      name: 'Emma Trueman',
-      position: 'Envato Market',
-      avatar: 'assets/img/avatars/avatar2.jpg',
-      text: 'I had the pleasure of working with this creative agency...'
+      name: 'Faiza',
+
+      avatar: '../../../../../assets/img/faces/face7.jpg',
+      text: 'Plus de cinq ans douce, ravissante, généreuse docteure 😍in sha Allah a Vie avec vous merci beaucoup'
     },
     {
-      name: 'John Doe',
-      position: 'Envato Market',
-      avatar: 'assets/img/avatars/avatar3.jpg',
-      text: 'An amazing creative agency to work with!'
+      name: 'Mohamed B',
+
+      avatar: '../../../../../assets/img/faces/face4.jpg',
+      text: 'Le dentiste Rabeb Hraimi m’a fait des contentions dentaires mnt j’ai des dents magnifiques je l’ai connu grâce à une amie en France qui avait elle même fait des implants dentaires avec le Dr donc merci pour tout merci pour les belles dents que j’ai mnt un petit coucou de Lyon'
     },
     {
-      name: 'Jane Smith',
-      position: 'Envato Market',
-      avatar: 'assets/img/avatars/avatar4.jpg',
-      text: 'Their dedication to detail and creative vision is unmatched...'
-    },
-    {
-      name: 'Michael Brown',
-      position: 'Envato Market',
-      avatar: 'assets/img/avatars/avatar5.jpg',
-      text: 'The designs they produce are visually captivating and impactful...'
+      name: 'Saif M',
+
+      avatar: '../../../../../assets/img/faces/face5.jpg',
+      text: 'Une chirurgienne dentiste dévouée et passionnée par son travail. Je la recommande vivement.'
     }
   ];
 

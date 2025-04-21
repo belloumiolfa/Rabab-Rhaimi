@@ -9,10 +9,11 @@ import { CallToActionComponent } from "../../components/call-to-action/call-to-a
 import { FooterComponent } from "../../../showcase/components/footer/footer.component";
 import { HiddenElementsComponent } from "../../../showcase/components/hidden-elements/hidden-elements.component";
 import { Banner2Component } from "../../components/banner2/banner2.component";
+import { Port2Component } from "../../components/port2/port2.component";
 
 @Component({
   selector: 'app-portfolio2',
-  imports: [CursorComponent, PreloaderComponent, ScrollbarComponent, MenuComponent, CurtainComponent, FrameComponent, CallToActionComponent, FooterComponent, HiddenElementsComponent, Banner2Component],
+  imports: [CursorComponent, ScrollbarComponent, MenuComponent, CurtainComponent, FrameComponent, CallToActionComponent, FooterComponent, HiddenElementsComponent, Banner2Component, Port2Component],
   templateUrl: './portfolio2.component.html',
   styleUrl: './portfolio2.component.css'
 })

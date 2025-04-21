@@ -1,0 +1,45 @@
+<section class="mil-portfolio-slider-frame">
+  <div class="container">
+
+    <!-- ✅ Titre de la galerie -->
+    <h2 class="mil-mb-20">Galerie avant/après</h2>
+    <p class="mil-section-subtitle mil-up mil-mb-40">
+      Découvrez les transformations réalisées au cabinet. <br />
+      Résultats naturels, patients satisfaits.
+    </p>
+    <!-- ✅ Carrousel des projets -->
+    <owl-carousel-o
+      #owlCarousel
+      [options]="customOptions"
+      (translated)="onTranslated($event)"
+    >
+      <ng-container *ngFor="let project of projects; let i = index">
+        <ng-template carouselSlide>
+          <div class="mil-portfolio-item">
+            <img [src]="project.image" [alt]="project.name" class="project-image" />
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+
+    <!-- ✅ Texte et Bouton -->
+    <div class="mil-project-info">
+      <div class="mil-labels">
+        <div class="mil-label mil-accent">Galerie</div>
+        <div class="mil-label">Avant/Après</div>
+      </div>
+      <h5>{{ currentProjectName }}</h5>
+      <div class="mil-pagination">
+        <div class="mil-pagination-count">{{ activeSlideIndex }} / {{ totalSlides }}</div>
+        <div class="mil-slider-nav">
+          <button class="nav-arrow black" (click)="owlCarousel.prev()">←</button>
+          <button class="nav-arrow black" (click)="owlCarousel.next()">→</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ✅ Pagination -->
+    
+
+  </div>
+</section>

@@ -1,0 +1,23 @@
+<div *ngIf="isBrowser">
+  <full-calendar [options]="calendarOptions"></full-calendar>
+</div>
+
+
+<!-- Modal simple -->
+<div *ngIf="showModal" class="modal-overlay">
+  <div class="modal-content">
+    <h3>📅 Prendre un Rendez-vous le {{ selectedDate }}</h3>
+
+    <label for="heure">Heure :</label>
+    <input id="heure" type="time" [(ngModel)]="selectedTime" />
+
+    <label for="motif">Motif :</label>
+    <input id="motif" type="text" [(ngModel)]="motif" placeholder="Motif du rendez-vous" />
+
+    <div class="modal-buttons">
+      <button class="cancel" (click)="resetForm()">Annuler</button>
+      <button class="submit" (click)="submitRdv()">Valider</button>
+    </div>
+  </div>
+</div>
+
