@@ -1,0 +1,28 @@
+<div class="search-bar">
+    <input type="text" [(ngModel)]="searchTerm" (input)="filter()" placeholder="🔍 Rechercher par nom ou prénom..." />
+  </div>
+  
+  <table class="patients-table" *ngIf="filteredPatients.length > 0">
+    <thead>
+      <tr>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Téléphone</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let patient of filteredPatients">
+        <td>{{ patient.firstname }}</td>
+        <td>{{ patient.name }}</td>
+        <td>{{ patient.phone }}</td>
+        <td>
+            <a [routerLink]="['/dashboard-dentiste/dossiers', patient.id]">
+                📁 Dossier médical
+              </a>        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <p *ngIf="filteredPatients.length === 0">❌ Aucun patient trouvé</p>
+  

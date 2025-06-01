@@ -1,80 +1,33 @@
-<section class="mil-banner mil-banner-with-bg">
-  <div class="mi-invert-fix">
-    <div class="mil-animation-frame">
-      <div class="mil-animation mil-position-1 mil-scale" data-value-1="7" data-value-2="1.6"></div>
-      <div class="mil-animation mil-position-2 mil-scale" data-value-1="4" data-value-2="1"></div>
-      <div class="mil-animation mil-position-3 mil-scale" data-value-1="1.2" data-value-2=".1"></div>
-    </div>
+<section class="hero-banner">
+  <!-- ✅ Vidéo en arrière-plan -->
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="../../../../../assets/vd/1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  
+  
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        <strong>Bienvenue </strong> <span>sur le site </span><br />
+        de<strong> Dr.Rabab Hraimi</strong><br>
+      </h1>
 
-    <div class="mil-gradient"></div>
+      <p class="hero-subtitle">
+        <span>
+Dr Rabab Hraimi, chirurgien-dentiste à Tunis, propose des soins modernes et personnalisés en implantologie, esthétique et santé bucco-dentaire, dans une approche humaine .     </span>
+      </p>
 
-    <!-- ✅ PADDING TOP AUGMENTÉ ICI -->
-    <div class="container" style="padding-top: 160px; padding-bottom: 120px;">
-      <div class="mil-banner-content mil-up">
-
-        <h1 class="mil-muted mil-mb-60" style="font-size: 52px; line-height: 1.2; color: #ffffff; font-weight: bold;">
-          Bienvenue
-          <span style="font-weight: 400; font-size: 48px;">sur le site </span><br>
-          <span style="font-size: 50px; font-weight: 600;">de Dr. Rabeb Hraimi</span><br>
-          <span class="mil-thin" style="font-size: 42px;">Dentiste spécialisée à Tunis</span>
-        </h1>
-
-        <div class="row mb-5">
-          <div class="col-md-8 col-lg-6">
-            <p class="mil-light-soft" style="font-size: 20px; color: #ffffff;">
-              Dr. Rabeb Hraimi est une dentiste expérimentée, spécialisée dans l’implantologie, le blanchiment dentaire, etc.<br>
-              Située à <strong>Medenine, en Tunisie</strong>, elle propose des soins personnalisés, alliant expertise, technologie moderne et approche humaine.
-            </p>
-          </div>
-        </div>
-
-        <!-- ✅ BOUTONS SÉPARÉS PAR GAP -->
-        <div class="d-flex flex-column flex-sm-row justify-content-start align-items-center">
-          <button (click)="redirectToLogin()"
-            class="mil-button mil-arrow-place text-center me-sm-3"
-            style="padding: 15px 40px; margin-right: 20px;">
-            <span style="display: inline-block; width: 100%; text-align: center; font-family: 'Segoe UI'; font-weight: 600;">
-              PRENDRE RENDEZ-VOUS
-            </span>
-          </button>
-        
-          <a href="portfolio-1.html"
-            class="mil-button mil-arrow-place text-center"
-            style="padding: 15px 40px;">
-            <span style="display: inline-block; width: 100%; text-align: center; font-family: 'Segoe UI'; font-weight: 600;">
-              VOIR TOUS LES SERVICES
-            </span>
-          </a>
-        </div>
-        
-
-        
-
+      <div class="hero-buttons">
+        <button class="hero-btn primary" (click)="redirectToLogin()">
+          <span class="label">PRENDRE UN RENDEZ-VOUS</span>
+          <span class="icon">→</span>
+        </button>
+        <a href="portfolio-1.html" class="hero-btn secondary">
+          <span class="label">NOS SERVICES</span>
+          <span class="icon">→</span>
+        </a>
       </div>
     </div>
   </div>
 </section>
-
-<style>
-  .mil-banner-with-bg {
-    background-image: url('../../../../../assets/img/banner.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-    z-index: 1;
-  }
-
-  .mil-banner-with-bg::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: -1;
-  }
-
-  /* ✅ Pas besoin de gap-5 ici car gap-4 est appliqué en ligne */
-</style>

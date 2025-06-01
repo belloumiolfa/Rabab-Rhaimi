@@ -10,7 +10,8 @@ import { Port3Component } from "../../components/port3/port3.component";
 
 @Component({
   selector: 'app-portfolio3',
-  imports: [CursorComponent, ScrollbarComponent, FrameComponent, MenuComponent, CurtainComponent, HiddenElementsComponent, Port3Component],
+  standalone: true,
+  imports: [CursorComponent, ScrollbarComponent, MenuComponent, CurtainComponent, HiddenElementsComponent, Port3Component],
   templateUrl: './portfolio3.component.html',
   styleUrl: './portfolio3.component.css'
 })

@@ -13,7 +13,7 @@ import { ContactFormComponent } from "../../components/contact-form/contact-form
 
 @Component({
   selector: 'app-contact',
-  imports: [FooterComponent, HiddenElementsComponent, FrameComponent, CurtainComponent, MenuComponent, ScrollbarComponent, CursorComponent, BannerContactComponent, MapComponent, ContactFormComponent],
+  imports: [FooterComponent, HiddenElementsComponent, CurtainComponent, MenuComponent, ScrollbarComponent, CursorComponent, BannerContactComponent, MapComponent, ContactFormComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })

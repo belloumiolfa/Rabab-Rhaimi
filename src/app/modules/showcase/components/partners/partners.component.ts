@@ -11,9 +11,11 @@ import { Component } from '@angular/core';
 export class PartnersComponent {
   baseLogos = [
     'assets/img/asso1.png',
-    'assets/img/asso2.png',
-    'assets/img/asso1.png',
-    'assets/img/asso2.png',
+    'assets/img/asso3.png',
+    'assets/img/asso4.png',
+    'assets/img/asso5.png',
+    'assets/img/asso6.png',
+
   ];
 
   // Répéter les logos pour faire une boucle visuellement infinie

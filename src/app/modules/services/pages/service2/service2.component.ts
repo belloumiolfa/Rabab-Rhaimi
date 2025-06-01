@@ -7,15 +7,14 @@ import { CurtainComponent } from "../../../showcase/components/curtain/curtain.c
 import { FrameComponent } from "../../../showcase/components/frame/frame.component";
 import { HiddenElementsComponent } from "../../../showcase/components/hidden-elements/hidden-elements.component";
 import { FooterComponent } from "../../../showcase/components/footer/footer.component";
-import { Banner2Component } from "../../../portfolio/components/banner2/banner2.component";
 import { Service22Component } from "../../components/service22/service22.component";
 import { PriceComponent } from "../../components/price/price.component";
 import { OtherServiceComponent } from "../../components/other-service/other-service.component";
 import { BannerOServiceComponent } from "../../components/banner-o-service/banner-o-service.component";
-
+import { Banner2Component } from '../../components/bannerS2/banner2.component';
 @Component({
   selector: 'app-service2',
-  imports: [CursorComponent, ScrollbarComponent, MenuComponent, CurtainComponent, FrameComponent, HiddenElementsComponent, FooterComponent, Service22Component, OtherServiceComponent],
+  imports: [ HiddenElementsComponent, FooterComponent, Service22Component, OtherServiceComponent, Banner2Component,],
   templateUrl: './service2.component.html',
   styleUrl: './service2.component.css'
 })

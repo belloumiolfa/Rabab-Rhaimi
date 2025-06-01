@@ -1,0 +1,40 @@
+<div class="card-container">
+    <div class="header">
+      <i class="fas fa-history"></i>
+      <h2>Historique Complet des Rendez-vous</h2>
+    </div>
+  
+    <div class="search-bar">
+      <div class="search-wrapper">
+        <i class="fas fa-search"></i>
+        <input 
+          type="text" 
+          placeholder="🔍 Rechercher par nom, prénom ou statut..."
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="filterAppointments()" 
+        />
+      </div>
+    </div>
+  
+    <table *ngIf="filteredAppointments.length > 0" class="rdv-table">
+      <thead>
+        <tr>
+          <th>Patient</th>
+          <th>Date</th>
+          <th>Heure</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rdv of filteredAppointments">
+          <td>{{ rdv.firstname }} {{ rdv.name }}</td>
+          <td>{{ rdv.date_time | date:'shortDate' }}</td>
+          <td>{{ rdv.date_time | date:'shortTime' }}</td>
+          <td>{{ rdv.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <p *ngIf="filteredAppointments.length === 0">❌ Aucun rendez-vous trouvé.</p>
+  </div>
+  

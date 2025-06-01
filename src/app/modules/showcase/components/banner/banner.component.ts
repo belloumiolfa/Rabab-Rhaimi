@@ -12,7 +12,7 @@ export class BannerComponent {
 
   redirectToLogin() {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/main/login']);
     });
   }
 }

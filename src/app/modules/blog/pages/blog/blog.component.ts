@@ -12,10 +12,12 @@ import { PopularComponent } from "../../components/popular/popular.component";
 import { CallToActionComponent } from "../../../portfolio/components/call-to-action/call-to-action.component";
 import { Blog2Component } from "../../components/blog2/blog2.component";
 import { Blog1Component } from "../../components/blog1/blog1.component";
+import { Similar2Component } from "../../components/similar2/similar2.component";
+import { SimilarComponent } from "../../components/similar/similar.component";
 
 @Component({
   selector: 'app-blog',
-  imports: [HiddenElementsComponent, FooterComponent, CursorComponent, ScrollbarComponent, MenuComponent, CurtainComponent, FrameComponent, Banner1Component, PopularComponent, CallToActionComponent, Blog1Component],
+  imports: [HiddenElementsComponent, FooterComponent, CursorComponent, ScrollbarComponent, MenuComponent, CurtainComponent, Banner1Component, CallToActionComponent, Blog1Component, SimilarComponent],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css'
 })

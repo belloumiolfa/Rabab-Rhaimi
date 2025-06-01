@@ -13,7 +13,7 @@ import { ServiceeComponent } from "../../components/servicee/servicee.component"
 
 @Component({
   selector: 'app-service1',
-  imports: [FrameComponent, CurtainComponent, MenuComponent, ScrollbarComponent, CursorComponent, FooterComponent, HiddenElementsComponent, BannerComponent, CallToAction1Component, ServiceeComponent],
+  imports: [ CurtainComponent, MenuComponent, ScrollbarComponent, CursorComponent, FooterComponent, HiddenElementsComponent, BannerComponent, CallToAction1Component, ServiceeComponent],
   templateUrl: './service1.component.html',
   styleUrl: './service1.component.css'
 })

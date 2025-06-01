@@ -1,31 +1,32 @@
 <div class="profile-container">
     <!-- 📸 Image de couverture -->
-    <div class="cover-photo">
-        <div class="profile-photo">
-            <img 
-            [src]="getCoverPhotoUrl()" 
-            alt="Photo de couverture" 
-          />    </div>
-  
-    <!-- 🧑‍🦱 Image de profil -->
+    <div class="profile-container">
+      <!-- 📸 Image de couverture -->
+      <div class="cover-photo">
+        <img 
+          [src]="getCoverPhotoUrl()" 
+          alt="Photo de couverture" 
+        />
+      </div>
     
-      
-      <!-- ✅ Photo de profil -->
-      <img 
-        [src]="getProfilePictureUrl()" 
-        alt="Photo de profil" 
-      />    </div>
-  
-    <!-- 📋 Infos utilisateur -->
-    <div class="profile-info">
-      <h2>{{ userData.firstname }} {{ userData.name }}</h2>
-      <p><strong>Email :</strong> {{ userData.email }}</p>
-      <p><strong>Téléphone :</strong> {{ userData.phone || 'Non renseigné' }}</p>
-      
-  
-      <button (click)="showModal = true">Modifier mon profil</button>
+      <!-- 🧑‍🦱 Image de profil (par-dessus) -->
+      <div class="profile-photo">
+        <img 
+          [src]="getProfilePictureUrl()" 
+          alt="Photo de profil" 
+        />
+      </div>
+    
+      <!-- 📋 Infos utilisateur -->
+      <div class="profile-info">
+        <h2>{{ userData.firstname }} {{ userData.name }}</h2>
+        <p><strong>Email :</strong> {{ userData.email }}</p>
+        <p><strong>Téléphone :</strong> {{ userData.phone || 'Non renseigné' }}</p>
+    
+        <button (click)="showModal = true">Modifier mon profil</button>
+      </div>
     </div>
-  </div>
+    
   <div class="modal-overlay" *ngIf="showModal">
     <div class="modal-content">
       <h3>Modifier mon profil</h3>

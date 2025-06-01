@@ -1,0 +1,22 @@
+<div class="notification-panel bg-white shadow p-3 rounded"
+     style="position: absolute; top: 40px; right: 0; width: 300px; z-index: 1000;">
+
+  <h6>Notifications</h6>
+  <hr />
+  <div *ngFor="let n of notifications" (click)="markAsRead(n)" style="cursor: pointer;">
+    <div [class.fw-bold]="!n.is_read">{{ n.title }}</div>
+    <small class="text-muted">{{ n.created_at | date: 'short' }}</small>
+    <hr />
+    <div *ngIf="n.type === 'refus_rdv'">
+        <button (click)="confirmNewDate(n); $event.stopPropagation()">✅ Confirmer</button>
+        <a [href]="getParsedData(n).customUrl" target="_blank" (click)="$event.stopPropagation()">✏️ Autre date</a>
+    </div>
+    <div *ngIf="n.type === 'annulation_rdv'">
+        <button (click)="confirmNewDate(n); $event.stopPropagation()">✅ Confirmer</button>
+        <a [href]="getParsedData(n).customUrl" target="_blank" (click)="$event.stopPropagation()">✏️ Autre date</a>
+      </div>
+&      
+      
+  </div>
+  
+</div>

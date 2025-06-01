@@ -13,7 +13,7 @@ import { CallToActionP3Component } from "../../components/call-to-action-p3/call
 
 @Component({
   selector: 'app-project-3',
-  imports: [CursorComponent, PreloaderComponent, ScrollbarComponent, MenuComponent, CurtainComponent, FrameComponent, FooterComponent, HiddenElementsComponent, Bannerp3Component, ProjectP3Component, CallToActionP3Component],
+  imports: [CursorComponent, PreloaderComponent, ScrollbarComponent, MenuComponent, CurtainComponent, FooterComponent, HiddenElementsComponent, Bannerp3Component, ProjectP3Component, CallToActionP3Component],
   templateUrl: './project-3.component.html',
   styleUrl: './project-3.component.css'
 })

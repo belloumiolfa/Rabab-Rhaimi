@@ -1,0 +1,146 @@
+.hero-banner {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-left: 9vw;
+  padding-right: 5vw;
+  color: white;
+  overflow: hidden;
+}
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 📱 Assure que la vidéo remplit tout l'écran */
+
+  object-fit: cover;
+  z-index: -1; /* Met la vidéo derrière le contenu */
+}
+
+.hero-banner .container {
+  position: relative;
+  z-index: 1;
+  max-width: 800px; /* ou 100% si tu veux tout prendre */
+  width: 100%;
+  margin: 0; /* ❌ enlever auto-center */
+  text-align: left; /* ✅ important pour texte à gauche */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.hero-banner::before {
+  content: '';
+  background: rgba(0, 0, 0, 0.65);
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.hero-content {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.hero-title {
+  font-size: 80px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 25px;
+}
+
+.hero-title strong {
+  font-weight: 700;
+  color: #fff;
+}
+
+.hero-title span {
+  font-weight: 300;
+  color: #eee;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: #ccc;
+  max-width: 100%;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  line-height: 1.6;
+  text-align: left;          /* ✅ s’assurer que le texte est bien à gauche */
+  width: 100%;               /* ✅ pour prendre toute la largeur dispo */
+}
+
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  padding: 18px 28px;
+  border-radius: 50px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  gap: 15px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero-btn .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 48px; /* taille du cercle */
+  height: 48px;
+  font-size: 22px; /* taille de la flèche */
+  line-height: 1;
+  margin: 0; /* supprime les décalages */
+  padding: 0;
+}
+
+.hero-btn.primary {
+  background-color: #ff9900;
+  color: #000;
+}
+
+.hero-btn.primary .icon {
+  background-color: #000;
+  color: #ff9900;
+}
+
+.hero-btn.secondary {
+  background-color: transparent;
+  color: #fff;
+}
+
+.hero-btn.secondary .icon {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+.hero-btn:hover .icon {
+  transform: scale(1.1);
+}
+.hero-btn .label {
+  letter-spacing: 2px; /* ✅ ou 2px si tu veux plus espacé */
+}

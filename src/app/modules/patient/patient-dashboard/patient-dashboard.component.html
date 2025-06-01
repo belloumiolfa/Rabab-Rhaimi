@@ -1,8 +1,9 @@
+
 <div class="dashboard-container">
   <div class="sidebar">
     <div class="sidebar-header">
       <img 
-      [src]="getProfileImageUrl()" 
+      [src]="getProfilePictureUrl()" 
       alt="Photo de profil" 
       class="avatar" 
     />      <h2>{{ userData.firstname }} {{ userData.name }}</h2>
@@ -31,11 +32,26 @@
         <span class="icon">💬</span>
         <span class="menu-text">Témoignages</span>
       </li>
+      <li routerLink="/patient-dashboard/notifications" routerLinkActive="active">
+        <span class="icon">🔔</span>
+        <span class="menu-text">Notifications</span>
+      </li>
+      
+      
+      
     </ul>
+    <div class="logout-section">
+      <li (click)="onLogout()" title="Déconnexion">
+        <span class="icon">🔓</span>
+        <span class="menu-text">Se déconnecter</span>
+      </li>
+    </div>
   </div>
 
   <!-- 👇 Zone principale de contenu -->
   <div class="content">
+    <app-header></app-header>
     <router-outlet></router-outlet>
+    
   </div>
 </div>

@@ -1,0 +1,21 @@
+<div class="modal-backdrop"></div>
+<div class="modal">
+  <h3>Modifier Disponibilité</h3>
+
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <label>Date :</label>
+  <input type="date" [(ngModel)]="startDate" required>
+
+  <label>Heure Début :</label>
+  <input type="time" [(ngModel)]="startTime" required>
+
+  <label>Heure Fin :</label>
+  <input type="time" [(ngModel)]="endTime" required>
+
+  <div class="modal-buttons">
+    <button (click)="save()">💾 Enregistrer</button>
+    <button (click)="delete()">🗑️ Supprimer</button>
+    <button (click)="close.emit()">❌ Fermer</button>
+  </div>
+</div>

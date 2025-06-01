@@ -1,18 +1,24 @@
 /* S'assure que chaque colonne force la même hauteur de carte */
 .mil-equal-height > [class*="col-"] {
-    display: flex;
-  }
-  
+  display: flex;
+}
   .mil-service-card-lg.mil-other-card {
-    width: 100%;
-    height: 100%;
+    width: 700px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
-    
+        
   }
-  
+  .mil-service-card-lg.mil-other-card p {
+    margin-bottom: 50px;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 200px;
+  }
   /* Responsive grid avec 3 cartes max par ligne */
   @media (min-width: 992px) {
     .mil-equal-height > .col-lg-4 {
@@ -40,3 +46,35 @@
     padding: 20px 10px;
 
   }
+  /* Boutons d’action */
+.mil-hover-parent {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.mil-card-actions {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.mil-hover-parent:hover .mil-card-actions {
+  opacity: 1;
+}
+
+/* Carte + */
+.mil-add-card {
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px dashed #ccc;
+  transition: all 0.3s ease;
+  display: flex;
+}
+
+.mil-add-card:hover {
+  background-color: #f5f5f5;
+}

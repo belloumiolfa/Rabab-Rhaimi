@@ -20,7 +20,6 @@ import { CallToActionP4Component } from "../../../projects/components/call-to-ac
     ScrollbarComponent,
     MenuComponent,
     CurtainComponent,
-    FrameComponent,
     CallToActionComponent,
     FooterComponent,
     HiddenElementsComponent,

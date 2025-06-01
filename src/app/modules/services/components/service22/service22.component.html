@@ -1,84 +1,99 @@
-<!-- service -->
 <section id="service">
     <div class="container mil-p-120-90">
-        <div class="row justify-content-between">
-            <div class="col-lg-4 mil-relative mil-mb-90">
-
-                <h2 class="mil-up mil-mb-60"> Parcours académique </h2>
-                <p class="mil-up mil-mb-30"></p>
-                <div class="mil-up">
-                    
-                </div>
-
-            </div>
-            <div class="col-lg-6">
-
-                <div class="mil-accordion-group mil-up">
-                    <div class="mil-accordion-menu">
-
-                        <p >
-                            <span class="mil-accordion-head">Docteur en
-                                Médecine Dentaire
-                                <br>Faculté de
-                                Médecine Dentaire,
-                                <br>Monastir | 2004 -
-                                2009</span> <br>
-                            <span class="mil-up mil-mb-30">Diplôme en
-                                médecine dentaire,
-                                où Dr. Hraimi<br> a
-                                acquis les bases
-                                solides de la
-                                dentisterie.
-                                </span>
-                        </p>
-
-                        <div class="mil-symbol mil-h3">
-                            <div class="mil-plus">+</div>
-                            <div class="mil-minus">-</div>
-                        </div>
-
-                    </div>
-                    <div class="mil-accordion-content">
-                        <p class="mil-mb-30">A UX audit is a service that evaluates the user experience (UX) of a website. It involves analyzing the website's design, functionality, and content to identify areas of improvement that can enhance the user's overall experience.</p>
-
-                        <p class="mil-mb-30">During a UX audit, a team of UX experts will conduct a thorough review of the website and provide a comprehensive report that outlines specific recommendations for improving the website's usability, accessibility, and overall user experience.</p>
-
-                        <p class="mil-mb-30">The audit may cover various aspects of the website, such as navigation, layout, visual design, content structure, and mobile responsiveness. The goal is to identify any pain points or obstacles that users may encounter while browsing the website and provide actionable recommendations to improve their experience.</p>
-
-                        <p class="mil-mb-30">In summary, a UX audit can help website owners identify areas of improvement that can enhance their website's user experience and increase user engagement and satisfaction.</p>
-                    </div>
-                </div>
-
-                <div class="mil-accordion-group mil-up">
-                    <div class="mil-accordion-menu">
-
-                        <p >
-                            <span class="mil-accordion-head">Docteur en
-                                Degree of
-                                Implantology and
-                                
-                                <br>Maxillofacial 2018
-                                </span> <br>
-                            <span class="mil-up mil-mb-30">Surgery University of
-                                Toulouse III – Paul
-                                Sebatier- Toulouse<br> 
-                                </span>
-                        </p>
-
-                        <div class="mil-symbol mil-h3">
-                            <div class="mil-plus">+</div>
-                            <div class="mil-minus">-</div>
-                        </div>
-
-                    </div>
-                    <div class="mil-accordion-content">
-                        <p class="mil-mb-30">Design thinking is a problem-solving approach that emphasizes empathy, creativity, and collaboration. It involves understanding the needs and perspectives of users, identifying and defining the problem, generating multiple possible solutions, prototyping and testing those solutions, and iterating based on feedback.</p>
-                        <p class="mil-mb-30">Design thinking encourages a human-centered approach to innovation and is often used in fields such as product design, user experience (UX) design, and business strategy to create user-centric and innovative solutions. It promotes a mindset that embraces experimentation, iteration, and continuous learning throughout the design process.</p>
-                    </div>
-                </div>
-
-            </div>
+      <div class="row justify-content-between">
+  
+        <!-- Colonne gauche -->
+        <div class="col-lg-4 mil-relative mil-mb-90">
+          <h2 class="mil-up mil-mb-30" style="font-size: 50px;">
+            Parcours <br /><span class="mil-thin">académique</span>
+          </h2>
+          <p class="mil-up mil-mb-30">
+            Dr. Rabab Hraimi a construit un parcours académique solide, mêlant formation en Tunisie 
+            et spécialisation en France, pour offrir à ses patients un savoir-faire à la fois local et international.          </p>
+  
+          <!-- Bouton Ajouter -->
+          <div *ngIf="isAdminUser" class="mil-symbol mil-h3 mil-up" style="cursor: pointer;">
+            <div class="mil-plus" (click)="openAddModal()">+</div>
+          </div>
         </div>
+  
+        <!-- Colonne droite -->
+        <div class="col-lg-6">
+            <div *ngFor="let degree of degrees" class="mil-accordion-group mil-up">
+                <div class="mil-accordion-menu" (click)="degree.show = !degree.show">
+                  <p>
+                    <span class="mil-accordion-head">{{ degree.title }}</span><br />
+                    <span class="mil-up mil-mb-30">
+                      {{ degree.subtitle }} | {{ degree.start_year }} - {{ degree.end_year }}
+                    </span>
+                  </p>
+                  <div class="mil-symbol mil-h3">
+                    <div class="mil-plus" *ngIf="!degree.show">+</div>
+                    <div class="mil-minus" *ngIf="degree.show">-</div>
+                  </div>
+                </div>
+              
+                <!-- ✅ contenu visible uniquement si .show est true -->
+                <div class="mil-accordion-content" *ngIf="degree.show">
+                    <p class="mil-mb-30">DESCRIPTION: {{ degree.description || 'Aucune description' }}</p>
+                  </div>
+                  
+                  
+                  <!-- ✅ Boutons admin TOUJOURS affichés si admin -->
+                  <div *ngIf="isAdminUser" class="text-end mil-mb-40" style="display: block;">
+                    <button class="btn btn-sm btn-warning me-2" (click)="openEditModal(degree)">Modifier</button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteDegree(degree.id)">Supprimer</button>
+                  </div>
+                  
+              </div>
+              
+        </div>
+  
+      </div>
     </div>
-</section>
-<!-- service end -->
+  </section>
+  
+  <!-- MODALE Bootstrap -->
+  <div class="modal fade" tabindex="-1" [ngClass]="{'show': showModal}" [ngStyle]="{display: showModal ? 'block' : 'none'}" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content shadow-lg rounded-4 border-0">
+        <div class="modal-header bg-warning bg-opacity-75 text-dark">
+          <h5 class="modal-title">{{ isEdit ? 'Modifier un diplôme' : 'Ajouter un diplôme' }}</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="form" class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Titre</label>
+              <input type="text" class="form-control" formControlName="title" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Université</label>
+              <input type="text" class="form-control" formControlName="subtitle" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Année début</label>
+              <input type="number" class="form-control" formControlName="start_year" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Année fin</label>
+              <input type="number" class="form-control" formControlName="end_year" />
+            </div>
+            <div class="col-12">
+              <label class="form-label">Description</label>
+              <textarea class="form-control" rows="3" formControlName="description"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer bg-light border-top-0">
+          <button class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+          <button class="btn btn-warning" [disabled]="form.invalid" (click)="saveDegree()">
+            {{ isEdit ? 'Mettre à jour' : 'Ajouter' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Fond flou -->
+  

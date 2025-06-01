@@ -2,38 +2,34 @@
 <div class="mil-wrapper" id="top">
 
   <!-- Swup container -->
-  <div id="swup"> 
+  <main > 
 
     <!-- cursor -->
     <app-cursor></app-cursor>
     <!-- cursor end -->
 
     <!-- preloader -->
-    <app-preloader></app-preloader>
-    <!-- preloader end -->
+<!--     <app-preloader></app-preloader>
+ -->    <!-- preloader end -->
 
     <!-- scrollbar progress -->
     <app-scrollbar></app-scrollbar>
     <!-- scrollbar progress end -->
 
     <!-- menu -->
-    <app-menu></app-menu>
+    <app-menu *ngIf="!isDashboardRoute()"></app-menu>
     <!-- menu -->
 
     <!-- curtain -->
     <app-curtain></app-curtain>
     <!-- curtain end -->
 
-    <!-- frame -->
-    <app-frame></app-frame>
-    <!-- frame end -->
-
     <!-- content -->
 <!--     <app-content></app-content>
  -->    <router-outlet></router-outlet>
     <!-- content -->
 
-  </div> 
+  </main> 
   <!-- Swup container end -->
 
 </div>

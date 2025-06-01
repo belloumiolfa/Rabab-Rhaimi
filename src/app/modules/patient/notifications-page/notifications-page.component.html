@@ -1,0 +1,18 @@
+<div class="container mt-4">
+    <h3>📬 Mes notifications</h3>
+    <hr>
+    <div *ngFor="let n of notifications" class="p-3 border rounded mb-3 bg-light">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <strong [class.text-dark]="!n.is_read">{{ n.title }}</strong>
+          <p class="mb-1">{{ n.message }}</p>
+          <small class="text-muted">{{ n.created_at | date:'short' }} - via {{ n.channel }}</small>
+        </div>
+        <div>
+          <button class="btn btn-sm btn-outline-success me-2" *ngIf="!n.is_read" (click)="markAsRead(n.id)">Marquer comme lue</button>
+          <button class="btn btn-sm btn-outline-danger" (click)="deleteNotification(n.id)">🗑️</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

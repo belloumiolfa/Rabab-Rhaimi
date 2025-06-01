@@ -1,0 +1,72 @@
+<div class="card-container">
+  <div class="header">
+    <i class="fas fa-calendar-check"></i>
+    <h2>Patients du jour</h2>
+  </div>
+  
+
+  <div class="search-bar">
+    <div class="search-wrapper">
+      <i class="fas fa-search"></i>
+      <input 
+        type="text" 
+        placeholder="Rechercher par nom, prénom ou téléphone..."
+        [(ngModel)]="searchTerm"
+        (input)="filterAppointments()"
+      />
+    </div>
+  </div>
+  
+
+  <table *ngIf="filteredAppointments.length > 0" class="rdv-table">
+    <thead>
+      <tr>
+        <th>Patient</th>
+        <th>Heure</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rdv of filteredAppointments">
+        <td>{{ rdv.firstname }} {{ rdv.name }}</td>
+        <td>{{ rdv.date_time | date:'shortTime' }}</td>
+        <td>{{ rdv.status }}</td>
+        <td>
+          <button (click)="openHistory(rdv.patient_id, rdv.firstname + ' ' + rdv.name)">📜 Voir Historique</button>
+          <br/>
+          <button *ngIf="rdv.status !== 'Arrived'" (click)="markAsArrived(rdv.id)">✅ Patient arrivé</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <p *ngIf="filteredAppointments.length === 0">❌ Aucun rendez-vous trouvé aujourd'hui.</p>
+  
+  <!-- ✅ La Modale -->
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">×</span>
+      <h2>📋 Historique de {{ selectedPatientName }}</h2>
+  
+      <table *ngIf="patientHistory.length > 0" class="rdv-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Heure</th>
+            <th>Statut</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rdv of patientHistory">
+            <td>{{ rdv.date_time | date:'shortDate' }}</td>
+            <td>{{ rdv.date_time | date:'shortTime' }}</td>
+            <td>{{ rdv.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <p *ngIf="patientHistory.length === 0">❌ Aucun historique trouvé pour ce patient.</p>
+    </div>
+  </div>
+  

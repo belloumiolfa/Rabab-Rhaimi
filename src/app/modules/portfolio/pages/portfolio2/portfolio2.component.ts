@@ -13,7 +13,7 @@ import { Port2Component } from "../../components/port2/port2.component";
 
 @Component({
   selector: 'app-portfolio2',
-  imports: [CursorComponent, ScrollbarComponent, MenuComponent, CurtainComponent, FrameComponent, CallToActionComponent, FooterComponent, HiddenElementsComponent, Banner2Component, Port2Component],
+  imports: [ CallToActionComponent, FooterComponent, HiddenElementsComponent, Banner2Component, Port2Component],
   templateUrl: './portfolio2.component.html',
   styleUrl: './portfolio2.component.css'
 })

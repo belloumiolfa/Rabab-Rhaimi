@@ -1,0 +1,33 @@
+.header-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+  }
+  
+  .notification-icon {
+    cursor: pointer;
+    position: relative;
+    font-size: 22px;
+  }
+  
+  .badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    padding: 2px 6px;
+  }
+  
+  .notification-panel {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    width: 300px;
+    z-index: 1000;
+  }
+  

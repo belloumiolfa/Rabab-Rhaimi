@@ -35,69 +35,105 @@ export class PrendreRdvComponent implements OnInit {
       const today = new Date().toISOString().split('T')[0]; // format YYYY-MM-DD
   
       this.calendarOptions = {
-        initialView: 'dayGridMonth',
+        initialView: 'timeGridWeek', // ⬅️ vue hebdomadaire
         plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
         selectable: true,
-        validRange: {
-          start: today // 🔒 Ne permet pas de sélectionner dans le passé
-        },
-        dateClick: this.handleDateClick.bind(this),
+        nowIndicator: true,
+        allDaySlot: false,
+        slotMinTime: '08:00:00', // début des créneaux
+        slotMaxTime: '18:00:00', // fin des créneaux
         headerToolbar: {
           left: 'prev,next today',
           center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+          right: 'timeGridWeek,dayGridMonth'
         },
-        selectAllow: (selectInfo) => {
-          const date = new Date(selectInfo.startStr);
-          const day = date.getDay(); // 0 = Sunday, 6 = Saturday
-          return day !== 0 && day !== 6; // ❌ Bloque samedi et dimanche
-        }
+        events: [], // 👇 injectées dynamiquement
+        eventClick: this.handleEventClick.bind(this),
+        dateClick: this.handleDateClick.bind(this),
+
       };
+      this.loadAvailabilities(); 
+
+      
     }
   }
+  handleEventClick(arg: any) {
+    const clickedDate = new Date(arg.event.start);
+    const isoDate = clickedDate.toISOString().split('T')[0];
+    const time = clickedDate.toTimeString().slice(0, 5);
   
-
+    this.selectedDate = isoDate;
+    this.selectedTime = time;
+    this.showModal = true;
+  }
+  
+  
   handleDateClick(arg: any) {
-    const clickedDate = new Date(arg.dateStr);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const clickedDate = new Date(arg.date); // ✅ Utiliser `arg.date` au lieu de `arg.dateStr`
+    const clickedTimestamp = clickedDate.getTime();
   
-    if (clickedDate < today) {
+    const now = new Date();
+    if (clickedDate < now) {
       alert("❌ Tu ne peux pas sélectionner une date passée !");
       return;
     }
   
-    const day = clickedDate.getDay(); // 0 = dimanche, 6 = samedi
-    if (day === 0 || day === 6) {
-      alert("❌ Les samedis et dimanches sont indisponibles.");
+    const matched = this.availabilities.find((dispo: any) => {
+      const start = new Date(dispo.start_datetime).getTime();
+      const end = new Date(dispo.end_datetime).getTime();
+      return clickedTimestamp >= start && clickedTimestamp < end;
+    });
+  
+    if (!matched) {
+      alert("❌ Ce créneau n'est pas disponible.");
       return;
     }
   
-    this.selectedDate = arg.dateStr;
+    this.selectedDate = clickedDate.toISOString().split('T')[0];
+    this.selectedTime = clickedDate.toTimeString().slice(0, 5); // HH:mm
     this.showModal = true;
   }
   
+  
 
   submitRdv() {
-    if (this.selectedTime && this.motif)    {
+    const userInfo = JSON.parse(localStorage.getItem('user') || '{}');
+    if (!userInfo.id) {
+      alert("Utilisateur non connecté ou session expirée.");
+      return;
+    }
+  
+    if (this.selectedTime && this.motif) {
       const datetime = `${this.selectedDate}T${this.selectedTime}`;
-      const userInfo = JSON.parse(localStorage.getItem('user') || '{}');
-
+  
+      console.log("📤 Envoi : ", {
+        patient_id: userInfo.id,
+        date_time: datetime,
+        status: 'en_attente',
+        is_emergency: 0,
+        motif: this.motif
+      });
+  
       this.http.post('http://localhost:3000/api/appointments/create', {
         patient_id: userInfo.id,
         date_time: datetime,
-        status: 'Booked',
+        status: 'en_attente',
         is_emergency: 0,
         motif: this.motif
       }).subscribe({
         next: () => {
           alert('✅ Rendez-vous pris avec succès');
           this.resetForm();
+          this.loadAvailabilities(); // 🔁 recharge après réservation
         },
-        error: () => alert('❌ Erreur lors de la prise de rendez-vous'),
+        error: err => {
+          console.error("Erreur RDV", err);
+          alert('❌ Erreur lors de la prise de rendez-vous');
+        },
       });
     }
   }
+  
 
   resetForm() {
     this.selectedDate = '';
@@ -105,4 +141,31 @@ export class PrendreRdvComponent implements OnInit {
     this.motif = '';
     this.showModal = false;
   }
+  injectAvailabilitiesInCalendar() {
+    if (this.calendarOptions) {
+      this.calendarOptions.events = this.availabilities
+        .filter(dispo => dispo.is_available === 1) // ✅ Filtre seulement les créneaux disponibles
+        .map(dispo => ({
+          id: dispo.id,
+          title: '🟢 Disponible',
+          start: dispo.start_datetime,
+          end: dispo.end_datetime,
+          color: 'green'
+        }));
+    }
+  }
+  
+  
+  
+
+  availabilities: any[] = [];
+
+loadAvailabilities() {
+  this.http.get<any[]>('http://localhost:3000/api/availabilities')
+    .subscribe(data => {
+      this.availabilities = data;
+      this.injectAvailabilitiesInCalendar();
+    });
+}
+
 }

@@ -65,17 +65,32 @@ export class MonProfilComponent implements OnInit {
     form.append('phone', this.formData.phone);
     if (this.profileImageFile) form.append('profile_picture', this.profileImageFile);
     if (this.coverImageFile) form.append('cover_photo', this.coverImageFile);
-
+  
     this.http.put(`http://localhost:3000/api/user/update/${this.patientId}`, form).subscribe({
       next: () => {
         alert('✅ Profil mis à jour');
         this.showModal = false;
         this.loadProfile();
+        // 👇 Ajoute cette ligne
+        window.location.reload(); 
       },
       error: () => alert('❌ Erreur lors de la mise à jour')
     });
   }
-
+  
+  
+  // 🔥 Ajoute cette fonction dans MonProfilComponent
+  updateLocalStorage() {
+    this.http.get(`http://localhost:3000/api/user/profile/${this.patientId}`).subscribe({
+      next: (data: any) => {
+        localStorage.setItem('user', JSON.stringify(data));
+      },
+      error: (err) => {
+        console.error('❌ Erreur en rechargeant le profil pour localStorage', err);
+      }
+    });
+  }
+  
   // ✅ Upload d'une seule image (ancienne méthode — facultatif si `updateProfile` est utilisé)
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
@@ -96,17 +111,26 @@ export class MonProfilComponent implements OnInit {
     });
   }
   getProfilePictureUrl(): string {
-    if (this.userData?.profile_picture) {
+    if (this.userData?.profile_picture && this.userData.profile_picture !== 'default-profile.jpg') {
+      // 👉 vraie photo uploadée
       return `http://localhost:3000/uploads/profile/${this.userData.profile_picture}`;
     }
-    return `http://localhost:3000/uploads/default-profile.jpg`; // image par défaut
+    // 👉 sinon, photo par défaut
+    return `http://localhost:3000/uploads/defaults/default-profile.jpg`;
   }
   
+  
+  
+  
   getCoverPhotoUrl(): string {
-    if (this.userData?.cover_photo) {
-      return `http://localhost:3000/uploads/${this.userData.cover_photo}`;
+    if (this.userData?.cover_photo && this.userData.cover_photo !== 'default-cover.jpg') {
+      // 👉 vraie photo uploadée
+      return `http://localhost:3000/uploads/profile/${this.userData.cover_photo}`;
     }
-    return `http://localhost:3000/uploads/default-cover.jpg`; // image par défaut
+    return `http://localhost:3000/uploads/defaults/default-cover.jpg`;
   }
+  
+  
+  
   
 }

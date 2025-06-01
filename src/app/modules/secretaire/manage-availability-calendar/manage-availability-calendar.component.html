@@ -1,0 +1,8 @@
+<full-calendar [options]="calendarOptions"></full-calendar>
+<app-availability-modal
+  *ngIf="availabilityAModifier"
+  [availability]="availabilityAModifier"
+  (updated)="handleUpdate($event)"
+  (deleted)="handleDelete($event)"
+  (close)="availabilityAModifier = null">
+</app-availability-modal>

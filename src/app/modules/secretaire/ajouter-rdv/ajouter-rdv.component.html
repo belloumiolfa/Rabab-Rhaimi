@@ -1,0 +1,27 @@
+<h2>➕ Ajouter un Rendez-vous</h2>
+
+<label>Email du patient :</label>
+<input type="email" [(ngModel)]="patient.email">
+
+
+
+<label>Prénom :</label>
+<input type="text" [(ngModel)]="patient.first_name">
+
+<label>Nom :</label>
+<input type="text" [(ngModel)]="patient.name">
+
+<label>Téléphone :</label>
+<input type="text" [(ngModel)]="patient.phone">
+
+<hr>
+
+<label>Date et Heure du Rendez-vous :</label>
+<input type="datetime-local" [(ngModel)]="rdv.date_time">
+
+<label>Motif du Rendez-vous :</label>
+<textarea [(ngModel)]="rdv.motif" rows="3"></textarea>
+
+<br><br>
+
+<button (click)="enregistrer()">💾 Enregistrer Rendez-vous</button>

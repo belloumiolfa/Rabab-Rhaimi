@@ -1,0 +1,52 @@
+.button-container {
+    margin-top: 20px; /* pour le placer plus bas */
+    margin-left:20px
+  }
+  
+  .thin-service-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ff9900;
+    border-radius: 999px;
+    padding: 18px 32px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #000;
+    text-decoration: none;
+    gap: 20px;
+    height: 60px;
+    line-height: 1;
+  }
+  
+  .thin-service-btn .text {
+    padding-left: 10px;
+  }
+  
+  .thin-service-btn .circle {
+    width: 44px;
+    height: 44px;
+    background-color: #000;
+    color: #ff9900;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .thin-service-btn .arrow {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1;
+  }
+  
+  .thin-service-btn:hover .circle {
+    transform: scale(1.1);
+    transition: 0.3s ease;
+  }
+  

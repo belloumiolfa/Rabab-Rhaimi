@@ -1,21 +1,38 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CarouselModule, OwlOptions, CarouselComponent } from 'ngx-owl-carousel-o';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { GalleryService } from '../../../../backend/services/gallery.service';
+
+interface GalleryItem {
+  id: number;
+  name: string;
+  image_url: string;
+}
 
 @Component({
   selector: 'app-port3',
   standalone: true,
-  imports: [CarouselModule, RouterModule, CommonModule],
+  imports: [CommonModule, CarouselModule, ReactiveFormsModule],
   templateUrl: './port3.component.html',
   styleUrls: ['./port3.component.css']
 })
-export class Port3Component {
+export class Port3Component implements OnInit {
   @ViewChild('owlCarousel', { static: false }) owlCarousel!: CarouselComponent;
 
+  projects: GalleryItem[] = [];
   activeSlideIndex = 1;
-  totalSlides = 4;
-  currentProjectName = 'Correction des dents écartées';
+  totalSlides = 0;
+  currentProjectName = '';
+  currentProject: GalleryItem | null = null;
+
+  isAdmin = false;
+
+  form!: FormGroup;
+  selectedFile: File | null = null;
+  showModal = false;
+  isEdit = false;
+  editingId: number | null = null;
 
   customOptions: OwlOptions = {
     loop: false,
@@ -30,19 +47,93 @@ export class Port3Component {
       1200: { items: 1.8 }
     }
   };
-  
- 
 
-  projects = [
-    { image: 'assets/img/gallery/1.png', name: 'Correction des dents écartées' },
-    { image: 'assets/img/gallery/2.png', name: 'Réparation des dents cassées' },
-    { image: 'assets/img/gallery/3.png', name: ' Blanchiment progressif des dents' },
-    { image: 'assets/img/gallery/4.png', name: 'Traitement des caries sévères' },
-  ];
+  constructor(private galleryService: GalleryService, private fb: FormBuilder) {}
 
-  onTranslated(event: any) {
-    const currentIndex = event.startPosition;
-    this.activeSlideIndex = currentIndex + 1;
-    this.currentProjectName = this.projects[currentIndex]?.name || 'Unknown Project';
+  ngOnInit(): void {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    this.isAdmin = user?.role === 'Dentiste';
+
+    this.form = this.fb.group({
+      name: ['', Validators.required],
+      image: ['']
+    });
+
+    this.loadGallery();
+  }
+
+  loadGallery(): void {
+    this.galleryService.getAll().subscribe(data => {
+      this.projects = data;
+      this.totalSlides = data?.length || 0;
+      this.activeSlideIndex = 1;
+      this.currentProject = data?.[0] || null;
+      this.currentProjectName = this.currentProject?.name || '';
+    });
+  }
+
+  onTranslated(event: any): void {
+    const index = event.startPosition;
+    this.activeSlideIndex = index + 1;
+    this.currentProject = this.projects[index] || null;
+    this.currentProjectName = this.currentProject?.name || '';
+  }
+
+  onFileChange(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
+
+  openAdd(): void {
+    this.isEdit = false;
+    this.showModal = true;
+    this.form.reset();
+    this.selectedFile = null;
+    this.editingId = null;
+  }
+
+  openEdit(item: GalleryItem): void {
+    this.isEdit = true;
+    this.showModal = true;
+    this.form.patchValue({ name: item.name });
+    this.editingId = item.id;
+    this.selectedFile = null;
+  }
+
+  save(): void {
+    const { name } = this.form.value;
+    const formData = new FormData();
+    formData.append('name', name);
+
+    if (this.isEdit && this.editingId !== null) {
+      if (this.selectedFile) {
+        formData.append('image', this.selectedFile);
+      }
+      this.galleryService.update(this.editingId, formData).subscribe(() => {
+        this.loadGallery();
+        this.closeModal();
+      });
+    } else {
+      if (!this.selectedFile) {
+        alert('Veuillez sélectionner une image.');
+        return;
+      }
+      formData.append('image', this.selectedFile);
+      this.galleryService.create(formData).subscribe(() => {
+        this.loadGallery();
+        this.closeModal();
+      });
+    }
+  }
+
+  delete(id: number): void {
+    if (confirm('Supprimer cette image ?')) {
+      this.galleryService.delete(id).subscribe(() => this.loadGallery());
+    }
+  }
+
+  closeModal(): void {
+    this.showModal = false;
+    this.form.reset();
+    this.selectedFile = null;
   }
 }

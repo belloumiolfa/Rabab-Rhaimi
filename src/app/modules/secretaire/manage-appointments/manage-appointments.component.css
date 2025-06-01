@@ -1,0 +1,63 @@
+/* Tableau des rendez-vous */
+.appointments-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.appointments-table th,
+.appointments-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+.appointments-table th {
+    background-color: #ff6600; /* Orange */
+    color: white;
+}
+
+.appointments-table td {
+    background-color: #fff; /* Blanc */
+}
+
+.appointments-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Légère couleur de fond pour les lignes paires */
+}
+
+/* Boutons */
+button {
+    padding: 8px 14px;
+    margin: 5px 8px 5px 0;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+button:nth-of-type(1) {
+    background-color: #ff6600; /* Orange "accepter" */
+}
+
+button:nth-of-type(2) {
+    background-color: #dc3545; /* Rouge "refuser" */
+}
+
+button:nth-of-type(3) {
+    background-color: #ffc107; /* Jaune "annuler" */
+    color: #333; /* Noir pour le texte */
+}
+
+button:nth-of-type(4) {
+    background-color: #007bff; /* Bleu "modifier" */
+}
+
+button:last-of-type {
+    background-color: #17a2b8; /* Bleu clair */
+}

@@ -14,7 +14,7 @@ import { CallToActionP1Component } from "../../components/call-to-action-p1/call
 
 @Component({
   selector: 'app-project-1',
-  imports: [CursorComponent, PreloaderComponent, ScrollbarComponent, MenuComponent, CurtainComponent, FrameComponent, Banner1Component, FooterComponent, HiddenElementsComponent, P1Component, CallToActionP1Component],
+  imports: [CursorComponent, PreloaderComponent, ScrollbarComponent, MenuComponent, CurtainComponent, Banner1Component, FooterComponent, HiddenElementsComponent, P1Component, CallToActionP1Component],
   templateUrl: './project-1.component.html',
   styleUrl: './project-1.component.css'
 })

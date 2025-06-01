@@ -1,16 +1,14 @@
 <!-- Blog -->
 <section>
     <div class="container mil-p-120-60">
-        <div class="row align-items-center mil-mb-30">
+        <div class="row align-items-center mil-mb-30" id="blog">
             <div class="col-lg-6 mil-mb-30">
-                <h3 class="mil-up">Blog dentaire -
-                    Conseils & Astuces par
-                    Dr. Rabeb Hraimi</h3>
+                <h3 class="mil-up">Blog dentaire:</h3>
             </div>
             <div class="col-lg-6 mil-mb-30">
                 <div class="mil-adaptive-right mil-up">
-                    <a routerLink="/publication" class="mil-link mil-dark mil-arrow-place">
-                        View all
+                    <a routerLink="/main/blog" class="mil-link mil-dark mil-arrow-place">
+                        Voir tous
                     </a>
                 </div>
             </div>
@@ -21,78 +19,44 @@
 
                 <div class="mil-blog-card mil-mb-60">
                     <div class="mil-cover-frame mil-up">
-                        <img src="../../../../../assets/img/close-up-dentist-instruments.jpg" alt="cover" class="image">
+                        <img src="../../../../../assets/img/3.png" alt="cover" class="image">
                     </div>
                     <div class="mil-post-descr">
 
-                        <h4 class="mil-up mil-mb-30">Le Blanchiment
+                        <h4 class="mil-up mil-mb-30">Blanchiment
                             Dentaire</h4>
                         <p class="mil-post-text mil-up mil-mb-30">
-                            Tout Ce Qu'il Faut Savoir avant de Se Lancer
+                            Vous êtes-vous déjà demandé si l'éclaircissement dentaire était vraiment sans danger ? Vous avez probablement vu des publicités..
                         </p>
                         <div class="mil-link mil-dark mil-arrow-place mil-up">
-                            <a routerLink="/publication">Voir plus</a>
+                            <a  routerLink="/main/blanchiment" >Voir plus</a>
                         </div>
                     </div>
                 </div>
 
             </div>
 
+           
             <div class="col-lg-6">
 
                 <div class="mil-blog-card mil-mb-60">
                     <div class="mil-cover-frame mil-up">
-                        <img src="../../../../../assets/img/blog/blog1.jpg" alt="cover" class="image">
-                    </div>
-                    <div class="mil-post-descr">
-                        <h4 class="mil-up mil-mb-30">Les Bienfaits du Détartrage</h4>
-                        <p class="mil-post-text mil-up mil-mb-30">
-                            Pourquoi et Quand le Faire ?
-                        </p>
-                        <div class="mil-link mil-dark mil-arrow-place mil-up">
-                            <a [routerLink]="'/publication'">Voir plus</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-
-                <div class="mil-blog-card mil-mb-60">
-                    <div class="mil-cover-frame mil-up">
-                        <img src="../../../../../assets/img/pexels-cottonbro-6502305.jpg" alt="cover" class="image">
+                        <img src="../../../../../assets/img/2.png" alt="cover" class="image">
                     </div>
                     <div class="mil-post-descr">
 
-                        <h4 class="mil-up mil-mb-30">Implants Dentaires </h4>
+                        <h4 class="mil-up mil-mb-30">Les dents naturelles</h4>
                         <p class="mil-post-text mil-up mil-mb-30">
-                            Une Solution Durable pour Retrouver un Sourire Parfait
+                            Aujourd’hui, les soins dentaires évoluent rapidement : implants, facettes, bridges… Maismalgré toutes les technologies disponibles, aucune solution artificielle ...
                         </p>
                         <div class="mil-link mil-dark mil-arrow-place mil-up">
-                            <a routerLink="/publication">Voir plus</a>
+                            <a (click)="redirectToPublication2()">Voir plus</a>
                         </div>
                     </div>
                 </div>
 
             </div>
 
-            <div class="col-lg-6">
-
-                <div class="mil-blog-card mil-mb-60">
-                    <div class="mil-cover-frame mil-up">
-                        <img src="../../../../../assets/img/blog/blog2.jpg" alt="cover" class="image">
-                    </div>
-                    <div class="mil-post-descr">
-                        <h4 class="mil-up mil-mb-30">L'Importance de la Prévention Dentaire</h4>
-                        <p class="mil-post-text mil-up mil-mb-30">
-                            Comment Éviter les Caries et Maladies des Gencives ?
-                        </p>
-                        <div class="mil-link mil-dark mil-arrow-place mil-up">
-                            <a [routerLink]="'/publication'">Voir plus</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
 </section>

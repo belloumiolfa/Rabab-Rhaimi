@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { HeaderComponent } from "../header/header.component";
+import { AuthService } from '../../../backend/services/auth.service'; // chemin corrigé
 
 @Component({
   selector: 'app-patient-dashboard',
   templateUrl: './patient-dashboard.component.html',
-  imports:[RouterModule],
-  styleUrls: ['./patient-dashboard.component.css']
+  styleUrls: ['./patient-dashboard.component.css'],
+  standalone: true,
+  imports: [RouterModule, HeaderComponent]
 })
 export class PatientDashboardComponent implements OnInit {
   userData: any = {};
 
-  constructor(private http: HttpClient) {}
+  // ✅ Un seul constructeur avec toutes les injections nécessaires
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -24,18 +28,15 @@ export class PatientDashboardComponent implements OnInit {
       });
     }
   }
-  getProfileImageUrl(): string {
-    const filename = this.userData?.profile_picture;
-  
-    if (!filename) return 'http://localhost:3000/uploads/default-profile.jpg';
-  
-    // 👉 S'il s'agit de la photo par défaut
-    if (filename === 'default-profile.jpg') {
-      return 'http://localhost:3000/uploads/' + filename;
+
+  getProfilePictureUrl(): string {
+    if (this.userData?.profile_picture && this.userData.profile_picture !== 'default-profile.jpg') {
+      return `http://localhost:3000/uploads/profile/${this.userData.profile_picture}`;
     }
-  
-    // 👉 Sinon c’est une photo personnalisée
-    return 'http://localhost:3000/uploads/profile/' + filename;
+    return `http://localhost:3000/uploads/defaults/default-profile.jpg`;
   }
-  
+
+  onLogout(): void {
+    this.authService.logout();
+  }
 }

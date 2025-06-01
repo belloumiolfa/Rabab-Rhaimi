@@ -13,7 +13,7 @@ import { CallToActionTeamComponent } from "../../components/call-to-action-team/
 
 @Component({
   selector: 'app-teams',
-  imports: [FooterComponent, HiddenElementsComponent, FrameComponent, CurtainComponent, MenuComponent, ScrollbarComponent, PreloaderComponent, CursorComponent, BannerTeamComponent, TeamComponent, CallToActionTeamComponent],
+  imports: [FooterComponent, HiddenElementsComponent, CurtainComponent, MenuComponent, ScrollbarComponent, PreloaderComponent, CursorComponent, BannerTeamComponent, TeamComponent, CallToActionTeamComponent],
   templateUrl: './teams.component.html',
   styleUrl: './teams.component.css'
 })

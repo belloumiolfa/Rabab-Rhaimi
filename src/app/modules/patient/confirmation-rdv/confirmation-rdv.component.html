@@ -1,0 +1,16 @@
+<div class="container mt-5 text-center">
+    <div *ngIf="success === true">
+      <h2>✅ Votre rendez-vous est confirmé !</h2>
+      <p>Merci pour votre confirmation.</p>
+    </div>
+  
+    <div *ngIf="success === false">
+      <h2>❌ Erreur lors de la confirmation</h2>
+      <p>Veuillez réessayer plus tard ou contacter le cabinet.</p>
+    </div>
+  
+    <div *ngIf="success === null">
+      <p>⏳ Confirmation de votre rendez-vous en cours...</p>
+    </div>
+  </div>
+  

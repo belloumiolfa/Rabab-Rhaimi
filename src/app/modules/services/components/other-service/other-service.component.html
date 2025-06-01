@@ -1,63 +1,81 @@
-<!-- other services -->
 <section>
-    <div class="container mil-p-120-90">
-      <div class="row align-items-center mil-mb-30">
-        <div class="col-lg-6 mil-mb-30">
-          <h3 class="mil-up">
-            Expérience professionnelle de Dr. Rabeb Hraimi
-          </h3>
-        </div>
-        
+  <div class="container mil-p-120-90">
+    <div class="row align-items-center mil-mb-30">
+      <div class="col-lg-6 mil-mb-30">
+        <h3 class="mil-up">Expérience professionnelle de Dr. Rabab Hraimi</h3>
       </div>
-  
-      <div class="row mil-equal-height">
-        <!-- Carte 1 -->
-        <div class="col-lg-4">
-          <a href="service.html" class="mil-service-card-lg mil-other-card mil-more mil-mb-30">
-            <h4 class="mil-up mil-mb-30">Propriétaire de Clinique Privée<br />Medenine | 11/2011- Présent</h4>
-            <p class="mil-descr mil-up mil-mb-30">
-              Dr. Rabeb Hraimi dirige sa propre clinique dentaire, offrant des soins personnalisés en implantologie,
-              esthétique dentaire, orthodontie, et plus encore.
-            </p>
-          </a>
+    </div>
+
+    <div class="row mil-equal-height">
+      <!-- Cartes dynamiques -->
+      <div *ngFor="let exp of experiences" class="col-lg-4 d-flex">
+        <div class="mil-service-card-lg mil-other-card mil-more mil-mb-30 mil-hover-parent position-relative">
+          <h4 class="mil-up mil-mb-30">
+            {{ exp.title }}<br>
+            <span class="mil-thin" style="font-size: 16px; font-weight: 200; color: gray;">
+              {{ exp.institution }}, {{ exp.location }} | 
+              {{ exp.start_date | date:'MM/yyyy' }} - 
+              {{ exp.end_date ? (exp.end_date | date:'MM/yyyy') : 'Présent' }}
+            </span>
+          </h4>
+          <div class="mil-card-actions position-absolute bottom-0 end-0 p-2" *ngIf="isAdminUser">
+            <button class="btn btn-warning btn-sm me-2" (click)="openEdit(exp)">Modifier</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteExperience(exp.id)">Supprimer</button>
+          </div>
         </div>
-  
-        <!-- Carte 2 -->
-        <div class="col-lg-4">
-          <a href="service.html" class="mil-service-card-lg mil-other-card mil-more mil-mb-30">
-            <h4 class="mil-up mil-mb-30">Stages hospitaliers spécialisés Interne<br />en Médecine Dentaire</h4>
-            <p class="mil-descr mil-up mil-mb-30">Hôpital Charles Nicole, Tunis</p>
-            
-          </a>
-        </div>
-  
-        <!-- Carte 3 -->
-        <div class="col-lg-4">
-          <a href="service.html" class="mil-service-card-lg mil-other-card mil-more mil-mb-30">
-            <h4 class="mil-up mil-mb-30">Service de Chirurgie<br />Maxillo-Faciale</h4>
-            <p class="mil-descr mil-up mil-mb-30">Hôpital Sahloul, Sousse</p>
-            
-          </a>
-        </div>
-  
-        <!-- Carte 4 -->
-        <div class="col-lg-4">
-          <a href="service.html" class="mil-service-card-lg mil-other-card mil-more mil-mb-30">
-            <h4 class="mil-up mil-mb-30">Département de<br />Dermatologie</h4>
-            <p class="mil-descr mil-up mil-mb-30">Hôpital Farhat Hached, Sousse</p>
-           
-          </a>
-        </div>
-  
-        <!-- Carte 5 -->
-        <div class="col-lg-4">
-          <a href="service.html" class="mil-service-card-lg mil-other-card mil-more mil-mb-30">
-            <h4 class="mil-up mil-mb-30">Clinique Dentaire<br />Universitaire</h4>
-            <p class="mil-descr mil-up mil-mb-30">Faculté de Médecine Dentaire, Monastir</p>
-            
-          </a>
+      </div>
+
+      <!-- Carte Ajouter -->
+      <div *ngIf="isAdminUser" class="col-lg-4 d-flex">
+        <div class="mil-service-card-lg mil-other-card mil-add-card mil-mb-30 mil-hover-parent" (click)="openAdd()" style="cursor: pointer;">
+          <h1 class="text-center w-100" style="font-size: 100px; color: #aaa;">+</h1>
         </div>
       </div>
     </div>
-  </section>
-  
+  </div>
+
+  <!-- MODALE AJOUT / MODIFICATION -->
+  <div class="modal fade" tabindex="-1" [ngClass]="{ 'show': showModal }" [ngStyle]="{ display: showModal ? 'block' : 'none' }" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content shadow-lg rounded-4 border-0">
+        <div class="modal-header bg-warning bg-opacity-75 text-dark">
+          <h5 class="modal-title">{{ isEdit ? 'Modifier une expérience' : 'Ajouter une expérience' }}</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="form" class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Titre</label>
+              <input type="text" class="form-control" formControlName="title" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Établissement</label>
+              <input type="text" class="form-control" formControlName="institution" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Lieu</label>
+              <input type="text" class="form-control" formControlName="location" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Date début</label>
+              <input type="date" class="form-control" formControlName="start_date" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Date fin</label>
+              <input type="date" class="form-control" formControlName="end_date" />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer bg-light border-top-0">
+          <button class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+          <button class="btn btn-warning" [disabled]="form.invalid" (click)="save()">
+            {{ isEdit ? 'Mettre à jour' : 'Ajouter' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fond flou -->
+  <div class="modal-backdrop fade show" *ngIf="showModal"></div>
+</section>

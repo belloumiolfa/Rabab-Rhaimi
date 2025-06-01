@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterLink, Routes } from '@angular/router';
+import { Router, RouterLink, RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-menu',
-  imports: [ CommonModule, RouterLink],
+  imports: [ CommonModule,RouterModule,],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
@@ -13,13 +13,24 @@ export class MenuComponent {
   isMenuOpen: boolean = false;
   activeSubMenu: string | null = null; // Stocke le menu actif
 
-  
-
-  toggleMenu(): void {
-    console.log('Bouton cliqué !');
-    this.isMenuOpen = !this.isMenuOpen;
+  ngOnInit() {
+    this.isMenuOpen=false
   }
 
+
+  constructor(private router: Router) {}
+
+  toggleMenu() {
+    
+    //e.stopPropagation()
+    // Close or toggle the menu visibility
+    this.isMenuOpen = !this.isMenuOpen;
+
+    console.log("----------",this.isMenuOpen);
+    
+    
+   }
+  
   closeMenu(): void {
     if (this.isMenuOpen) {
       this.isMenuOpen = false;

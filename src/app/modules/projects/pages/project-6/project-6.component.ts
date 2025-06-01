@@ -10,7 +10,7 @@ import { CursorComponent } from "../../../showcase/components/cursor/cursor.comp
 
 @Component({
   selector: 'app-project-6',
-  imports: [FooterComponent, HiddenElementsComponent, FrameComponent, CurtainComponent, MenuComponent, ScrollbarComponent, PreloaderComponent, CursorComponent],
+  imports: [FooterComponent, HiddenElementsComponent, CurtainComponent, MenuComponent, ScrollbarComponent, PreloaderComponent, CursorComponent],
   templateUrl: './project-6.component.html',
   styleUrl: './project-6.component.css'
 })

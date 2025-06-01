@@ -1,0 +1,136 @@
+<div class="container py-4">
+  <h2 class="mb-4"><i class="bi bi-folder-fill text-warning fs-1 me-2"></i> Dossiers médicaux du patient</h2>
+
+  <div class="d-flex gap-2 mb-3">
+    <button class="btn btn-outline-primary" (click)="showModal = true"><i class="bi bi-plus-circle"></i> Nouveau dossier</button>
+    <button class="btn btn-primary" (click)="downloadCsv()"><i class="bi bi-filetype-csv"></i> Exporter en CSV</button>
+    <button class="btn btn-primary" (click)="downloadPDF()"><i class="bi bi-file-earmark-pdf"></i> Exporter en PDF</button>
+  </div>
+
+  <div *ngIf="dossiers.length === 0 && showResults">
+    <div class="alert alert-info">Aucun dossier trouvé.</div>
+  </div>
+
+  <div class="table-responsive" *ngIf="dossiers.length > 0">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Diagnostic</th>
+          <th>Traitement</th>
+          <th>Notes</th>
+          <th>Date</th>
+          <th>Documents</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of dossiers">
+          <td>{{ d.diagnosis }}</td>
+          <td>{{ d.treatment }}</td>
+          <td>{{ d.notes }}</td>
+          <td>{{ d.created_at | date:'short' }}</td>
+          <td>
+            <ng-container *ngIf="d.documents?.length > 0; else noDoc">
+              <div *ngFor="let doc of d.documents">
+                <a [href]="'http://localhost:3000/uploads/docs/' + doc.filename" target="_blank">
+                  <i class="bi bi-file-earmark-text"></i> {{ doc.type }}
+                </a>
+              </div>
+            </ng-container>
+            <ng-template #noDoc>—</ng-template>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-warning" (click)="editRecord(d)">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- ✅ Modale Ajout Dossier Médical avec grille -->
+<div class="modal-overlay" *ngIf="showModal">
+  <div class="modal-content">
+    <h4 class="mb-4 text-center">➕ Ajouter un dossier médical</h4>
+
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Diagnostic :</label>
+        <input type="text" class="form-control" [(ngModel)]="newRecord.diagnosis" placeholder="Ex: carie, abcès..." />
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Traitement :</label>
+        <input type="text" class="form-control" [(ngModel)]="newRecord.treatment" placeholder="Ex: détartrage..." />
+      </div>
+
+      <div class="col-12">
+        <label class="form-label">Notes :</label>
+        <textarea class="form-control" [(ngModel)]="newRecord.notes" rows="2" placeholder="Remarques..."></textarea>
+      </div>
+
+      <div class="col-12">
+        <label class="form-label">Documents :</label>
+        <input type="file" class="form-control" multiple (change)="onFileChange($event)" />
+      </div>
+
+      <div *ngFor="let file of selectedFiles; let i = index" class="col-12 d-flex align-items-center gap-2 mt-2">
+        <i class="bi bi-paperclip"></i>
+        <span>{{ file.name }}</span>
+        <select class="form-select form-select-sm w-auto" [(ngModel)]="types[i]">
+          <option value="radio">Radio</option>
+          <option value="ordonnance">Ordonnance</option>
+          <option value="analyse">Analyse</option>
+          <option value="autre">Autre</option>
+        </select>
+        <button class="btn btn-sm btn-outline-danger" (click)="removeFile(i)">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="modal-buttons mt-4">
+      <button class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+      <button class="btn btn-success" (click)="submit()">Ajouter</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ✏️ Modale Modification -->
+<div class="modal-overlay" *ngIf="showEditModal">
+  <div class="modal-content">
+    <h4 class="mb-4 text-center">✏️ Modifier le dossier médical</h4>
+
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Diagnostic :</label>
+        <input type="text" class="form-control" [(ngModel)]="editData.diagnosis" />
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Traitement :</label>
+        <input type="text" class="form-control" [(ngModel)]="editData.treatment" />
+      </div>
+
+      <div class="col-12">
+        <label class="form-label">Notes :</label>
+        <textarea class="form-control" [(ngModel)]="editData.notes" rows="2"></textarea>
+      </div>
+
+      <div class="col-12">
+        <label class="form-label">Remplacer le document (optionnel) :</label>
+        <input type="file" class="form-control" (change)="onFileChange($event)" />
+      </div>
+    </div>
+
+    <div class="modal-buttons mt-4">
+      <button class="btn btn-secondary" (click)="closeEditModal()">Annuler</button>
+      <button class="btn btn-primary" (click)="updateRecord()">Mettre à jour</button>
+    </div>
+  </div>
+</div>

@@ -10,10 +10,11 @@ import { CursorComponent } from "../../../showcase/components/cursor/cursor.comp
 import { SimilarComponent } from "../../components/similar/similar.component";
 import { PubComponent } from "../../components/pub/pub.component";
 import { BannerPubComponent } from "../../components/banner-pub/banner-pub.component";
+import { Similar2Component } from "../../components/similar2/similar2.component";
 
 @Component({
   selector: 'app-publication',
-  imports: [HiddenElementsComponent, FooterComponent, FrameComponent, CurtainComponent, MenuComponent, ScrollbarComponent, CursorComponent, SimilarComponent, PubComponent, BannerPubComponent],
+  imports: [HiddenElementsComponent, FooterComponent, CurtainComponent, MenuComponent, ScrollbarComponent, CursorComponent, PubComponent, BannerPubComponent, Similar2Component],
   templateUrl: './publication.component.html',
   styleUrl: './publication.component.css'
 })

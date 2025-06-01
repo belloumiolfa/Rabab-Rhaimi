@@ -1,6 +1,6 @@
  <!-- services -->
  <section class="mil-dark-bg" >
-    <div class="mi-invert-fix" style="background-color: black;">
+    <div class="mi-invert-fix" style="background-color: black;" id="certif">
         <div class="mil-animation-frame">
             <div class="mil-animation mil-position-1 mil-scale" data-value-1="2.4" data-value-2="1.4" style="top: 300px; right: -100px"></div>
             <div class="mil-animation mil-position-2 mil-scale" data-value-1="2" data-value-2="1" style="left: 150px"></div>
@@ -10,6 +10,7 @@
             <div class="mil-mb-120">
                 <div class="row">
                     <div class="col-lg-10">
+                        <span class="mil-suptitle mil-light-soft mil-suptitle-right mil-up">Des parcours certifiants pour accompagner l’évolution<br>  de votre expertise dentaire.</span>
 
 
                     </div>
@@ -17,86 +18,76 @@
 
                 <div class="mil-complex-text justify-content-center mil-up mil-mb-15">
 
-                    <span class="mil-text-image"><img src="../../../../../assets/img/photo/2.jpg" alt="team"></span>
-                    <h2 class="mil-h1 mil-muted mil-center">Certifications et
+                    <span class="mil-text-image"><img src="../../../../../assets/img/1.png" alt="team"></span>
+                    <h2 class="mil-h1 mil-muted mil-center">Certifications <span class="mil-thin">et</span>
                         </h2>
 
                 </div>
                 <div class="mil-complex-text justify-content-center mil-up">
 
-                    <h2 class="mil-h1 mil-muted mil-center">formations continues  </h2>
-
+                    <h2 class="mil-h1 mil-muted mil-center"><span class="mil-thin">formations</span> continues.  </h2>
+                    <div class="button-container">
+                        <a href="services.html" class="thin-service-btn">
+                          <span class="text">NOS SERVICES</span>
+                          <span class="circle"><span class="arrow">→</span></span>
+                        </a>
+                      </div>
+                      
+                      
+                      
                 </div>
+                 <!-- En bas du composant -->
+            <div *ngIf="isAdmin" class="admin-add-container">
+              <button (click)="openAddModal()">+ Ajouter une certification</button>
+            </div>
             </div>
 
-            <div class="row mil-services-grid m-0">
-                <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
-
-                    <a href="service.html" class="mil-service-card-sm mil-up">
-                        <h5 class="mil-muted mil-mb-30">Formation <br>en Laser Dentaire </h5>
-                        <p class="mil-light-soft mil-mb-30">Biolase Laboratory, Nice, France | 2019</p>
-                        <div class="mil-button mil-icon-button-sm mil-arrow-place"></div>
-                    </a>
-
+            <div class="mil-services-scroll-wrapper">
+              <button class="scroll-btn left" (click)="scrollLeft()">←</button>
+            
+              <div class="mil-services-scroll" #scrollContainer>
+                <div class="mil-services-grid-item" *ngFor="let service of services; let i = index">
+                  <a class="mil-service-card-sm mil-up">
+                    <h5 class="mil-title">{{ service.title }}</h5>
+                    <p class="mil-desc">{{ service.description }}</p>
+                    <div class="mil-arrow-circle">→</div>
+                    <div *ngIf="isAdmin" class="admin-controls mil-up">
+                      <button (click)="openEditModal(service)">Modifier</button>
+                      <button (click)="deleteCertif(service.id)">Supprimer</button>
+                    </div>                    
+                  </a>
                 </div>
-                <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
-
-                    <a href="service.html" class="mil-service-card-sm mil-up">
-                        <h5 class="mil-muted mil-mb-30">Orthodontie Systémique  <br>Postgraduate</h5>
-                        <p class="mil-light-soft mil-mb-30">Raymonde, Tunis,Tunisie | 2018</p>
-                        <div class="mil-button mil-icon-button-sm mil-arrow-place"></div>
-                    </a>
-
-                </div>
-                <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
-
-                    <a href="service.html" class="mil-service-card-sm mil-up">
-                        <h5 class="mil-muted mil-mb-30">Cycle de Formation en Implantologie Dentaire</h5>
-                        <p class="mil-light-soft mil-mb-30">Tunis, Tunisie | 2017</p>
-                        <div class="mil-button mil-icon-button-sm mil-arrow-place"></div>
-                    </a>
-
-                </div>
-                <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
-
-                    <a href="service.html" class="mil-service-card-sm mil-up">
-                        <h5 class="mil-muted mil-mb-30">Master en Réhabilitation Esthétique et Fonctionnelle en Prothèse Fixe</h5>
-                        <p class="mil-light-soft mil-mb-30">Pesaro, Italie | 2017
-                        </p>
-                        <div class="mil-button mil-icon-button-sm mil-arrow-place"></div>
-                    </a>
-
-                </div>
-                <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
-
-                    <a href="service.html" class="mil-service-card-sm mil-up">
-                        <h5 class="mil-muted mil-mb-30">Orthodontie Systémique  <br>Postgraduate</h5>
-                        <p class="mil-light-soft mil-mb-30">Raymonde, Tunis,Tunisie | 2018</p>
-                        <div class="mil-button mil-icon-button-sm mil-arrow-place"></div>
-                    </a>
-
-                </div>
-                <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
-
-                    <a href="service.html" class="mil-service-card-sm mil-up">
-                        <h5 class="mil-muted mil-mb-30">Cycle de Formation en Implantologie Dentaire</h5>
-                        <p class="mil-light-soft mil-mb-30">Tunis, Tunisie | 2017</p>
-                        <div class="mil-button mil-icon-button-sm mil-arrow-place"></div>
-                    </a>
-
-                </div>
-                <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
-
-                    <a href="service.html" class="mil-service-card-sm mil-up">
-                        <h5 class="mil-muted mil-mb-30">Master en Réhabilitation Esthétique et Fonctionnelle en Prothèse Fixe</h5>
-                        <p class="mil-light-soft mil-mb-30">Pesaro, Italie | 2017
-                        </p>
-                        <div class="mil-button mil-icon-button-sm mil-arrow-place"></div>
-                    </a>
-
-                </div>
+                
+              </div>
+            
+              <button class="scroll-btn right" (click)="scrollRight()">→</button>
             </div>
+           
+
         </div>
     </div>
 </section>
 <!-- services end -->
+
+
+<!-- ✅ MODALE PROFESSIONNELLE -->
+<div class="modal-overlay" *ngIf="showModal">
+  <div class="modal-content">
+    <h3>{{ isEdit ? 'Modifier' : 'Ajouter' }} une certification</h3>
+
+    <form [formGroup]="form">
+      <label>Titre</label>
+      <input type="text" formControlName="title" />
+
+      <label>Description</label>
+      <textarea formControlName="description"></textarea>
+    </form>
+
+    <div class="modal-buttons">
+      <button class="cancel" (click)="closeModal()">Annuler</button>
+      <button class="submit" (click)="saveCertif()" [disabled]="form.invalid">
+        {{ isEdit ? 'Mettre à jour' : 'Ajouter' }}
+      </button>
+    </div>
+  </div>
+</div>
