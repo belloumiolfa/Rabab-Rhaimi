@@ -1,0 +1,170 @@
+.calendar-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+full-calendar {
+  position: relative;
+  z-index: 1;
+}
+
+/* ta modale déjà à : z-index:10000, donc elle passera au-dessus */
+/* fullcalendar-theme.css */
+
+/* Ciblage spécifique sans toucher au reste de ton app */
+:host ::ng-deep .fc {
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 9px;
+  background-color: #f1f1f1;
+  border-radius: 9px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 5px;
+}
+
+/* Barre supérieure */
+:host ::ng-deep .fc-toolbar-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #333;
+}
+:host ::ng-deep .fc-toolbar .fc-button {
+  background-color: #ff6600;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-weight: 600;
+}
+:host ::ng-deep .fc-toolbar .fc-button:hover {
+  background-color: #e65c00;
+}
+
+/* Jours en haut */
+:host ::ng-deep .fc-col-header-cell {
+  background: #f9f9f9;
+  font-weight: 600;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Jour actuel */
+
+/* Heures */
+:host ::ng-deep .fc-timegrid-slot-label {
+  color: #666;
+  font-size: 16px;
+}
+
+/* Événements */
+:host ::ng-deep .fc-event {
+  background-color: #3399FF  ;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  font-size: 13px;
+  padding: 2px 6px;
+}
+
+/* Scroll grid */
+:host ::ng-deep .fc-scrollgrid {
+  border-radius: 10px;
+  border: 1px solid #eee;
+}
+/* Couleur principale des créneaux */
+.fc-event {
+  background-color: #3399FF !important;  /* Bleu doux */
+  border: none !important;
+  color: #fff !important;
+  font-weight: 500;
+  font-size: 13px;
+  border-radius: 6px;
+  padding: 2px 6px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Hover pour feedback visuel */
+
+
+/* Colonne du jour actuel (optionnel) */
+
+
+/* En-tête des jours */
+.fc-col-header-cell {
+  background-color: #fff8f0;
+  font-weight: 600;
+}
+
+
+
+/* 📆 Titre principal (ex: "9 – 15 juin 2025") */
+.fc-toolbar-title {
+  font-size: 24px !important;
+  font-weight: bold;
+  color: #222;
+}
+
+/* 🗓️ Jours en haut du calendrier (lun. 09/06) */
+.fc-col-header-cell {
+  font-size: 17px !important;
+  font-weight: 600;
+  padding: 12px 0;
+}
+
+/* 🕒 Heures à gauche (08h, 09h...) */
+.fc-timegrid-slot-label {
+  font-size: 50px !important;
+  color: #333;
+  font-weight: 500;
+}
+
+/* 🟦 Créneaux de disponibilité */
+.fc-event {
+  font-size: 16px !important;
+  font-weight: 600;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background-color: #3399FF !important;  /* Bleu doux */
+  border: none !important;
+  color: #fff !important;
+  line-height: 1.5;
+}
+
+/* ✨ Hover sur créneau */
+.fc-event:hover {
+  background-color: #007BFF !important;
+  cursor: pointer;
+}
+
+/* 🟡 Fond du jour actuel */
+.fc-day-today {
+  background-color: #fff8e6 !important;  /* Jaune clair */
+}
+
+/* 📏 Hauteur des lignes horaires (plus espacées) */
+:host ::ng-deep .fc-timegrid-slot {
+  height: 1.8em !important;  /* Augmente la hauteur */
+}
+
+/* 📦 Container général du calendrier (optionnel pour grossir tout) */
+:host ::ng-deep .fc {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 20px;
+}
+
+
+
+
+:host ::ng-deep .fc-event.dispo-passee {
+  background-color: #d3d3d3 !important;
+  color: #666 !important;
+  pointer-events: none;
+  opacity: 0.6;
+  border: 1px solid #bbb !important;
+}
+
+:host ::ng-deep .fc-event.dispo-future {
+  background-color: #2196f3 !important;
+  color: white;
+  font-weight: bold;
+}

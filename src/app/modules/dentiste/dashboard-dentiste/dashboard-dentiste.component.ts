@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { HeaderComponent } from "../../patient/header/header.component";
+import { AuthService } from '../../../backend/services/auth.service';
 
 @Component({
   selector: 'app-dashboard-dentiste',
   templateUrl: './dashboard-dentiste.component.html',
   styleUrls: ['./dashboard-dentiste.component.css'],
   standalone: true,
-  imports: [RouterModule,RouterOutlet]
+  imports: [RouterModule, RouterOutlet, HeaderComponent]
 })
 export class DashboardDentisteComponent implements OnInit {
   userData: any = {};
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -31,5 +33,9 @@ export class DashboardDentisteComponent implements OnInit {
       return `http://localhost:3000/uploads/profile/${this.userData.profile_picture}`;
     }
     return `http://localhost:3000/uploads/defaults/default-profile.jpg`;
+  }
+
+   onLogout(): void {
+    this.authService.logout();
   }
 }

@@ -30,4 +30,17 @@
     width: 300px;
     z-index: 1000;
   }
-  
+  .btn-vitrine {
+  background-color: #007bff;
+  color: white;
+  font-weight: 600;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-vitrine:hover {
+  background-color: #0056b3;
+}

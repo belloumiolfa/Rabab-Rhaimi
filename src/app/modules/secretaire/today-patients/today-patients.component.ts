@@ -27,12 +27,14 @@ export class TodayPatientsComponent implements OnInit {
   }
 
   loadTodayPatients() {
-    this.http.get<any[]>('http://localhost:3000/api/appointments/today')
-      .subscribe(data => {
-        this.patientsToday = data;
-        this.filteredAppointments = data;
-      });
-  }
+  this.http.get<any[]>('http://localhost:3000/api/appointments/today')
+    .subscribe(data => {
+      // ✅ Filtrer seulement les rendez-vous acceptés
+      this.patientsToday = data.filter(rdv => rdv.status === 'accepte');
+      this.filteredAppointments = this.patientsToday;
+    });
+}
+
 
   markAsArrived(appointmentId: string) {
     this.http.put(`http://localhost:3000/api/appointments/status/${appointmentId}`, { status: 'Arrived' })
@@ -40,7 +42,7 @@ export class TodayPatientsComponent implements OnInit {
         alert('✅ Patient marqué comme arrivé');
         this.loadTodayPatients();
       }, () => {
-        alert('❌ Erreur lors du marquage');
+        alert('  Erreur lors du marquage');
       });
   }
 

@@ -25,12 +25,12 @@
             <span class="author">🧑 {{ t.name }}</span>
             <span class="rating">⭐ {{ t.rating }} / 5</span>
           
-            <!-- ❌ Supprimer uniquement si c'est 'Moi' et 'pending' -->
+            <!--   Supprimer uniquement si c'est 'Moi' et 'pending' -->
             <button *ngIf="t.status === 'Pending'"
             (click)="deleteTestimonial(t.id)"
             class="delete-btn"
             title="Supprimer">
-      ❌
+       
     </button>
           </div>
           

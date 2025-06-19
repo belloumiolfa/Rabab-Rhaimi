@@ -1,27 +1,52 @@
-<h2>➕ Ajouter un Rendez-vous</h2>
+<div class="modal-backdrop" (click)="fermer.emit()"></div>
 
-<label>Email du patient :</label>
-<input type="email" [(ngModel)]="patient.email">
+<div class="modal-container">
+  <h2>Ajouter un Rendez-vous</h2>
 
+  <div class="modal-grid">
+    <div>
+      <label>Prénom :</label>
+      <input type="text" [(ngModel)]="rdv.first_name" required />
+      <div *ngIf="rdv.first_name === ''" class="error-msg">⚠️ Champ requis</div>
+    </div>
 
+    <div>
+      <label>Nom :</label>
+      <input type="text" [(ngModel)]="rdv.name" required />
+      <div *ngIf="rdv.name === ''" class="error-msg">⚠️ Champ requis</div>
+    </div>
 
-<label>Prénom :</label>
-<input type="text" [(ngModel)]="patient.first_name">
+    <div>
+      <label>Téléphone :</label>
+      <input type="text" [(ngModel)]="rdv.phone" pattern="^[0-9]{8}$" />
+      <div *ngIf="rdv.phone.length !== 8" class="error-msg">⚠️ Téléphone invalide</div>
+    </div>
 
-<label>Nom :</label>
-<input type="text" [(ngModel)]="patient.name">
+    <div>
+      <label>Date et Heure :</label>
+        <input 
+        type="datetime-local"
+        [(ngModel)]="rdv.date_time"
+        [min]="minDate"
+            >      
+            <div *ngIf="!rdv.date_time" class="error-msg">⚠️ Champ requis</div>
+    </div>
 
-<label>Téléphone :</label>
-<input type="text" [(ngModel)]="patient.phone">
+    <div>
+      <label>Email :</label>
+      <input type="email" [(ngModel)]="rdv.email" />
+      <div *ngIf="!isValidEmail(rdv.email)" class="error-msg">⚠️ Email invalide</div>
+    </div>
 
-<hr>
+    <div class="full-width">
+      <label>Motif :</label>
+      <textarea [(ngModel)]="rdv.motif" rows="4"></textarea>
+      <div *ngIf="rdv.motif === ''" class="error-msg">⚠️ Champ requis</div>
+    </div>
+  </div>
 
-<label>Date et Heure du Rendez-vous :</label>
-<input type="datetime-local" [(ngModel)]="rdv.date_time">
-
-<label>Motif du Rendez-vous :</label>
-<textarea [(ngModel)]="rdv.motif" rows="3"></textarea>
-
-<br><br>
-
-<button (click)="enregistrer()">💾 Enregistrer Rendez-vous</button>
+  <div class="btn-group">
+    <button class="btn-save" (click)="enregistrer()">Enregistrer</button>
+    <button class="btn-c" (click)="fermer.emit()">Fermer</button>
+  </div>
+</div>

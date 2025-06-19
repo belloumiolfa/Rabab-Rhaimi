@@ -1,21 +1,50 @@
-<div class="modal-backdrop"></div>
-<div class="modal">
-  <h3>Modifier Disponibilité</h3>
+<ng-container *ngIf="availability">
+  <div class="modal-wrapper" [class.basse]="masquerModale">
+    <div class="modal-backdrop" (click)="close.emit()"></div>
 
-  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    <div class="modal-box">
+      <h3>Modifier Disponibilité</h3>
 
-  <label>Date :</label>
-  <input type="date" [(ngModel)]="startDate" required>
+      <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
 
-  <label>Heure Début :</label>
-  <input type="time" [(ngModel)]="startTime" required>
+      <label>Date :</label>
+        <input
+          type="date"
+          [(ngModel)]="startDate"
+          [class.invalid]="dateInvalide"
+          class="form-control"
+        />
 
-  <label>Heure Fin :</label>
-  <input type="time" [(ngModel)]="endTime" required>
+        <label>Heure Début :</label>
+        <input type="time"
+         class="form-control"
+              [(ngModel)]="startTime"
+          [class.invalid]="champDebutInvalide"
+              />
 
-  <div class="modal-buttons">
-    <button (click)="save()">💾 Enregistrer</button>
-    <button (click)="delete()">🗑️ Supprimer</button>
-    <button (click)="close.emit()">❌ Fermer</button>
+        <label>Heure Fin :</label>
+        <input type="time"
+         class="form-control"
+              [(ngModel)]="endTime"
+                [class.invalid]="champFinInvalide"
+
+              />
+
+        <!-- Message Bootstrap -->
+        <div *ngIf="champDebutInvalide || champFinInvalide" class="invalid-feedback d-block text-center">
+          <i class="bi bi-exclamation-circle-fill text-danger"></i>
+          L’horaire sélectionné est invalide : la fin doit être postérieure au début avec un écart minimum de 15 minutes.
+        </div>
+
+
+      <div class="modal-buttons">
+        <button (click)="save()"> Enregistrer</button>
+        <button (click)="delete()"> Supprimer</button>
+<!-- Dans la div .modal-box -->
+<button class="close-icon" (click)="close.emit()" aria-label="Fermer">
+  &times;
+</button>
+      </div>
+    </div>
   </div>
-</div>
+</ng-container>

@@ -8,20 +8,29 @@
         <th>Heure</th>
         <th>Statut</th>
         <th>Urgence</th>
-        <th>Action</th> <!-- ✅ Ajout de cette colonne ici -->
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of rdv">
-        <td>{{ item.date_time | date:'fullDate' }}</td>
-        <td>{{ item.date_time | date:'shortTime' }}</td>
+        <td>{{ item.date_time | date:'EEEE d MMMM y' : '' : 'fr' }}</td>
+        <td>{{ item.date_time | date:'HH:mm' : '' : 'fr' }}</td>
         <td>
           <span [ngClass]="{
-            'badge-done': item.status === 'fait',
-            'badge-pending': item.status === 'non fait',
-            'badge-cancel': item.status === 'annulé'
+            'badge-en-attente': item.status === 'en_attente',
+            'badge-accepte': item.status === 'accepte',
+            'badge-refuse': item.status === 'refuse',
+            'badge-annule': item.status === 'annule',
+            'badge-arrived': item.status === 'Arrived'
           }">
-            {{ item.status }}
+            {{
+              item.status === 'en_attente' ? 'En attente' :
+              item.status === 'accepte' ? 'Accepté' :
+              item.status === 'refuse' ? 'Refusé' :
+              item.status === 'annule' ? 'Annulé' :
+              item.status === 'Arrived' ? 'Arrivé' :
+              item.status
+            }}
           </span>
         </td>
         <td>
@@ -30,7 +39,9 @@
           </span>
         </td>
         <td>
-          <button *ngIf="canCancel(item.date_time)" (click)="cancelAppointment(item.id)">Annuler</button> 
+          <button *ngIf="canCancel(item.date_time)" (click)="cancelAppointment(item.id)">
+            Annuler
+          </button>
         </td>
       </tr>
     </tbody>

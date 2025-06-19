@@ -1,90 +1,55 @@
-import { Component, OnInit } from '@angular/core';
-import { ExperienceService } from '../../../../backend/services/experience.service';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-other-service',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './other-service.component.html',
-  styleUrls: ['./other-service.component.css'],
-  imports: [CommonModule, ReactiveFormsModule, FormsModule] // ⬅️ IMPORTANT : pour pipes comme "date"
-
+  styleUrls: ['./other-service.component.css']
 })
-export class OtherServiceComponent implements OnInit {
-  experiences: any[] = [];
-  showModal = false;
-  isEdit = false;
-  selected: any = null;
-  form!: FormGroup;
-  isAdminUser: boolean = false; // <-- nouvelle variable
-
-  constructor(private service: ExperienceService, private fb: FormBuilder) {}
-
-  ngOnInit(): void {
-    const user = localStorage.getItem('user');
-    if (user) {
-      try {
-        const role = JSON.parse(user).role;
-        console.log("Rôle utilisateur :", role);
-        this.isAdminUser = role === 'Dentiste' || role === 'Admin';
-      } catch {
-        this.isAdminUser = false;
-      }
+export class OtherServiceComponent {
+  experiences = [
+    {
+      title: 'Propriétaire de cabinet privé',
+      institution: 'Cabinet personnel',
+      location: 'Tunis',
+      start_date: '2011-11-01',
+      end_date: null
+    },
+    {
+      title: 'Service d’orthopédie dento-faciale',
+      institution: 'Clinique dentaire de Monastir',
+      location: 'Monastir',
+      start_date: '2010-06-01',
+      end_date: '2010-09-30'
+    },
+    {
+      title: 'Département de dentisterie',
+      institution: 'Hôpital Charles Nicolle',
+      location: 'Tunis',
+      start_date: '2010-02-01',
+      end_date: '2010-05-31'
+    },
+    {
+      title: 'Service de chirurgie maxillo-faciale',
+      institution: 'Hôpital Sahloul',
+      location: 'Sousse',
+      start_date: '2009-12-01',
+      end_date: '2010-01-31'
+    },
+    {
+      title: 'Service de dermatologie',
+      institution: 'Hôpital Farhat Hached',
+      location: 'Sousse',
+      start_date: '2009-10-01',
+      end_date: '2009-11-30'
     }
+  ];
 
-    this.loadExperiences();
-    this.form = this.fb.group({
-      title: ['', Validators.required],
-      institution: ['', Validators.required],
-      location: [''],
-      start_date: ['', Validators.required],
-      end_date: ['']
-    });
-  }
-
-
-  loadExperiences() {
-    this.service.getAll().subscribe(data => {
-      this.experiences = data;
-    });
-  }
-
-  openAdd() {
-    this.isEdit = false;
-    this.form.reset();
-    this.showModal = true;
-  }
-
-  openEdit(exp: any) {
-    this.isEdit = true;
-    this.selected = exp;
-    this.form.patchValue(exp);
-    this.showModal = true;
-  }
-
-  save() {
-    if (this.form.invalid) return;
-    const data = this.form.value;
-    if (this.isEdit && this.selected?.id) {
-      this.service.update(this.selected.id, data).subscribe(() => {
-        this.loadExperiences();
-        this.showModal = false;
-      });
-    } else {
-      this.service.create(data).subscribe(() => {
-        this.loadExperiences();
-        this.showModal = false;
-      });
-    }
-  }
-
-  deleteExperience(id: number) {
-    if (confirm('Supprimer cette expérience ?')) {
-      this.service.delete(id).subscribe(() => this.loadExperiences());
-    }
-  }
-
-  closeModal() {
-    this.showModal = false;
+  formatDate(date: string | null): string {
+    if (!date) return 'Présent';
+    const d = new Date(date);
+    return d.toLocaleDateString('fr-FR', { month: '2-digit', year: 'numeric' });
   }
 }

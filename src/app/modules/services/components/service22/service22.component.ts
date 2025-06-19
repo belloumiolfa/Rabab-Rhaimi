@@ -1,105 +1,57 @@
-import { Component, OnInit } from '@angular/core'; // <-- Ajout de OnInit ici
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DegreeService } from '../../../../backend/services/degree.service';
-import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+
+interface Degree {
+  id: number;
+  title: string;
+  subtitle: string;
+  description: string;
+  start_year: number;
+  end_year: number;
+  show: boolean;
+}
 
 @Component({
   selector: 'app-service22',
   standalone: true,
-  imports: [HttpClientModule, FormsModule, CommonModule, ReactiveFormsModule],
+  imports: [CommonModule],
   templateUrl: './service22.component.html',
-  styleUrls: ['./service22.component.css'] // ← correction: c’est style**Urls** et non styleUrl
+  styleUrls: ['./service22.component.css']
 })
-export class Service22Component implements OnInit { // <-- Ajout ici aussi
-  degrees: any[] = [];
-  form!: FormGroup;
-  showModal = false;
-  isEdit = false;
-  selectedDegree: any = null;
-  isAdminUser: boolean = false; // <-- nouvelle variable
-
-  constructor(private degreeService: DegreeService, private fb: FormBuilder) {}
-
-  ngOnInit(): void {
-    const user = localStorage.getItem('user');
-    if (user) {
-      try {
-        const role = JSON.parse(user).role;
-        console.log("Rôle utilisateur :", role);
-        this.isAdminUser = role === 'Dentiste' || role === 'Admin';
-      } catch {
-        this.isAdminUser = false;
-      }
+export class Service22Component {
+  /** ➜ Contenu fixe issu de la capture MySQL */
+  degrees: Degree[] = [
+    {
+      id: 1,
+      title: 'Docteur en Diplôme en implantologie et chirurgie maxillo-faciale',
+      subtitle: 'Université Toulouse III – Paul Sabatier, Toulouse',
+      description: 'Évaluation approfondie de l’expérience utilisateur et maîtrise des techniques d’implantologie avancées.',
+      start_year: 2018,
+      end_year: 2018,
+      show: false
+    },
+    {
+      id: 2,
+      title: 'Doctorat en Médecine Dentaire',
+      subtitle: 'Faculté de Médecine Dentaire, Monastir',
+      description: 'Approche Design Thinking pour résoudre les problématiques cliniques complexes et optimiser les protocoles de soins.',
+      start_year: 2004,
+      end_year: 2011,
+      show: false
+    },
+    {
+      id: 3,
+      title: 'Baccalauréat en Sciences Expérimentales',
+      subtitle: 'Lycée de Médecine, Médenine',
+      description: 'Préparation scientifique rigoureuse avant les études supérieures en médecine et sciences de la santé.',
+      start_year: 2000,
+      end_year: 2004,
+      show: false
     }
-  
-    this.loadDegrees();
-  
-    this.form = this.fb.group({
-      title: ['', Validators.required],
-      subtitle: ['', Validators.required],
-      start_year: ['', Validators.required],
-      end_year: ['', Validators.required],
-      description: ['', Validators.required]
-    });
-  }
-  
-  
+  ];
 
-  
-  
-
-  loadDegrees() {
-    this.degreeService.getAll().subscribe((data) => {
-      console.log('Données chargées :', data);
-      // ✅ NE PAS écraser avec "this.degrees = data" ensuite
-      this.degrees = data.map(d => ({ ...d, show: false }));
-      console.log("Données reçues : ", this.degrees);
-
-    });
-  }
-  
-  
-  
-
-  openAddModal() {
-    this.form.reset();
-    this.isEdit = false;
-    this.selectedDegree = null;
-    this.showModal = true;
-  }
-
-  openEditModal(degree: any) {
-    this.form.patchValue(degree);
-    this.selectedDegree = degree;
-    this.isEdit = true;
-    this.showModal = true;
-  }
-
-  saveDegree() {
-    if (this.form.invalid) return;
-    const degreeData = this.form.value;
-
-    if (this.isEdit && this.selectedDegree?.id) {
-      this.degreeService.update(this.selectedDegree.id, degreeData).subscribe(() => {
-        this.loadDegrees();
-        this.showModal = false;
-      });
-    } else {
-      this.degreeService.create(degreeData).subscribe(() => {
-        this.loadDegrees();
-        this.showModal = false;
-      });
-    }
-  }
-
-  deleteDegree(id: number) {
-    if (confirm('Voulez-vous vraiment supprimer ce diplôme ?')) {
-      this.degreeService.delete(id).subscribe(() => this.loadDegrees());
-    }
-  }
-
-  closeModal() {
-    this.showModal = false;
+  /** Ouvre / ferme un accordéon */
+  toggle(degree: Degree): void {
+    degree.show = !degree.show;
   }
 }

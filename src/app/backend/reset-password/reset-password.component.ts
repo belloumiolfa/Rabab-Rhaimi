@@ -41,7 +41,7 @@ export class ResetPasswordComponent implements OnInit {
         setTimeout(() => this.router.navigate(['/login']), 2000);
       },
       error: (err) => {
-        this.message = err.error.message || 'Erreur serveur ❌';
+        this.message = err.error.message || 'Erreur serveur  ';
       }
     });
   }

@@ -19,8 +19,8 @@
   }
   
   .logo-slide img {
-    height: 30px;
-    width: 80px;
+    height: 80px;
+    width: 100px;
     object-fit: contain;
     transition: transform 0.3s ease;
   }
@@ -37,4 +37,30 @@
       transform: translateX(-33.333%); /* ← car 3x le contenu */
     }
   }
-  
+  .logo-container {
+  position: relative;
+  display: inline-block;
+}
+
+
+
+.delete-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: none;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: scale(0.8);
+  z-index: 10;
+}
+
+.logo-container:hover .delete-btn {
+  opacity: 1;
+  transform: scale(1);
+}

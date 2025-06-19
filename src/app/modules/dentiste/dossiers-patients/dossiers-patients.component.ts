@@ -46,7 +46,7 @@ export class DossiersPatientsComponent implements OnInit {
           this.showResults = true;
         },
         error: (err) => {
-          console.error("❌ Erreur API :", err);
+          console.error("  Erreur API :", err);
           alert("Erreur lors du chargement");
         }
       });
@@ -96,7 +96,7 @@ export class DossiersPatientsComponent implements OnInit {
         this.fetchDossiers();
         this.closeModal();
       },
-      error: () => alert('❌ Erreur lors de l’ajout multiple')
+      error: () => alert('  Erreur lors de l’ajout multiple')
     });
   }
   
@@ -127,7 +127,7 @@ export class DossiersPatientsComponent implements OnInit {
         alert('✅ Dossier modifié');
         this.closeEditModal();
         this.fetchDossiers();
-      }, () => alert('❌ Erreur lors de la mise à jour'));
+      }, () => alert('  Erreur lors de la mise à jour'));
   }
 
   downloadPDF() {

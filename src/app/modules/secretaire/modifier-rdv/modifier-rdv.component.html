@@ -1,7 +1,7 @@
 <div class="modal-backdrop" (click)="fermer.emit()"></div>
 
 <div class="modal-container">
-  <h3>✏️ Modifier Rendez-vous</h3>
+  <h3> Modifier Rendez-vous</h3>
 
   <label>Date et Heure :</label>
   <input type="datetime-local" [(ngModel)]="rdv.date_time">
@@ -14,7 +14,7 @@
   <textarea [(ngModel)]="rdv.commentaire" rows="2"></textarea>
 
   <div class="modal-buttons">
-    <button (click)="enregistrer()">💾 Enregistrer</button>
-    <button (click)="fermer.emit()">❌ Annuler</button>
+    <button (click)="enregistrer()"> Enregistrer</button>
+    <button (click)="fermer.emit()"> Annuler</button>
   </div>
 </div>

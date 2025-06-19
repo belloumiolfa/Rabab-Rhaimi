@@ -1,11 +1,15 @@
-<h2>🔐 Définir votre mot de passe</h2>
+<div class="container">
+  <h2 style="font-size: 25px;">🔐 Définir votre mot de passe</h2>
 
-<label>Mot de passe :</label>
-<input type="password" [(ngModel)]="password">
+  <label>Mot de passe :</label>
+  <input type="password" [(ngModel)]="password" placeholder="Entrez un mot de passe fort" />
 
-<label>Confirmer mot de passe :</label>
-<input type="password" [(ngModel)]="confirmPassword">
+  <label>Confirmer mot de passe :</label>
+  <input type="password" [(ngModel)]="confirmPassword" placeholder="Confirmez le mot de passe" />
 
-<br><br>
+  <div *ngIf="password !== confirmPassword && confirmPassword" class="error-msg">
+    ❌ Les mots de passe ne correspondent pas.
+  </div>
 
-<button (click)="enregistrer()">💾 Enregistrer</button>
+  <button (click)="enregistrer()">💾 Enregistrer</button>
+</div>

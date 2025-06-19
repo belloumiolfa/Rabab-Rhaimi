@@ -19,26 +19,32 @@ export class SignupComponent {
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.form = this.fb.group({
-      name: ['', Validators.required],
-      firstname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
-      password: ['', Validators.required],
-      role: ['Patient']
-    });
+  name: ['', [Validators.required, Validators.minLength(2)]],
+  firstname: ['', [Validators.required, Validators.minLength(2)]],
+  email: ['', [Validators.required, Validators.email]],
+  phone: ['', [Validators.required, Validators.pattern(/^[0-9]{8}$/)]], // 8 chiffres
+  password: ['', [Validators.required, Validators.minLength(6)]],
+  role: ['Patient']
+});
+
   }
 
   signup() {
-    if (this.form.invalid) return;
-
-    this.authService.signup(this.form.value).subscribe({
-      next: () => {
-        this.successMsg = 'Inscription réussie ✅';
-        this.router.navigate(['/login']);
-      },
-      error: (err) => {
-        this.errorMsg = err.error.message || 'Erreur lors de l\'inscription';
-      }
-    });
+  if (this.form.invalid) {
+    // 🔥 Marque tous les champs comme "touchés" pour forcer l’affichage des erreurs
+    this.form.markAllAsTouched();
+    return;
   }
+
+  this.authService.signup(this.form.value).subscribe({
+    next: () => {
+      this.successMsg = 'Inscription réussie ✅';
+      this.router.navigate(['/main/login']);
+    },
+    error: (err) => {
+      this.errorMsg = err.error.message || 'Erreur lors de l\'inscription';
+    }
+  });
+}
+
 }

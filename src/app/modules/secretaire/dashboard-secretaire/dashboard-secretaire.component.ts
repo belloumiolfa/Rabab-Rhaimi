@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TodayPatientsComponent } from "../today-patients/today-patients.component";
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../../backend/services/auth.service';
 
 @Component({
   selector: 'app-dashboard-secretaire',
@@ -13,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
 export class DashboardSecretaireComponent implements OnInit{
   userData: any = {};
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -33,4 +34,8 @@ export class DashboardSecretaireComponent implements OnInit{
     }
     return `http://localhost:3000/uploads/defaults/default-profile.jpg`;
   }
+   onLogout(): void {
+    this.authService.logout();
+  }
+  
 }

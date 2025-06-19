@@ -48,6 +48,10 @@ import { NotificationsPageComponent } from './modules/patient/notifications-page
 import { ModifierDateComponent } from './modules/patient/modifier-date/modifier-date.component';
 import { ConfirmationRdvComponent } from './modules/patient/confirmation-rdv/confirmation-rdv.component';
 import { AuthGuard } from './backend/auth.guard';
+import { TestimonialManagementComponent } from './modules/secretaire/testimonial-management/testimonial-management.component';
+import { DemandesUrgentesComponent } from './modules/dentiste/demandes-urgentes/demandes-urgentes.component';
+import { ConfirmUrgenceComponent } from './modules/patient/confirm-urgence/confirm-urgence.component';
+import { SecretaryStatsComponent } from './modules/secretaire/secretary-stats/secretary-stats.component';
 
 export const routes: Routes = [
   {
@@ -68,14 +72,16 @@ export const routes: Routes = [
       { path: 'mon-profil', component: MonProfilComponent },
       { path: 'temoignages', component: TemoignagesComponent },
       { path: 'notifications', component: NotificationsPageComponent },
-      { path: 'confirmation-rdv/:id', component: ConfirmationRdvComponent }
-      
+      { path: 'confirmation-rdv/:id', component: ConfirmationRdvComponent },
+      {path: 'confirm-urgence/:id',component: ConfirmUrgenceComponent}
+
     ]
   },
   {
     path: 'dashboard-secretaire',
     component: DashboardSecretaireComponent,
     children: [
+      { path: '', redirectTo: 'statistique', pathMatch: 'full' }, // ✅ page par défaut
       { path: 'rendez-vous', component: ManageAppointmentsComponent },
       { path: 'accueil-patients', component: TodayPatientsComponent },
       { path: 'profil', component: ProfileComponent },
@@ -84,7 +90,10 @@ export const routes: Routes = [
       { path: 'history/:id', component: HistoryPatientComponent },
       { path: 'history-global', component: HistoryGlobalComponent },
       { path: 'mon-profil', component: MonProfilComponent },
+      { path: 'temoignages',component: TestimonialManagementComponent},
+      { path: 'statistique',component: SecretaryStatsComponent},
 
+      
     ]
   },
 
@@ -101,9 +110,11 @@ export const routes: Routes = [
       { path: 'history-global', component: HistoryGlobalComponent },
       { path: 'history/:id', component: HistoryPatientComponent },
       { path: 'today', component: TodayPatientsComponent },
+      { path: 'demandes-urgentes',component: DemandesUrgentesComponent},
+      { path: 'notifications', component: NotificationsPageComponent },
+      { path: 'statistique',component: SecretaryStatsComponent},
 
-      
-      { path: '', redirectTo: 'rendez-vous', pathMatch: 'full' }
+      { path: '', redirectTo: 'statistique', pathMatch: 'full' }
     ]
   },
   {

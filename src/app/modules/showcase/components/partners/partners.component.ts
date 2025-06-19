@@ -1,23 +1,23 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-partners',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './partners.component.html',
-  styleUrl: './partners.component.css'
+  styleUrls: ['./partners.component.css']
 })
 export class PartnersComponent {
-  baseLogos = [
+  /** logos fixes (mets tes vrais chemins ici) */
+  baseLogos: string[] = [
     'assets/img/asso1.png',
     'assets/img/asso3.png',
     'assets/img/asso4.png',
     'assets/img/asso5.png',
-    'assets/img/asso6.png',
-
+    'assets/img/asso6.png'
   ];
 
-  // Répéter les logos pour faire une boucle visuellement infinie
-  repeatedLogos = [...this.baseLogos, ...this.baseLogos, ...this.baseLogos];
+  /** on répète 2× pour un effet “loop” fluide */
+  repeatedLogos = [...this.baseLogos, ...this.baseLogos, ...this.baseLogos, ];
 }

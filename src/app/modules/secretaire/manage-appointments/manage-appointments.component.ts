@@ -113,7 +113,7 @@ envoyerProposition() {
       this.annulationEnCours = false;
       this.loadAppointments();
     },
-    error: () => alert("❌ Erreur lors de l'envoi.")
+    error: () => alert("  Erreur lors de l'envoi.")
   });
 }
 formatLocalDate(isoDate: string): string {

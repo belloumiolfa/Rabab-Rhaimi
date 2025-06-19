@@ -41,4 +41,8 @@ export class HeaderComponent implements OnInit {
       });
     }
   }
+  goToVitrine() {
+  window.open('/', '_blank'); // 👈 ouvre la vitrine dans un nouvel onglet
+}
+
 }

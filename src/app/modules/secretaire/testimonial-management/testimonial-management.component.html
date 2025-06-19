@@ -1,0 +1,46 @@
+<div class="testimonial-management">
+  <h3>Gestion des Témoignages</h3>
+
+  <!-- Filtre par statut -->
+  <div class="filter">
+    <label for="statusFilter">Filtrer par statut :</label>
+    <select id="statusFilter" [(ngModel)]="statusFilter" (change)="onStatusFilterChange()">
+      <option *ngFor="let status of statuses" [value]="status">
+        {{ status === 'all' ? 'Tous' : 
+            status === 'pending' ? 'En attente' :
+            status === 'approved' ? 'Approuvé' :
+            status === 'rejected' ? 'Rejeté' :
+            status }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Liste des témoignages -->
+  <ul class="testimonial-list">
+    <li *ngFor="let testimonial of testimonials">
+      <p><strong>{{ testimonial.message }}</strong></p>
+      <p>
+        <strong>Statut :</strong>
+        <span class="badge"
+              [ngClass]="{
+                'badge-pending': testimonial.status.toLowerCase() === 'pending',
+                'badge-approved': testimonial.status.toLowerCase() === 'approved',
+                'badge-rejected': testimonial.status.toLowerCase() === 'rejected'
+              }">
+          {{
+            testimonial.status.toLowerCase() === 'pending' ? 'En attente' :
+            testimonial.status.toLowerCase() === 'approved' ? 'Approuvé' :
+            testimonial.status.toLowerCase() === 'rejected' ? 'Rejeté' :
+            testimonial.status
+          }}
+        </span>
+      </p>
+
+      <!-- Boutons -->
+      <div *ngIf="testimonial.status.toLowerCase() === 'pending'">
+        <button class="btn-approve" (click)="confirmApprove(testimonial.id)">Valider</button>
+        <button class="btn-delete" (click)="rejectTestimonial(testimonial.id)">Rejeter</button>
+      </div>
+    </li>
+  </ul>
+</div>

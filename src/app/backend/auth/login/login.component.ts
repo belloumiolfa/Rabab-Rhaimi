@@ -30,7 +30,7 @@ export class LoginComponent {
   }
 
   goToForgotPassword() {
-    this.router.navigate(['/forgot-password']);
+    this.router.navigate(['/main/forgot-password']);
   }
 
   login() {
@@ -60,4 +60,5 @@ export class LoginComponent {
         }
       });
   }
+  
 }

@@ -1,0 +1,14 @@
+<div class="confirmation-wrapper">
+  <div class="confirmation-card" [ngClass]="{ success: success, error: !success }">
+    <div class="icon">
+      <span *ngIf="success">✅</span>
+      <span *ngIf="!success"> </span>
+    </div>
+    <h1>
+      {{ success ? 'Rendez-vous confirmé avec succès' : 'Erreur lors de la confirmation' }}
+    </h1>
+    <p class="message-text">{{ message }}</p>
+
+    <a routerLink="/" class="btn-back">Retour à l'accueil</a>
+  </div>
+</div>

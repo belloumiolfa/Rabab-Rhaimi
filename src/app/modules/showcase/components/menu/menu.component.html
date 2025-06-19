@@ -14,7 +14,7 @@
         <div class="mil-current-page"></div>
         <div class="mil-back-to-top">
             <a href="#top" class="mil-link mil-dark mil-arrow-place">
-                <span>Back to top</span>
+                <span>Retour en haut </span>
             </a>
         </div>
     </div>
@@ -52,8 +52,8 @@
                     <nav class="mil-main-menu" id="swupMenu">
                         <ul>
                             <li class="mil-has-children">
-                                <a href="#" class="mil-submenu-link" (click)="toggleSubMenu('homepage'); $event.preventDefault(); $event.stopPropagation()">Accueil</a>
-                                <ul class="mil-submenu" [class.mil-active]="isSubMenuActive('homepage')">
+                                <a href="#" class="mil-submenu-link" (click)="toggleSubMenu('Accueil'); $event.preventDefault(); $event.stopPropagation()">Accueil</a>
+                                <ul class="mil-submenu" [class.mil-active]="isSubMenuActive('Accueil')">
                                     <li><a [routerLink]="['/']" fragment="about" (click)="closeMenu()">À propos</a></li>
                                     <li><a  [routerLink]="['/']" fragment="certifications" (click)="closeMenu()">Certifications</a></li>
                                     <li><a [routerLink]="['/']" fragment="temoignages" (click)="closeMenu()">Temoignages</a></li>
@@ -65,7 +65,7 @@
                                 <a href="#" class="mil-submenu-link" (click)="toggleSubMenu('galerie'); $event.preventDefault(); $event.stopPropagation()">Galerie</a>
                                 <ul class="mil-submenu" [class.mil-active]="isSubMenuActive('galerie')">
                                     <li>
-                                        <a routerLink="/gallery" (click)="toggleMenu()">Galerie</a>
+                                        <a routerLink="/main/gallery" (click)="toggleMenu()">Galerie</a>
                                       </li>                                      
                                 </ul>
                             </li>
@@ -74,21 +74,21 @@
                                 <a href="#" class="mil-submenu-link" (click)="toggleSubMenu('portfolio'); $event.preventDefault(); $event.stopPropagation()">Portfeuille</a>
                                 <ul class="mil-submenu" [class.mil-active]="isSubMenuActive('portfolio')">
                                     <li><a routerLink="/main/awards"  (click)="toggleMenu()">Récompenses</a></li>
-                                    <li><a routerLink="/service" (click)="toggleMenu()">Parcours/Formations</a></li>
+                                    <li><a routerLink="/main/service" (click)="toggleMenu()">Parcours/Formations</a></li>
                                 </ul>
                             </li>
 
                             <li class="mil-has-children">
                                 <a href="#" class="mil-submenu-link" (click)="toggleSubMenu('services'); $event.preventDefault(); $event.stopPropagation()">Services</a>
                                 <ul class="mil-submenu" [class.mil-active]="isSubMenuActive('services')">
-                                    <li><a routerLink="/services" (click)="toggleMenu()">Nos Services</a></li>
+                                    <li><a routerLink="/main/services" (click)="toggleMenu()">Nos Services</a></li>
                                 </ul>
                             </li>
 
                             <li class="mil-has-children">
                                 <a href="#" class="mil-submenu-link" (click)="toggleSubMenu('newsletter'); $event.preventDefault(); $event.stopPropagation()">Blogs</a>
                                 <ul class="mil-submenu" [class.mil-active]="isSubMenuActive('newsletter')">
-                                    <li><a routerLink="/blog" (click)="toggleMenu()">Nos Blog</a></li>
+                                    <li><a routerLink="/main/blog" (click)="toggleMenu()">Nos Blog</a></li>
                                 </ul>
                             </li>
 
@@ -96,7 +96,7 @@
                                 <a href="#" class="mil-submenu-link" (click)="toggleSubMenu('other'); $event.preventDefault(); $event.stopPropagation()">Autre pages</a>
                                 <ul class="mil-submenu" [class.mil-active]="isSubMenuActive('other')">
                                     <!-- <li><a routerLink="/team" data-swup-preload>Team</a></li> -->
-                                    <li><a routerLink="/contact" (click)="toggleMenu()">Contact</a></li>
+                                    <li><a routerLink="/main/contact" (click)="toggleMenu()">Contact</a></li>
                                     <!-- <li><a href="404.html" data-swup-preload>404</a></li> -->
                                 </ul>
                             </li>

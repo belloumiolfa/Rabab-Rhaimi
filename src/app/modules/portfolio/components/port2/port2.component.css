@@ -1,0 +1,18 @@
+.mil-lines-place {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at center, #ccc 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.05;
+  z-index: 0;
+  animation: milGridAnim 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes milGridAnim {
+  0%   { background-position: 0 0; }
+  100% { background-position: 80px 80px; }
+}

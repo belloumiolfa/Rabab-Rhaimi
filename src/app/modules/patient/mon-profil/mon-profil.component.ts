@@ -45,7 +45,7 @@ export class MonProfilComponent implements OnInit {
         };
       },
       error: (err) => {
-        console.error('❌ Erreur profil :', err);
+        console.error('  Erreur profil :', err);
       }
     });
   }
@@ -74,7 +74,7 @@ export class MonProfilComponent implements OnInit {
         // 👇 Ajoute cette ligne
         window.location.reload(); 
       },
-      error: () => alert('❌ Erreur lors de la mise à jour')
+      error: () => alert('  Erreur lors de la mise à jour')
     });
   }
   
@@ -86,7 +86,7 @@ export class MonProfilComponent implements OnInit {
         localStorage.setItem('user', JSON.stringify(data));
       },
       error: (err) => {
-        console.error('❌ Erreur en rechargeant le profil pour localStorage', err);
+        console.error('  Erreur en rechargeant le profil pour localStorage', err);
       }
     });
   }
@@ -107,7 +107,7 @@ export class MonProfilComponent implements OnInit {
         alert('✅ Image uploadée');
         this.loadProfile();
       },
-      error: () => alert('❌ Erreur upload image'),
+      error: () => alert('  Erreur upload image'),
     });
   }
   getProfilePictureUrl(): string {

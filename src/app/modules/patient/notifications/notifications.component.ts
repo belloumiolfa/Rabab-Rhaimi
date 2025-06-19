@@ -48,7 +48,7 @@ export class NotificationsComponent implements OnInit {
     const appointmentId = data?.appointment_id;
   
     if (!appointmentId || !newDate) {
-      alert("❌ Erreur : ID ou date manquante !");
+      alert("  Erreur : ID ou date manquante !");
       return;
     }
   
@@ -65,8 +65,8 @@ export class NotificationsComponent implements OnInit {
         this.markAsRead(notification);
       },
       error: err => {
-        console.error('❌ Erreur confirmation :', err);
-        alert('❌ Erreur lors de la confirmation');
+        console.error('  Erreur confirmation :', err);
+        alert('  Erreur lors de la confirmation');
       },
     });
   }

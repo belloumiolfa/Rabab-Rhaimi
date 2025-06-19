@@ -1,0 +1,149 @@
+/* Arrière-plan flouté */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+/* Modale centrée et large */
+.modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  width: 95%;
+  max-width: 800px;
+  padding: 30px;
+  border-radius: 16px;
+  z-index: 1000;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Titre */
+.modal-container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+}
+
+/* Grille de formulaire en 2 colonnes */
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Pour étendre certains champs sur 2 colonnes */
+.full-width {
+  grid-column: span 2;
+}
+
+/* Inputs et textarea stylés */
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+/* Labels stylés */
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* Boutons */
+.modal-container .btn-save,
+.modal-container .btn-close {
+  padding: 10px 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.btn-save {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-close {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Alignement boutons */
+.btn-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px; /* ✅ espace horizontal entre les boutons */
+  margin-top: 20px;
+}
+
+
+/* Responsive : 1 colonne */
+@media (max-width: 768px) {
+  .modal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: span 1;
+  }
+}
+@media (max-width: 480px) {
+  .btn-group {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .btn-group button {
+    width: 100%;
+  }
+}
+
+.modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh; /* ✅ limite la hauteur à 90% de la hauteur de l'écran */
+  overflow-y: auto;  /* ✅ ajoute un scroll si le contenu dépasse */
+  padding: 30px;
+  border-radius: 16px;
+  z-index: 1000;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+.modal-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+.btn-c {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap; /* 🔥 évite que "Fermer" passe à la ligne */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

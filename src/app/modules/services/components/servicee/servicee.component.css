@@ -1,6 +1,6 @@
 .animated-container {
     width: 250px; /* Largeur du rectangle */
-    height: 950px; /* Hauteur du rectangle */
+    height: 850px; /* Hauteur du rectangle */
     background-color: #000; /* Fond noir */
     position: relative;
     display: flex;

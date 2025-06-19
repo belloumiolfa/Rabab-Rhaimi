@@ -1,27 +1,48 @@
-<div class="login-container">
-    <h2>Connexion</h2>
-  
+<div class="login-page">
+  <div class="login-card">
     <form [formGroup]="form" (ngSubmit)="login()">
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" formControlName="email" placeholder="Entrez votre email" />
-      </div>
-  
-      <div class="form-group">
-        <label>Mot de passe</label>
-        <input type="password" formControlName="password" placeholder="Entrez votre mot de passe" />
-      </div>
-  
-      <button type="submit" [disabled]="form.invalid">Se connecter</button>
-      <a (click)="goToForgotPassword()" style="cursor: pointer; text-decoration: underline;">
-        Mot de passe oublié ?
-      </a>
-      
-      
-      <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
-      
-    </form>
-    
 
+      <!-- Titre principal -->
+      <h2 class="main-title">Bienvenue sur le site <strong>Dr Rabab Hraimi</strong></h2>
+      <h3 class="subtitle">Content de vous revoir 👋</h3>
+      <br>
+
+      <!-- Champ email -->
+      <div class="input-group">
+        <img src="assets/img/icons/utilisateur.png" class="input-icon" />
+        <input type="email" formControlName="email" placeholder="ex. elon@tesla.com" />
+      </div>
+
+      <br>
+      <!-- Champ mot de passe -->
+      <div class="input-group">
+        <img src="assets/img/icons/cadenas.png" alt="Icône cadenas" class="input-icon" />
+        <input type="password" formControlName="password" placeholder="ex. motdepasse123" />
+      </div>
+      <br>
+      <!-- Bouton principal -->
+      <button type="submit" class="login-button" [disabled]="form.invalid">Se connecter</button>
+
+      <!-- Liens secondaires -->
+      <div class="links">
+        <a (click)="goToForgotPassword()">Mot de passe oublié ?</a>
+        <a routerLink="/main/signup">Créer un compte</a>
+      </div>
+
+      <!-- Erreur -->
+      <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+    </form>
   </div>
-  
+
+  <!-- Boutons sociaux -->
+  <div class="social-login">
+    <button class="google-btn">
+      <img src="assets/img/icons/google.png" alt="Google" />
+      Se connecter avec Google
+    </button>
+    <button class="facebook-btn">
+      <img src="assets/img/icons/facebook.png" alt="Facebook" />
+      Se connecter avec Facebook
+    </button>
+  </div>
+</div>

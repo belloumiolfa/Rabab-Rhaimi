@@ -1,0 +1,61 @@
+<h2 class="text-orange fw-bold mb-4"> Demandes urgentes de rendez-vous</h2>
+
+<div class="row g-4">
+  <div class="col-md-6" *ngFor="let demande of demandesUrgentes">
+    <div class="card shadow-lg border-0 rounded-4 px-4 py-3 position-relative bg-white floating-card">
+      <h5 class="mb-1 fw-semibold text-capitalize text-primary">
+        {{ demande.firstname }} {{ demande.name }}
+      </h5>
+      <p class="mb-1"><strong>Motif :</strong> {{ demande.motif }}</p>
+      <p class="mb-1"><strong>Date de la demande :</strong> {{ demande.date_demande | date: 'short' }}</p>
+      <p class="mb-3">
+        <strong>État :</strong>
+        <span class="badge" [ngClass]="{
+              'bg-warning text-dark': demande.etat === 'en_attente',
+              'bg-success': demande.etat === 'acceptee',
+              'bg-danger': demande.etat === 'refusee'
+            }">{{ demande.etat }}</span>
+      </p>
+
+      <div *ngIf="demande.etat === 'en_attente'" class="d-flex justify-content-end gap-2 mt-2">
+        <button class="btn btn-outline-success btn-sm" (click)="ouvrirSelection(demande)">
+                Accepter
+            </button>
+            <button class="btn btn-outline-danger btn-sm" (click)="refuserDemande(demande.id)">
+                Refuser
+            </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- MODAL -->
+<div class="modal fade show d-block" tabindex="-1" role="dialog" *ngIf="showSelectDispo">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-orange text-white">
+        <h5 class="modal-title">Sélectionner une disponibilité</h5>
+        <button type="button" class="btn-close" (click)="showSelectDispo = false"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="dispoSelect">Créneau disponible</label>
+          <select class="form-select mt-2" id="dispoSelect" [(ngModel)]="selectedDisponibiliteId">
+            <option value="" disabled>-- Choisir un créneau --</option>
+            <option *ngFor="let dispo of disponibilites" [value]="dispo.id">
+              {{ dispo.start_datetime | date:'short' }} → {{ dispo.end_datetime | date:'short' }}
+            </option>
+          </select>
+
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="showSelectDispo = false">Annuler</button>
+        <button class="btn btn-orange text-white" (click)="confirmerAcceptation()">Confirmer</button>
+      </div>
+    </div>
+  </div>
+</div>

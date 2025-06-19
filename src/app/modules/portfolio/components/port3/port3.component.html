@@ -1,32 +1,37 @@
+<!-- PORTFOLIO (statique) -->
 <section class="mil-portfolio-slider-frame full-width-carousel">
   <div class="carousel-container">
 
-    <owl-carousel-o #owlCarousel [options]="customOptions" (translated)="onTranslated($event)">
+    <!-- Carousel -->
+    <owl-carousel-o
+      #owlCarousel
+      [options]="customOptions"
+      (translated)="onTranslated($event)"
+    >
       <ng-container *ngFor="let project of projects">
         <ng-template carouselSlide>
           <div class="mil-portfolio-item text-center">
-            <img [src]="'http://localhost:3000' + project.image_url" [alt]="project.name" class="project-image" />
+            <img
+              [src]="project.image_url"
+              [alt]="project.name"
+              class="project-image"
+            />
           </div>
         </ng-template>
       </ng-container>
     </owl-carousel-o>
 
+    <!-- Infos sous le carousel -->
     <div class="mil-project-info">
       <div class="mil-project-meta">
         <h5 class="mil-title">{{ currentProjectName }}</h5>
-    
-        <!-- Déplacement ici -->
-        <div *ngIf="isAdmin && currentProject">
-          <button class="btn btn-warning btn-sm me-2" (click)="openEdit(currentProject!)">Modifier</button>
-          <button class="btn btn-danger btn-sm" (click)="delete(currentProject.id)">Supprimer</button>
-        </div>
-        
       </div>
-    
-      <a href="#" class="mil-view-btn">
+
+      <a href="services.html" class="mil-view-btn">
         Nos services <span class="arrow-circle">→</span>
       </a>
-    
+
+      <!-- Pagination / navigation -->
       <div class="mil-pagination-style">
         <span class="page-count">{{ activeSlideIndex }} / {{ totalSlides }}</span>
         <button class="nav-arrow black" (click)="owlCarousel.prev()">←</button>
@@ -34,40 +39,5 @@
       </div>
     </div>
 
-    <!-- Bouton Ajouter -->
-    <div *ngIf="isAdmin" class="d-flex justify-content-end mt-3">
-      <button class="btn btn-light" (click)="openAdd()">+ Ajouter une image</button>
-    </div>
   </div>
 </section>
-
-<!-- MODALE AJOUT / EDIT -->
-<div class="modal fade show" tabindex="-1" [ngStyle]="{ display: showModal ? 'block' : 'none' }" *ngIf="showModal">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-warning bg-opacity-75">
-        <h5 class="modal-title">{{ isEdit ? 'Modifier' : 'Ajouter' }} une image</h5>
-        <button class="btn-close" (click)="closeModal()"></button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="form">
-          <div class="mb-3">
-            <label>Nom</label>
-            <input type="text" class="form-control" formControlName="name" />
-          </div>
-          <div class="mb-3">
-            <label>Image</label>
-            <input type="file" class="form-control" (change)="onFileChange($event)" />
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" (click)="closeModal()">Annuler</button>
-        <button class="btn btn-warning" (click)="save()" [disabled]="form.invalid">
-          {{ isEdit ? 'Mettre à jour' : 'Ajouter' }}
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal-backdrop fade show" *ngIf="showModal"></div>

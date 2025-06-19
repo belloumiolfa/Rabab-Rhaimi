@@ -61,7 +61,7 @@ export class TemoignagesComponent implements OnInit {
         this.loadTestimonials();
       },
       error: () => {
-        alert('❌ Erreur lors de l\'envoi');
+        alert('  Erreur lors de l\'envoi');
       }
     });
   }
@@ -74,7 +74,7 @@ export class TemoignagesComponent implements OnInit {
         this.loadTestimonials(); // Recharge
       },
       error: () => {
-        alert('❌ Erreur lors de la suppression');
+        alert('  Erreur lors de la suppression');
       }
     });
   }

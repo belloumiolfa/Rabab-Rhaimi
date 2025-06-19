@@ -1,36 +1,43 @@
 import { Component, OnInit } from '@angular/core';
+import { AvailabilityModalComponent } from '../availability-modal/availability-modal.component';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { CalendarOptions } from '@fullcalendar/core';
+import frLocale from '@fullcalendar/core/locales/fr';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { AvailabilityModalComponent } from "../availability-modal/availability-modal.component";
+import { AuthService } from '../../../backend/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-manage-availability-calendar',
   standalone: true,
   imports: [CommonModule, FullCalendarModule, AvailabilityModalComponent],
   templateUrl: './manage-availability-calendar.component.html',
+  styleUrls: ['./manage-availability-calendar.component.css',]
+
 })
 export class ManageAvailabilityCalendarComponent implements OnInit {
   calendarOptions!: CalendarOptions;
   availabilityAModifier: any = null;
 
-  constructor(private http: HttpClient) {}
+constructor(private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.calendarOptions = {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
       initialView: 'timeGridWeek',
       slotMinTime: '08:00:00',
-      slotMaxTime: '18:00:00',
+      slotMaxTime: '18:01:00',
+      height: 'auto',
       allDaySlot: false,
       nowIndicator: true,
       selectable: true,
       editable: true,
       events: [],
+      locale: frLocale, // ✅ ICI pour passer en français
       dateClick: this.handleDateClick.bind(this),
       eventClick: this.handleEventClick.bind(this),
       headerToolbar: {
@@ -44,18 +51,26 @@ export class ManageAvailabilityCalendarComponent implements OnInit {
 
     this.loadDisponibilites();
   }
+loadDisponibilites() {
+  this.http.get<any[]>('http://localhost:3000/api/availabilities').subscribe(data => {
+    const now = new Date(); 
+    const events = data.map(dispo => {
+      const isPast = new Date(dispo.end_datetime) < now;
 
-  loadDisponibilites() {
-    this.http.get<any[]>('http://localhost:3000/api/availabilities').subscribe(data => {
-      this.calendarOptions.events = data.map(dispo => ({
+      return {
         id: dispo.id,
         title: 'Disponible',
         start: dispo.start_datetime,
         end: dispo.end_datetime,
-      }));
+        classNames: isPast ? ['dispo-passee'] : ['dispo-future']
+      };
     });
-  }
-  
+
+    // ✅ Affecter les événements une fois transformés
+    this.calendarOptions.events = events;
+  });
+}
+
 
   formatDatetime(day: string, time: string): string {
     const today = new Date();
@@ -88,42 +103,123 @@ export class ManageAvailabilityCalendarComponent implements OnInit {
   }
   
 
-  handleDateClick(arg: any) {
-    const start = new Date(arg.date);
-    const end = new Date(start);
-    end.setHours(end.getHours() + 1); // ajoute 1h automatiquement
-  
-    // Récupère ID dentiste (statique ou depuis session)
-    const dentist_id = 'ID_DU_DENTISTE';
-  
-    if (start.getDay() === 0) {
-      alert('❌ Dimanche non disponible.');
-      return;
+handleDateClick(arg: any) {
+  const start = new Date(arg.date);
+  const end = new Date(start);
+  end.setHours(end.getHours() + 1);
+
+  const user = this.authService.getCurrentUser();
+  if (!user || !user.id) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Accès refusé',
+      text: '  Dentiste non connecté !',
+      confirmButtonColor: '#ff6600'
+    });
+    return;
+  }
+
+  const dentist_id = user.id;
+
+  // 🔒 Vérifier si date est dans le passé (jour précédent aujourd'hui)
+  const now = new Date();
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // début de la journée
+
+  const clickedDate = new Date(start);
+  const clickedDay = new Date(start);
+  clickedDay.setHours(0, 0, 0, 0);
+
+  if (clickedDay < today) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Date invalide',
+      text: '⛔ Vous ne pouvez pas ajouter une disponibilité dans le passé.',
+      confirmButtonColor: '#ff6600'
+    });
+    return;
+  }
+
+  // 🔒 Si aujourd'hui → heure choisie doit être dans le futur
+  if (clickedDay.getTime() === today.getTime() && start < now) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Heure invalide',
+      text: '⛔ Vous ne pouvez pas ajouter une disponibilité dans le passé aujourd’hui.',
+      confirmButtonColor: '#ff6600'
+    });
+    return;
+  }
+
+  // 🔒 Dimanche interdit
+  if (start.getDay() === 0) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Jour non disponible',
+      text: '⛔ Le dimanche n’est pas autorisé.',
+      confirmButtonColor: '#ff6600'
+    });
+    return;
+  }
+
+  // 🔒 Samedi après 12h interdit
+  if (start.getDay() === 6 && start.getHours() >= 12) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Heure non disponible',
+      text: '⛔ Le samedi après 12h est interdit.',
+      confirmButtonColor: '#ff6600'
+    });
+    return;
+  }
+
+  // ✅ Confirmation
+  Swal.fire({
+    icon: 'question',
+    title: 'Confirmer la disponibilité ?',
+    html: `Souhaitez-vous ajouter une disponibilité le <strong>${start.toLocaleString()}</strong> jusqu'à <strong>${end.toLocaleString()}</strong> ?`,
+    showCancelButton: true,
+    confirmButtonText: 'Oui, confirmer',
+    cancelButtonText: 'Annuler',
+    confirmButtonColor: '#ff6600',
+    cancelButtonColor: '#aaa',
+    customClass: {
+      popup: 'swal2-z-top'
     }
-    if (start.getDay() === 6 && start.getHours() >= 12) {
-      alert('❌ Samedi après 12h non disponible.');
-      return;
-    }
-  
-    const confirmer = confirm(`✅ Confirmez-vous la disponibilité de ${start.toLocaleString()} à ${end.toLocaleString()} ?`);
-  
-    if (confirmer) {
+  }).then(result => {
+    if (result.isConfirmed) {
       this.http.post('http://localhost:3000/api/availabilities/create', {
         start_datetime: this.formatDateTimeLocal(start),
-end_datetime: this.formatDateTimeLocal(end),
-
+        end_datetime: this.formatDateTimeLocal(end),
         dentist_id
       }).subscribe({
         next: () => {
-          alert('✅ Disponibilité enregistrée.');
+          Swal.fire({
+            icon: 'success',
+            title: 'Ajoutée !',
+            text: ' Disponibilité enregistrée.',
+            timer: 3000,
+            showConfirmButton: false,
+            customClass: {
+              popup: 'swal2-z-top'
+            }
+          });
           this.loadDisponibilites();
         },
         error: () => {
-          alert('❌ Erreur serveur.');
+          Swal.fire({
+            icon: 'error',
+            title: 'Erreur serveur',
+            text: ' Impossible d’enregistrer la disponibilité.',
+            confirmButtonColor: '#ff6600'
+          });
         }
       });
     }
-  }
+  });
+}
+
+
   
   
   ajouter1Heure(date: Date): string {
@@ -135,13 +231,18 @@ end_datetime: this.formatDateTimeLocal(end),
   
 
   handleEventClick(arg: any) {
-    const event = arg.event;
-    this.availabilityAModifier = {
-      id: event.id,
-      start_datetime: this.formatLocalDatetime(event.start),
-      end_datetime: this.formatLocalDatetime(event.end)
-    };
-  }
+  const event = arg.event;
+
+  this.availabilityAModifier = {
+    id: event.id,
+    start_datetime: event.start.toISOString(),  // convert to string
+    end_datetime: event.end.toISOString()
+  };
+
+  console.log("Availability to edit:", this.availabilityAModifier);
+}
+
+
   
   formatLocalDatetime(date: Date): string {
     const year = date.getFullYear();
@@ -165,7 +266,7 @@ end_datetime: this.formatDateTimeLocal(end),
         return days[date.getDay()];
       }
   
-      handleUpdate(updateAvailability: any) {
+  handleUpdate(updateAvailability: any) {
         console.log('🔎 Données envoyées au backend pour modification :', updateAvailability);
       
         const body = {
@@ -173,21 +274,29 @@ end_datetime: this.formatDateTimeLocal(end),
           end_datetime: updateAvailability.end_datetime
         };
       
-        console.log('🛠️ Corps de la requête envoyée au backend :', body);
+        console.log(' Corps de la requête envoyée au backend :', body);
       
         this.http.put(`http://localhost:3000/api/availabilities/update/${updateAvailability.id}`, body)
           .subscribe({
             next: () => {
-              alert('✅ Disponibilité modifiée');
-              this.availabilityAModifier = null;
+              Swal.fire({
+                icon: 'success',
+                title: 'Modifiée !',
+                text: 'La disponibilité a été mise à jour.',
+                timer: 1500,
+                showConfirmButton: false,
+                customClass: {
+                  popup: 'swal2-z-top'
+                }
+              });              this.availabilityAModifier = null;
               this.loadDisponibilites();
             },
             error: (err) => {
               console.error('Erreur modification', err);
-              alert('❌ Erreur modification');
+              alert('  Erreur modification');
             }
           });
-      }
+    }
       
       
       
@@ -197,12 +306,17 @@ end_datetime: this.formatDateTimeLocal(end),
     this.http.delete(`http://localhost:3000/api/availabilities/delete/${id}`)
       .subscribe({
         next: () => {
-          alert('✅ Disponibilité supprimée');
-          this.availabilityAModifier = null;
+      Swal.fire({
+      icon: 'success',
+      title: 'Supprimée !',
+      text: 'La disponibilité a été supprimée.',
+      timer: 1500,
+      showConfirmButton: false
+    });          this.availabilityAModifier = null;
           this.loadDisponibilites();
         },
         error: () => {
-          alert('❌ Erreur suppression');
+          alert('  Erreur suppression');
         }
       });
   }

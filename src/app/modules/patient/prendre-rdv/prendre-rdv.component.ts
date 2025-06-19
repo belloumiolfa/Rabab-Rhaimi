@@ -7,6 +7,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { io } from 'socket.io-client';
+
 
 @Component({
   selector: 'app-prendre-rdv',
@@ -22,6 +24,7 @@ export class PrendreRdvComponent implements OnInit {
   motif: string = '';
   showModal = false;
   isBrowser = false;
+isEmergency: boolean = false;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -52,6 +55,12 @@ export class PrendreRdvComponent implements OnInit {
         dateClick: this.handleDateClick.bind(this),
 
       };
+      const socket = io('http://localhost:3000');
+      socket.on('disponibilite-update', (data) => {
+        console.log('🧠 Disponibilité mise à jour :', data);
+        this.loadAvailabilities(); // Recharge le calendrier automatiquement
+      });
+
       this.loadAvailabilities(); 
 
       
@@ -74,7 +83,7 @@ export class PrendreRdvComponent implements OnInit {
   
     const now = new Date();
     if (clickedDate < now) {
-      alert("❌ Tu ne peux pas sélectionner une date passée !");
+      alert("  Tu ne peux pas sélectionner une date passée !");
       return;
     }
   
@@ -85,7 +94,7 @@ export class PrendreRdvComponent implements OnInit {
     });
   
     if (!matched) {
-      alert("❌ Ce créneau n'est pas disponible.");
+      alert("  Ce créneau n'est pas disponible.");
       return;
     }
   
@@ -96,43 +105,55 @@ export class PrendreRdvComponent implements OnInit {
   
   
 
-  submitRdv() {
-    const userInfo = JSON.parse(localStorage.getItem('user') || '{}');
-    if (!userInfo.id) {
-      alert("Utilisateur non connecté ou session expirée.");
-      return;
-    }
-  
-    if (this.selectedTime && this.motif) {
-      const datetime = `${this.selectedDate}T${this.selectedTime}`;
-  
-      console.log("📤 Envoi : ", {
-        patient_id: userInfo.id,
-        date_time: datetime,
-        status: 'en_attente',
-        is_emergency: 0,
-        motif: this.motif
-      });
-  
-      this.http.post('http://localhost:3000/api/appointments/create', {
-        patient_id: userInfo.id,
-        date_time: datetime,
-        status: 'en_attente',
-        is_emergency: 0,
-        motif: this.motif
-      }).subscribe({
-        next: () => {
-          alert('✅ Rendez-vous pris avec succès');
-          this.resetForm();
-          this.loadAvailabilities(); // 🔁 recharge après réservation
-        },
-        error: err => {
-          console.error("Erreur RDV", err);
-          alert('❌ Erreur lors de la prise de rendez-vous');
-        },
-      });
-    }
+submitRdv() {
+  const userInfo = JSON.parse(localStorage.getItem('user') || '{}');
+  if (!userInfo.id) {
+    alert("Utilisateur non connecté ou session expirée.");
+    return;
   }
+
+  // 🕒 Reconstituer la date complète demandée
+  const datetime = `${this.selectedDate}T${this.selectedTime}`; // format : "2025-06-06T10:00"
+
+  if (this.isEmergency) {
+    // 🆘 Cas urgent → envoyer une demande avec la bonne date
+    this.http.post('http://localhost:3000/api/appointments/demande-urgente', {
+      patient_id: userInfo.id,
+      motif: this.motif,
+      date_rdv: datetime, // 👈 doit être la date sélectionnée, pas l’instant actuel
+    }).subscribe({
+      next: () => {
+        alert('🆘 Demande urgente envoyée avec succès');
+        this.resetForm();
+      },
+      error: err => {
+        console.error("Erreur demande urgente", err);
+        alert('  Erreur demande urgente');
+      }
+    });
+
+  } else {
+    // 📅 RDV normal
+    this.http.post('http://localhost:3000/api/appointments/create', {
+      patient_id: userInfo.id,
+      date_time: datetime,
+      status: 'en_attente',
+      is_emergency: 0,
+      motif: this.motif
+    }).subscribe({
+      next: () => {
+        alert('✅ Rendez-vous pris avec succès');
+        this.resetForm();
+        this.loadAvailabilities();
+      },
+      error: err => {
+        console.error("Erreur RDV", err);
+        alert('  Erreur lors de la prise de rendez-vous');
+      }
+    });
+  }
+}
+
   
 
   resetForm() {

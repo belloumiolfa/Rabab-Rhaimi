@@ -1,4 +1,7 @@
-<full-calendar [options]="calendarOptions"></full-calendar>
+<div class="calendar-wrapper">
+  <full-calendar [options]="calendarOptions"></full-calendar>
+</div>
+
 <app-availability-modal
   *ngIf="availabilityAModifier"
   [availability]="availabilityAModifier"

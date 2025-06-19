@@ -148,3 +148,27 @@
   font-size: 20px; /* texte de témoignage agrandi */
   line-height: 1.6;
 }
+@media (max-width: 768px) {
+  .review-container {
+    flex-direction: row; /* ✅ garde les flèches à l’horizontale */
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    gap: 10px;
+  }
+
+  .mil-review-frame h5 {
+    font-size: 16px;
+  }
+
+  .mil-review-frame p {
+    font-size: 13px;
+    padding: 0 10px;
+  }
+
+  .mil-slider-arrow {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+}

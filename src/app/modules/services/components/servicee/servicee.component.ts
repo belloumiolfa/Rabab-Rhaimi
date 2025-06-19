@@ -1,81 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ServiceService } from '../../../../backend/services/service.service';
+import { Component } from '@angular/core';
+
 @Component({
   selector: 'app-servicee',
-  imports: [CommonModule,ReactiveFormsModule],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './servicee.component.html',
-  styleUrl: './servicee.component.css'
+  styleUrls: ['./servicee.component.css']
 })
-export class ServiceeComponent implements OnInit {
-  services: any[] = [];
-  form!: FormGroup;
-  isEdit = false;
-  showModal = false;
-  selectedService: any = null;
-  isAdmin = false;
-
-  constructor(private fb: FormBuilder, private serviceService: ServiceService) {}
-
-  ngOnInit(): void {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    this.isAdmin = user?.role === 'Dentiste';
-
-    this.form = this.fb.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required]
-    });
-
-    this.loadServices();
-  }
-
-  loadServices() {
-    this.serviceService.getAll().subscribe(data => {
-      this.services = data;
-    });
-  }
-
-  openAdd() {
-    this.isEdit = false;
-    this.form.reset();
-    this.selectedService = null;
-    this.showModal = true;
-  }
-
-  openEdit(service: any) {
-    this.isEdit = true;
-    this.selectedService = service;
-    this.form.patchValue({
-      title: service.title,
-      description: service.description
-    });
-    this.showModal = true;
-  }
-
-  saveService() {
-    const formData = this.form.value;
-
-    if (this.isEdit && this.selectedService?.id) {
-      this.serviceService.update(this.selectedService.id, formData).subscribe(() => {
-        this.loadServices();
-        this.closeModal();
-      });
-    } else {
-      this.serviceService.create(formData).subscribe(() => {
-        this.loadServices();
-        this.closeModal();
-      });
+export class ServiceeComponent {
+  /** ➜ Données fixes issues de la base */
+  services = [
+    {
+      id: 7,
+      title: 'Implants dentaires',
+      description: 'Dispositif destiné à remplacer une ou plusieurs dents manquantes par des racines artificielles.'
+    },
+    {
+      id: 8,
+      title: 'Blanchiment des dents',
+      description: 'Procédure permettant d’éclaircir la teinte des dents pour améliorer l’esthétique du sourire.'
+    },
+    {
+      id: 9,
+      title: 'Détartrage & nettoyage',
+      description: 'Élimination du tartre et de la plaque dentaire pour maintenir une bonne hygiène bucco-dentaire.'
+    },
+    {
+      id: 10,
+      title: 'Orthodontie adulte & enfant',
+      description: 'Traitement visant à corriger l’alignement des dents et des mâchoires pour une meilleure fonction et esthétique.'
+    },
+    {
+      id: 11,
+      title: 'Soins esthétiques',
+      description: 'Actes conservateurs ou prothétiques (facettes, composites…) visant à améliorer l’apparence du sourire.'
+    },
+    {
+      id: 12,
+      title: 'Soins conservateurs',
+      description: 'Traitement des caries et restauration des dents altérées pour préserver la dentition naturelle.'
     }
-  }
-
-  deleteService(id: number) {
-    if (confirm('Supprimer ce service ?')) {
-      this.serviceService.delete(id).subscribe(() => this.loadServices());
-    }
-  }
-
-  closeModal() {
-    this.showModal = false;
-  }
+  ];
 }

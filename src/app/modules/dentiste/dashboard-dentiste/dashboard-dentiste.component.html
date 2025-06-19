@@ -6,6 +6,10 @@
       </div>
   
       <ul class="sidebar-nav">
+        <li routerLink="/dashboard-secretaire/statistique" routerLinkActive="active">
+        <span class="icon">📊 </span>
+        <span class="menu-text">Statistiques</span>
+      </li>
         <li routerLink="/dashboard-dentiste/rendez-vous" routerLinkActive="active">
           <span class="icon">📅</span>
           <span class="menu-text">Gérer les Rendez-vous</span>
@@ -18,7 +22,16 @@
           <span class="icon">📆</span>
           <span class="menu-text">Disponibilités</span>
         </li>
-        <li routerLink="/dashboard-dentiste/liste-patients" routerLinkActive="active">📁 Dossiers</li>
+        <li routerLink="/dashboard-dentiste/liste-patients" routerLinkActive="active">
+            <span class="icon">📁</span>
+            <span class="menu-text"> Dossiers</span>
+
+           
+        </li>
+        <li routerLink="/dashboard-dentiste/demandes-urgentes" routerLinkActive="active">
+          <span class="icon">🚨</span>
+          <span class="menu-text">Demandes urgentes</span>
+      </li>
       
         <li routerLink="/dashboard-dentiste/mon-profil" routerLinkActive="active">
           <span class="icon">👤</span>
@@ -28,17 +41,23 @@
           <span class="icon">📜</span>
           <span class="menu-text">Historique</span>
         </li>
+        <li routerLink="/dashboard-dentiste/notifications" routerLinkActive="active">
+        <span class="icon">🔔</span>
+        <span class="menu-text">Notifications</span>
+      </li>
       </ul>
 
       <div class="logout-section">
-        <li  title="Déconnexion">
-          <span class="icon">🔓</span>
-          <span class="menu-text">Se déconnecter</span>
-        </li>
-      </div>
+      <li (click)="onLogout()" title="Déconnexion">
+        <span class="icon">🔓</span>
+        <span class="menu-text">Se déconnecter</span>
+      </li>
+    </div>
     </div>
   
     <div class="content">
+          <app-header></app-header>
+
       <router-outlet></router-outlet>
     </div>
   </div>

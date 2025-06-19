@@ -1,39 +1,43 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CarouselModule, OwlOptions, CarouselComponent } from 'ngx-owl-carousel-o';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { GalleryService } from '../../../../backend/services/gallery.service';
+import {
+  CarouselModule,
+  OwlOptions,
+  CarouselComponent
+} from 'ngx-owl-carousel-o';
 
 interface GalleryItem {
   id: number;
   name: string;
-  image_url: string;
+  image_url: string; /* chemin vers l'image */
 }
 
 @Component({
   selector: 'app-port3',
   standalone: true,
-  imports: [CommonModule, CarouselModule, ReactiveFormsModule],
+  imports: [CommonModule, CarouselModule],
   templateUrl: './port3.component.html',
   styleUrls: ['./port3.component.css']
 })
 export class Port3Component implements OnInit {
-  @ViewChild('owlCarousel', { static: false }) owlCarousel!: CarouselComponent;
+  @ViewChild('owlCarousel', { static: false })
+  owlCarousel!: CarouselComponent;
 
-  projects: GalleryItem[] = [];
+  /** ➜ Contenu statique */
+  projects: GalleryItem[] = [
+    { id: 1, name: 'Éclaircissement dentaires',               image_url: 'assets/img/gallery/cas1.png' },
+    { id: 2, name: 'Facettes dentaires',         image_url: 'assets/img/gallery/cas2.png' },
+    { id: 3, name: 'Éclaircissement dentaires',           image_url: 'assets/img/gallery/cas4.png' },
+
+    { id: 4, name: 'Facettes dentaires',   image_url: 'assets/img/gallery/cas3.png' },
+  ];
+
+  /** Index du slide actif (1-based pour l’affichage) */
   activeSlideIndex = 1;
-  totalSlides = 0;
-  currentProjectName = '';
-  currentProject: GalleryItem | null = null;
+  totalSlides = this.projects.length;
+  currentProjectName = this.projects[0]?.name ?? '';
 
-  isAdmin = false;
-
-  form!: FormGroup;
-  selectedFile: File | null = null;
-  showModal = false;
-  isEdit = false;
-  editingId: number | null = null;
-
+  /** Options OwlCarousel */
   customOptions: OwlOptions = {
     loop: false,
     margin: 20,
@@ -42,98 +46,20 @@ export class Port3Component implements OnInit {
     dots: false,
     autoplay: false,
     responsive: {
-      0: { items: 1 },
-      768: { items: 1.5 },
+      0:    { items: 1   },
+      768:  { items: 1.5 },
       1200: { items: 1.8 }
     }
   };
 
-  constructor(private galleryService: GalleryService, private fb: FormBuilder) {}
-
   ngOnInit(): void {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    this.isAdmin = user?.role === 'Dentiste';
-
-    this.form = this.fb.group({
-      name: ['', Validators.required],
-      image: ['']
-    });
-
-    this.loadGallery();
+    /* rien d’autre à faire : tout est statique */
   }
 
-  loadGallery(): void {
-    this.galleryService.getAll().subscribe(data => {
-      this.projects = data;
-      this.totalSlides = data?.length || 0;
-      this.activeSlideIndex = 1;
-      this.currentProject = data?.[0] || null;
-      this.currentProjectName = this.currentProject?.name || '';
-    });
-  }
-
+  /** Mise à jour du compteur et du nom lorsqu’on change de slide */
   onTranslated(event: any): void {
-    const index = event.startPosition;
-    this.activeSlideIndex = index + 1;
-    this.currentProject = this.projects[index] || null;
-    this.currentProjectName = this.currentProject?.name || '';
-  }
-
-  onFileChange(event: any): void {
-    this.selectedFile = event.target.files[0];
-  }
-
-  openAdd(): void {
-    this.isEdit = false;
-    this.showModal = true;
-    this.form.reset();
-    this.selectedFile = null;
-    this.editingId = null;
-  }
-
-  openEdit(item: GalleryItem): void {
-    this.isEdit = true;
-    this.showModal = true;
-    this.form.patchValue({ name: item.name });
-    this.editingId = item.id;
-    this.selectedFile = null;
-  }
-
-  save(): void {
-    const { name } = this.form.value;
-    const formData = new FormData();
-    formData.append('name', name);
-
-    if (this.isEdit && this.editingId !== null) {
-      if (this.selectedFile) {
-        formData.append('image', this.selectedFile);
-      }
-      this.galleryService.update(this.editingId, formData).subscribe(() => {
-        this.loadGallery();
-        this.closeModal();
-      });
-    } else {
-      if (!this.selectedFile) {
-        alert('Veuillez sélectionner une image.');
-        return;
-      }
-      formData.append('image', this.selectedFile);
-      this.galleryService.create(formData).subscribe(() => {
-        this.loadGallery();
-        this.closeModal();
-      });
-    }
-  }
-
-  delete(id: number): void {
-    if (confirm('Supprimer cette image ?')) {
-      this.galleryService.delete(id).subscribe(() => this.loadGallery());
-    }
-  }
-
-  closeModal(): void {
-    this.showModal = false;
-    this.form.reset();
-    this.selectedFile = null;
+    const index = event.startPosition;          // 0-based
+    this.activeSlideIndex = index + 1;          // 1-based pour l'UI
+    this.currentProjectName = this.projects[index]?.name ?? '';
   }
 }

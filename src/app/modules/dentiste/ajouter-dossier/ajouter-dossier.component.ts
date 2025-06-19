@@ -36,7 +36,7 @@ submit() {
 
   this.http.post('http://localhost:3000/api/medical-records/add', data).subscribe({
     next: () => alert('✅ Dossier médical ajouté'),
-    error: () => alert('❌ Erreur lors de l’ajout')
+    error: () => alert('  Erreur lors de l’ajout')
   });
 }
 

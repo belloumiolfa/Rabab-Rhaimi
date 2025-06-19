@@ -1,78 +1,237 @@
-.login-container {
-    max-width: 400px;
-    margin: 60px auto;
-    padding: 30px;
-    border-radius: 10px;
-    background-color: #ffffff;
-    box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 28px;
-    font-weight: 600;
-    color: #333;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-    color: #555;
-  }
-  
-  input {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 14px;
-    outline: none;
-  }
-  
-  input:focus {
-    border-color: #007bff;
-  }
-  
-  button {
-    width: 100%;
-    padding: 12px;
-    background-color: #007bff;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s ease;
-  }
-  
-  button:disabled {
-    background-color: #999;
-    cursor: not-allowed;
-  }
-  
-  .error {
-    color: red;
-    margin-top: 10px;
-    text-align: center;
-  }
-  .forgot-link {
-    margin-top: 10px;
-    text-align: right;
-  }
-  
-  .forgot-link a {
-    font-size: 0.9rem;
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .forgot-link a:hover {
-    text-decoration: underline;
-  }
-  
+.login-page {
+  background: linear-gradient(135deg, #fff8f1, #ffeae5);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  position: relative;
+}
+
+.login-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-header .logo {
+  width: 36px;
+  height: 36px;
+}
+
+.login-header h2 {
+  font-weight: bold;
+  font-size: 20px;
+  color: #333;
+}
+
+.welcome-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 12px;
+}
+
+.login-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  width: 100%;
+  max-width: 460px;
+  height: 500px;
+  transition: all 0.3s ease-in-out;
+}
+
+.login-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  display: flex;
+  align-items: center; /* ✅ centre tous les enfants verticalement */
+  gap: 10px; /* un petit espace entre l'icône et l'input */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  height: 50px; /* taille contrôlée */
+  padding: 0 12px;
+  background-color: #fdfdfd;
+}
+
+
+
+.input-group .icon {
+  margin-right: 10px;
+  font-size: 17px;
+  color: #555;
+}
+
+.input-group input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 15px;
+  padding: 0;
+  height: 100%;
+  background: transparent;
+  display: block;
+}
+
+
+
+.input-icon {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 30px;
+  object-fit: contain;
+  display: block; /* évite l'effet ligne du inline */
+}
+
+
+
+.login-button {
+  background: linear-gradient(to right, #00c851, #007e33);
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 5px;
+  transition: background 0.3s;
+}
+
+.login-button:hover {
+  background: linear-gradient(to right, #00b44b, #006e2c);
+}
+
+.login-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.links a {
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.footer-icons {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-icons span {
+  background: white;
+  border-radius: 15px;
+  padding: 6px 14px;
+  font-size: 13px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Flamme orange façon Mangools */
+.login-page::before {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  top: 60px;
+  right: 100px;
+  background: radial-gradient(circle, #fda085, #f6d365);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0.6;
+  filter: blur(40px);
+  animation: float 5s ease-in-out infinite;
+}
+
+
+.main-title {
+  font-size: 26px;
+  text-align: center;
+  margin-bottom: 5px;
+  color: #222;
+}
+
+.subtitle {
+  font-size: 18px;
+  text-align: center;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.social-login {
+  margin-top: 25px;
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.social-login button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 250px;
+  transition: all 0.3s ease;
+}
+
+.social-login img {
+  width: 18px;
+  height: 18px;
+}
+
+.google-btn {
+  background: #ffffff;
+  border: 1px solid #ccc;
+  color: #000;
+}
+
+.google-btn:hover {
+  background: #f3f3f3;
+}
+
+.facebook-btn {
+  background: #1877f2;
+  color: white;
+}
+
+.facebook-btn:hover {
+  background: #0d6efd;
+}
+
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
