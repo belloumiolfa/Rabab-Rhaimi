@@ -16,6 +16,7 @@
   visibility: visible;
 }
 .mil-logo img {
+<<<<<<< HEAD
   height: 40px;
   max-width: 100%;
   object-fit: contain;
@@ -31,3 +32,25 @@
   height: auto;
   display: block;
 }
+=======
+    height: 40px;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  /*
+    .mil-back-to-top a {
+  color: #fff; 
+  background-color: #ff9900; 
+  padding: 8px 14px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.mil-back-to-top a:hover {
+  background-color: #e58200;
+}
+*/
+>>>>>>> 34bdf21cfec4c92819728ea8f69e8204e2fe9fbe
