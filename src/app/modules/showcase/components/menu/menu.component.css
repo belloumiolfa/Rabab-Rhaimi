@@ -1,23 +1,33 @@
 .mil-main-menu .mil-submenu {
-    display: none;
-    margin-top: 10px;
-    padding-left: 15px;
-    opacity: 0;
-    transition: opacity 0.4s ease;
+  display: none;
+  margin-top: 10px;
+  padding-left: 15px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 .mil-main-menu .mil-submenu.mil-active {
-    display: block;
-    opacity: 1;
+  display: block;
+  opacity: 1;
 }
 .mil-menu-frame.mil-active {
-    display: block !important;
-    opacity: 1;
-    visibility: visible;
+  display: block !important;
+  opacity: 1;
+  visibility: visible;
 }
 .mil-logo img {
-    height: 40px;
-    max-width: 100%;
-    object-fit: contain;
-  }
-  
+  height: 40px;
+  max-width: 100%;
+  object-fit: contain;
+}
+.hero-logo {
+  display: inline-block;
+  max-width: 100%;
+  padding: 5px;
+}
+
+.responsive-logo {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

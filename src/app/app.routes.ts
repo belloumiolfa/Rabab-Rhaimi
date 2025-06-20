@@ -18,8 +18,8 @@ import { TeamsComponent } from './modules/teams/pages/teams/teams.component';
 import { ContentComponent } from './modules/showcase/components/content/content.component';
 import { LoginComponent } from './backend/auth/login/login.component';
 import { AdminDashboardComponent } from './modules/admin-dashboard/admin-dashboard.component';
-import {SignupComponent} from './backend/auth/signup/signup.component';
-import{ ForgotPasswordComponent } from './backend/auth/forgot-password/forgot-password.component'
+import { SignupComponent } from './backend/auth/signup/signup.component';
+import { ForgotPasswordComponent } from './backend/auth/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './backend/reset-password/reset-password.component';
 import { PatientDashboardComponent } from './modules/patient/patient-dashboard/patient-dashboard.component';
 import { PrendreRdvWrapperComponent } from './modules/patient/prendre-rdv-wrapper/prendre-rdv-wrapper.component';
@@ -61,21 +61,36 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard-home', pathMatch: 'full' },
       { path: 'dashboard-home', component: DashboardHomeComponent },
-      { path: 'prendre-rdv', component: PrendreRdvWrapperComponent , children:[
-        {
-        path: 'modifier-date/:id',
-        component: ModifierDateComponent
-      }
-      ]},
+      /*  {
+        path: 'prendre-rdv',
+        component: PrendreRdvWrapperComponent,
+        children: [
+          {
+            path: 'modifier-date/:id',
+            component: ModifierDateComponent,
+          },
+        ],
+      }, */
       { path: 'mes-rendez-vous', component: MesRendezVousComponent },
-      { path: 'dossier-medical', component: DossierMedicalComponent ,},
+      { path: 'dossier-medical', component: DossierMedicalComponent },
       { path: 'mon-profil', component: MonProfilComponent },
       { path: 'temoignages', component: TemoignagesComponent },
       { path: 'notifications', component: NotificationsPageComponent },
-      { path: 'confirmation-rdv/:id', component: ConfirmationRdvComponent },
-      {path: 'confirm-urgence/:id',component: ConfirmUrgenceComponent}
-
-    ]
+      /*   {
+        path: 'confirmation-rdv/:id',
+        component: ConfirmationRdvComponent,
+        data: {
+          renderMode: 'ssr', // or 'client'
+        },
+      }, 
+      {
+        path: 'confirm-urgence/:id',
+        component: ConfirmUrgenceComponent,
+        data: {
+          renderMode: 'ssr', // or 'client'
+        },
+      },*/
+    ],
   },
   {
     path: 'dashboard-secretaire',
@@ -85,16 +100,23 @@ export const routes: Routes = [
       { path: 'rendez-vous', component: ManageAppointmentsComponent },
       { path: 'accueil-patients', component: TodayPatientsComponent },
       { path: 'profil', component: ProfileComponent },
-      { path: 'availability', component: ManageAvailabilityCalendarWrapperComponent },
+      /*  {
+        path: 'availability',
+        component: ManageAvailabilityCalendarWrapperComponent,
+      }, */
       { path: 'today', component: TodayPatientsComponent },
-      { path: 'history/:id', component: HistoryPatientComponent },
+      /*   {
+        path: 'history/:id',
+        component: HistoryPatientComponent,
+        data: {
+          renderMode: 'ssr', // or 'client'
+        },
+      }, */
       { path: 'history-global', component: HistoryGlobalComponent },
       { path: 'mon-profil', component: MonProfilComponent },
-      { path: 'temoignages',component: TestimonialManagementComponent},
-      { path: 'statistique',component: SecretaryStatsComponent},
-
-      
-    ]
+      { path: 'temoignages', component: TestimonialManagementComponent },
+      { path: 'statistique', component: SecretaryStatsComponent },
+    ],
   },
 
   {
@@ -103,19 +125,34 @@ export const routes: Routes = [
     children: [
       { path: 'rendez-vous', component: ManageAppointmentsComponent },
       { path: 'accueil-patients', component: TodayPatientsComponent },
-      { path: 'availability', component: ManageAvailabilityCalendarWrapperComponent },
+      {
+        path: 'availability',
+        component: ManageAvailabilityCalendarWrapperComponent,
+      },
       { path: 'mon-profil', component: MonProfilComponent },
-      { path: 'dossiers/:id', component: DossiersPatientsComponent },
-      { path: 'liste-patients',component: ListePatientsComponent },
+      /*  {
+        path: 'dossiers/:id',
+        component: DossiersPatientsComponent,
+        data: {
+          renderMode: 'ssr', // or 'client'
+        },
+      }, */
+      { path: 'liste-patients', component: ListePatientsComponent },
       { path: 'history-global', component: HistoryGlobalComponent },
-      { path: 'history/:id', component: HistoryPatientComponent },
+      /*  {
+        path: 'history/:id',
+        component: HistoryPatientComponent,
+        data: {
+          renderMode: 'ssr', // or 'client'
+        },
+      }, */
       { path: 'today', component: TodayPatientsComponent },
-      { path: 'demandes-urgentes',component: DemandesUrgentesComponent},
+      { path: 'demandes-urgentes', component: DemandesUrgentesComponent },
       { path: 'notifications', component: NotificationsPageComponent },
-      { path: 'statistique',component: SecretaryStatsComponent},
+      { path: 'statistique', component: SecretaryStatsComponent },
 
-      { path: '', redirectTo: 'statistique', pathMatch: 'full' }
-    ]
+      { path: '', redirectTo: 'statistique', pathMatch: 'full' },
+    ],
   },
   {
     path: 'main',
@@ -144,14 +181,16 @@ export const routes: Routes = [
       { path: 'signup', component: SignupComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'reset-password', component: ResetPasswordComponent },
-      {
+      /*   {
         path: 'creer-mot-de-passe/:token',
-        component: CreerMotDePasseComponent
-      },
-    ]
+        component: CreerMotDePasseComponent,
+        data: {
+          renderMode: 'ssr', // or 'client'
+        },
+      }, */
+    ],
   },
   { path: '', redirectTo: 'main', pathMatch: 'full' },
 
-  { path: '**', component: Service2Component }
-
+  { path: '**', component: Service2Component },
 ];
