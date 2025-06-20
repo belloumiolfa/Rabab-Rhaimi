@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router, RouterLink, RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -49,6 +49,20 @@ isSubMenuActive(name: string): boolean {
   return this.activeSubMenu === name;
 }
 
+ @HostListener('window:scroll', [])
+onWindowScroll() {
+  const topLink = document.querySelector('.mil-back-to-top') as HTMLElement;
   
+  if (!topLink) return; // Sécurité
+
+  // Appliquer la classe selon le scroll
+  if (window.scrollY > 500) {
+    topLink.classList.add('dark-bg');
+  } else {
+    topLink.classList.remove('dark-bg');
+  }
+}
+
+
 
 }
