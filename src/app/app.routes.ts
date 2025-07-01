@@ -181,13 +181,6 @@ export const routes: Routes = [
       { path: 'signup', component: SignupComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'reset-password', component: ResetPasswordComponent },
-      /*   {
-        path: 'creer-mot-de-passe/:token',
-        component: CreerMotDePasseComponent,
-        data: {
-          renderMode: 'ssr', // or 'client'
-        },
-      }, */
     ],
   },
   { path: '', redirectTo: 'main', pathMatch: 'full' },

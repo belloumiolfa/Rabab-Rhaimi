@@ -37,6 +37,25 @@
     max-width: 100%;
     object-fit: contain;
   }
+/* Réduction de taille du logo sur les petits écrans */
+@media (max-width: 576px) {
+  .hero-logo img {
+    width: 70px; /* ou la taille que tu veux, par exemple 100px */
+    height: 80px;
+    margin-left: -15px;
+
+  }
+}
+.mil-back-to-top .mil-link {
+  color: #000; /* Noir par défaut (sur fond clair) */
+  transition: color 0.3s ease;
+}
+
+.mil-back-to-top.dark-bg .mil-link {
+  color: #fff; /* Blanc quand scrollé */
+}
+
+
 
   /*
     .mil-back-to-top a {

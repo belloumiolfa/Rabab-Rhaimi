@@ -1,18 +1,22 @@
 <!-- frame -->
-<div class="mil-frame">
+<div class="mil-frame" style="z-index: 9999">
   <div class="mil-frame-top">
     <a class="hero-logo" routerLink="/main">
       <img src="/assets/img/logoRabeb3.png" alt="Logo" />
     </a>
-    <div class="mil-menu-btn" (click)="toggleMenu()">
+    <div
+      class="mil-menu-btn"
+      (click)="toggleMenu()"
+      style="height: 50px; width: 50px; padding: 10px; border-radius: 3px"
+    >
       <span></span>
     </div>
   </div>
   <div class="mil-frame-bottom">
     <div class="mil-current-page"></div>
     <div class="mil-back-to-top">
-      <a href="#top" class="mil-link mil-dark mil-arrow-place">
-        <span>Retour en haut </span>
+      <a href="#top" class="mil-link mil-arrow-place">
+        <span>Retour en haut</span>
       </a>
     </div>
   </div>
@@ -51,7 +55,7 @@
                   "
                 -->
                 <a
-                  [routerLink]="['/']"
+                  routerLink="/main"
                   (click)="closeMenu()"
                   class="mil-submenu-link"
                   >Accueil</a
@@ -62,7 +66,7 @@
                 >
                   <li>
                     <a
-                      [routerLink]="['/']"
+                      routerLink='/'
                       fragment="about"
                       (click)="closeMenu()"
                       >À propos</a
@@ -70,7 +74,7 @@
                   </li>
                   <li>
                     <a
-                      [routerLink]="['/']"
+                      routerLink='/'
                       fragment="certifications"
                       (click)="closeMenu()"
                       >Certifications</a
@@ -78,7 +82,7 @@
                   </li>
                   <li>
                     <a
-                      [routerLink]="['/']"
+                      routerLink='/'
                       fragment="temoignages"
                       (click)="closeMenu()"
                       >Temoignages</a
@@ -86,7 +90,7 @@
                   </li>
                   <li>
                     <a
-                      [routerLink]="['/']"
+                      routerLink='/'
                       fragment="associations"
                       (click)="closeMenu()"
                       >Associations</a
@@ -94,7 +98,7 @@
                   </li>
                   <li>
                     <a
-                      [routerLink]="['/']"
+                      routerLink='/'
                       fragment="blog"
                       (click)="closeMenu()"
                       >Blog Dentaire</a
@@ -104,7 +108,7 @@
               </li>
               <li class="mil-has-children">
                 <a
-                  [routerLink]="['/main/gallery']"
+                  routerLink="main/gallery"
                   (click)="closeMenu()"
                   class="mil-submenu-link"
                   >Galerie</a
@@ -152,7 +156,7 @@
               <li class="mil-has-children">
                 <a
                   class="mil-submenu-link"
-                  [routerLink]="['/main/services']"
+                  routerLink="/main/services"
                   (click)="closeMenu()"
                   >Services</a
                 >
@@ -170,7 +174,7 @@
 
               <li class="mil-has-children">
                 <a
-                  [routerLink]="['/main/blog']"
+                  routerLink="/main/blog"
                   (click)="closeMenu()"
                   class="mil-submenu-link"
                   >Blogs</a
@@ -189,7 +193,7 @@
 
               <li class="mil-has-children">
                 <a
-                  [routerLink]="['/main/contact']"
+                  routerLink="/main/contact"
                   (click)="closeMenu()"
                   class="mil-submenu-link"
                   >Contact</a

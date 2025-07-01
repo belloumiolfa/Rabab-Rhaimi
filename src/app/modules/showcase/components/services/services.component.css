@@ -1,167 +1,155 @@
 .button-container {
-    margin-top: 20px; /* pour le placer plus bas */
-    margin-left:20px
-  }
-  
-  .thin-service-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #ff9900;
-    border-radius: 999px;
-    padding: 18px 32px;
-    padding-top: 35px;
-    padding-bottom: 35px;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #000;
-    text-decoration: none;
-    gap: 20px;
-    height: 60px;
-    line-height: 1;
-  }
-  
-  .thin-service-btn .text {
-    padding-left: 10px;
-  }
-  
-  .thin-service-btn .circle {
-    width: 44px;
-    height: 44px;
-    background-color: #000;
-    color: #ff9900;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .thin-service-btn .arrow {
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1;
-  }
-  
-  .thin-service-btn:hover .circle {
-    transform: scale(1.1);
-    transition: 0.3s ease;
-  }
-  
+  margin-top: 20px; /* pour le placer plus bas */
+  margin-left: 20px;
+}
 
+.thin-service-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ff9900;
+  border-radius: 999px;
+  padding: 18px 32px;
+  padding-top: 35px;
+  padding-bottom: 35px;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #000;
+  text-decoration: none;
+  gap: 20px;
+  height: 60px;
+  line-height: 1;
+}
 
+.thin-service-btn .text {
+  padding-left: 10px;
+}
 
+.thin-service-btn .circle {
+  width: 44px;
+  height: 44px;
+  background-color: #000;
+  color: #ff9900;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.thin-service-btn .arrow {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+}
 
-  .mil-service-card-sm {
-    background-color: #000;
-    padding: 40px 30px;
-    height: 100%;
-    transition: all 0.3s ease;
-    color: #fff;
-    text-decoration: none;
-    position: relative;
-  }
-  
-  .mil-service-card-sm .mil-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: #fff;
-  }
-  
-  .mil-service-card-sm .mil-desc {
-    font-size: 15px;
-    color: #888;
-  }
-  
- /* Style par défaut pour la flèche */
+.thin-service-btn:hover .circle {
+  transform: scale(1.1);
+  transition: 0.3s ease;
+}
+
+.mil-service-card-sm {
+  background-color: #000;
+  padding: 40px 30px;
+  height: 100%;
+  transition: all 0.3s ease;
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+}
+
+.mil-service-card-sm .mil-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.mil-service-card-sm .mil-desc {
+  font-size: 15px;
+  color: #888;
+}
+
+/* Style par défaut pour la flèche */
 /* 🚀 Style par défaut — petite flèche sans cercle */
 .mil-arrow-circle {
-    font-size: 8.5px;         /* très petit au repos */
-    color: #000;             /* gris foncé */
-    background-color: #777; /* pas de fond */
-    border-radius: 70%;
-    padding-left: 6px;
-    padding-right: 6px;
+  font-size: 8.5px; /* très petit au repos */
+  color: #000; /* gris foncé */
+  background-color: #777; /* pas de fond */
+  border-radius: 70%;
+  padding-left: 6px;
+  padding-right: 6px;
 
-    width: auto;
-    height: auto;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 40px;
-    transition: all 0.3s ease;
-  }
-  
-  /* ✨ Hover sur la carte — cercle orange + flèche noire + zoom */
-  .mil-service-card-sm:hover .mil-arrow-circle {
-    font-size: 20px;            /* taille normale au hover */
-    background-color: #ff9900;  /* cercle orange */
-    color: #000;                /* flèche noire */
-    width: 44px;
-    height: 44px;
-    transform: scale(1.1);      /* effet zoom */
-  }
-  
-  
-  /* Optionnel : si besoin d’espacer les puces du bas */
+  width: auto;
+  height: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  transition: all 0.3s ease;
+}
 
-  .mil-services-scroll-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-  }
-  
+/* ✨ Hover sur la carte — cercle orange + flèche noire + zoom */
+.mil-service-card-sm:hover .mil-arrow-circle {
+  font-size: 20px; /* taille normale au hover */
+  background-color: #ff9900; /* cercle orange */
+  color: #000; /* flèche noire */
+  width: 44px;
+  height: 44px;
+  transform: scale(1.1); /* effet zoom */
+}
+
+/* Optionnel : si besoin d’espacer les puces du bas */
+
+.mil-services-scroll-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
 .mil-services-scroll {
-    display: flex;
-    gap: 30px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding-bottom: 30px;
-    margin: 0 50px;
-  }
-  
-  .mil-services-grid-item {
-    flex: 0 0 auto;
-    width: 250px;
-  }
-  
-  /* Flèches */
-  .scroll-btn {
-    background-color: #000;
-    color: #ff9900;
-    border: none;
-    font-size: 24px;
-    padding: 10px 15px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10;
-    transition: all 0.3s ease;
-  }
-  
-  .scroll-btn:hover {
-    background-color: #ff9900;
-    color: #000;
-  }
-  
-  .scroll-btn.left {
-    position: absolute;
-    left: 0;
-  }
-  
-  .scroll-btn.right {
-    position: absolute;
-    right: 0;
-  }
-  
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 30px;
+  margin: 0 50px;
+}
 
+.mil-services-grid-item {
+  flex: 0 0 auto;
+  width: 250px;
+}
 
+/* Flèches */
+.scroll-btn {
+  background-color: #000;
+  color: #ff9900;
+  border: none;
+  font-size: 24px;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
 
+.scroll-btn:hover {
+  background-color: #ff9900;
+  color: #000;
+}
 
+.scroll-btn.left {
+  position: absolute;
+  left: 0;
+}
 
+.scroll-btn.right {
+  position: absolute;
+  right: 0;
+}
 
 /* Conteneur scroll horizontal */
 .mil-services-scroll {
@@ -265,11 +253,7 @@
   right: 0;
 }
 
-
-
-
-
-.admin-controls  {
+.admin-controls {
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -290,8 +274,6 @@
   background-color: #ff9900;
   color: black;
 }
-
-
 
 .admin-add-container {
   text-align: center;
@@ -314,12 +296,6 @@
   color: black;
   border-style: solid;
 }
-
-
-
-
-
-
 
 .modal-overlay {
   position: fixed;

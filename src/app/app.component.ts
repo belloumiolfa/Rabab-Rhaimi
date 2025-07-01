@@ -1,12 +1,25 @@
-import { CursorComponent } from "./modules/showcase/components/cursor/cursor.component";
-import { ScrollbarComponent } from "./modules/showcase/components/scrollbar/scrollbar.component";
-import { MenuComponent } from "./modules/showcase/components/menu/menu.component";
-import { CurtainComponent } from "./modules/showcase/components/curtain/curtain.component";
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { CursorComponent } from './modules/showcase/components/cursor/cursor.component';
+import { ScrollbarComponent } from './modules/showcase/components/scrollbar/scrollbar.component';
+import { MenuComponent } from './modules/showcase/components/menu/menu.component';
+import { CurtainComponent } from './modules/showcase/components/curtain/curtain.component';
+import { NavigationEnd, RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Component, AfterViewInit, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
-import { Fancybox } from "@fancyapps/ui";
+import {
+  Component,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+import { Fancybox } from '@fancyapps/ui';
 import gsap from 'gsap';
 import { ScrollToPlugin, ScrollTrigger } from 'gsap/all';
 import Swiper from 'swiper';
@@ -37,8 +50,8 @@ gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
       state('void', style({ opacity: 0 })),
       transition(':enter', [animate('500ms ease-in')]),
       transition(':leave', [animate('500ms ease-out')]),
-    ])
-  ]
+    ]),
+  ],
 })
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   title = 'rabeb';
@@ -49,7 +62,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   afficherContenu = false;
   private destroyListeners: (() => void)[] = [];
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // or just window.scrollTo(0, 0);
+      }
+    });
+  }
 
   ngOnInit() {
     gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
@@ -70,7 +89,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.appendElements();
     this.backToTopAnimation();
-    Fancybox.bind("[data-fancybox]", {});
+    Fancybox.bind('[data-fancybox]', {});
     ScrollTrigger.refresh();
   }
 
@@ -105,10 +124,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       stagger: 0.3,
       scrollTrigger: {
         trigger: '.mil-portfolio-item',
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none reverse",
-      }
+        start: 'top 80%',
+        end: 'bottom 20%',
+        toggleActions: 'play none none reverse',
+      },
     });
   }
 
@@ -147,35 +166,36 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       opacity: 0,
       y: 50,
       duration: duration,
-      ease: 'power2.out'
+      ease: 'power2.out',
     });
   }
 
   accordionAnimation(): void {
-    const groups = gsap.utils.toArray(".mil-accordion-group");
-    const menus = gsap.utils.toArray(".mil-accordion-menu");
+    const groups = gsap.utils.toArray('.mil-accordion-group');
+    const menus = gsap.utils.toArray('.mil-accordion-menu');
 
     menus.forEach((menu: any) => {
-      menu.addEventListener("click", () => this.toggleMenu(menu, groups));
+      menu.addEventListener('click', () => this.toggleMenu(menu, groups));
     });
   }
 
   toggleMenu(clickedMenu: HTMLElement, groups: any): void {
     groups.forEach((element: any) => {
-      const box = element.querySelector(".mil-accordion-content");
+      const box = element.querySelector('.mil-accordion-content');
       gsap.to(box, {
         height: clickedMenu === element ? 'auto' : 0,
         duration: 0.4,
-        ease: 'sine'
+        ease: 'sine',
       });
     });
   }
 
   scrollAnimations(): void {
-    const elements = document.querySelectorAll(".mil-up");
+    const elements = document.querySelectorAll('.mil-up');
 
     elements.forEach((section: any) => {
-      gsap.fromTo(section,
+      gsap.fromTo(
+        section,
         { opacity: 0, y: 40, scale: 0.98, ease: 'sine' },
         {
           y: 0,
@@ -185,7 +205,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
           scrollTrigger: {
             trigger: section,
             toggleActions: 'play none none reverse',
-          }
+          },
         }
       );
     });
@@ -194,32 +214,39 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   preloaderAnimation(): void {
     const timeline = gsap.timeline();
 
-    timeline.to(".mil-preloader-animation", { opacity: 1 });
+    timeline.to('.mil-preloader-animation', { opacity: 1 });
 
-    timeline.fromTo(".mil-animation-1 .mil-h3",
-      { y: "30px", opacity: 0 },
-      { y: "0px", opacity: 1, stagger: 0.4 }
+    timeline.fromTo(
+      '.mil-animation-1 .mil-h3',
+      { y: '30px', opacity: 0 },
+      { y: '0px', opacity: 1, stagger: 0.4 }
     );
 
-    timeline.to(".mil-animation-1 .mil-h3", { opacity: 0, y: '-30' }, "+=.3");
+    timeline.to('.mil-animation-1 .mil-h3', { opacity: 0, y: '-30' }, '+=.3');
 
-    timeline.to(".mil-preloader", 0.8, { opacity: 0, ease: 'sine' }, "+=.2");
+    timeline.to('.mil-preloader', 0.8, { opacity: 0, ease: 'sine' }, '+=.2');
 
-    timeline.fromTo(".mil-up", 0.8, { opacity: 0, y: 40, scale: .98, ease: 'sine' }, {
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      onComplete: () => {
-        const preloader = document.querySelector('.mil-preloader');
-        if (preloader) {
-          preloader.classList.add("mil-hidden");
-        }
-      }
-    }, "-=1");
+    timeline.fromTo(
+      '.mil-up',
+      0.8,
+      { opacity: 0, y: 40, scale: 0.98, ease: 'sine' },
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        onComplete: () => {
+          const preloader = document.querySelector('.mil-preloader');
+          if (preloader) {
+            preloader.classList.add('mil-hidden');
+          }
+        },
+      },
+      '-=1'
+    );
   }
 
   anchorScrollAnimation(): void {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', (event) => {
         event.preventDefault();
         const targetId = anchor.getAttribute('href');
@@ -228,7 +255,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         if (target) {
           gsap.to(window, {
             scrollTo: target.offsetTop ? target.offsetTop - 90 : 0,
-            duration: 0.4
+            duration: 0.4,
           });
         }
       });
@@ -253,18 +280,26 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   appendElements(): void {
     const arrow = document.querySelector('.mil-arrow')?.cloneNode(true);
-    const dodecahedron = document.querySelector('.mil-dodecahedron')?.cloneNode(true);
+    const dodecahedron = document
+      .querySelector('.mil-dodecahedron')
+      ?.cloneNode(true);
     const lines = document.querySelector('.mil-lines')?.cloneNode(true);
-    const activeLink = document.querySelector('.mil-main-menu ul li.mil-active > a')?.cloneNode(true);
+    const activeLink = document
+      .querySelector('.mil-main-menu ul li.mil-active > a')
+      ?.cloneNode(true);
 
     if (arrow) document.querySelector('.mil-arrow-place')?.appendChild(arrow);
-    if (dodecahedron) document.querySelector('.mil-animation')?.appendChild(dodecahedron);
+    if (dodecahedron)
+      document.querySelector('.mil-animation')?.appendChild(dodecahedron);
     if (lines) document.querySelector('.mil-lines-place')?.appendChild(lines);
-    if (activeLink) document.querySelector('.mil-current-page')?.appendChild(activeLink);
+    if (activeLink)
+      document.querySelector('.mil-current-page')?.appendChild(activeLink);
   }
 
   backToTopAnimation(): void {
-    const backToTopButton = document.querySelector(".mil-back-to-top .mil-link");
+    const backToTopButton = document.querySelector(
+      '.mil-back-to-top .mil-link'
+    );
 
     gsap.set(backToTopButton, { x: -30, opacity: 0 });
 
@@ -273,11 +308,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       opacity: 1,
       ease: 'sine',
       scrollTrigger: {
-        trigger: "body",
-        start: "top -40%",
-        end: "top -40%",
-        toggleActions: "play none reverse none"
-      }
+        trigger: 'body',
+        start: 'top -40%',
+        end: 'top -40%',
+        toggleActions: 'play none reverse none',
+      },
     });
   }
 

@@ -1,55 +1,30 @@
-    <!-- wrapper -->
-    <div class="mil-wrapper" id="top">
-        <!-- cursor -->
-        <app-cursor></app-cursor>
-        <!-- cursor end -->
+<!-- wrapper -->
+<div class="mil-wrapper" id="top">
+  <app-cursor></app-cursor>
 
-        <!-- preloader -->
-        <!-- preloader end -->
+  <app-scrollbar></app-scrollbar>
 
-        <!-- scrollbar progress -->
-        <app-scrollbar></app-scrollbar>
-        <!-- scrollbar progress end -->
+  <app-curtain></app-curtain>
 
-        <!-- menu -->
-         
-        <!-- menu -->
+  <div class="mil-content">
+    <div id="swupMain" class="mil-main-transition">
+      <!-- banner -->
+      <app-banner></app-banner>
 
-        <!-- curtain -->
-         <app-curtain></app-curtain>
-        <!-- curtain end -->
+      <app-servicee></app-servicee>
 
-        <!-- frame -->
-         
-        <!-- frame end -->
+      <app-call-to-action1></app-call-to-action1>
+      <!-- call to action end -->
 
-        <!-- content -->
-        <div class="mil-content">
-            <div id="swupMain" class="mil-main-transition">
+      <!-- footer -->
+      <app-footer></app-footer>
+      <!-- footer end -->
 
-                <!-- banner -->
-                <app-banner></app-banner>
-                <!-- banner end -->
-
-                <!-- services -->
-                 <app-servicee></app-servicee>
-                <!-- services end -->
-
-                <!-- call to action -->
-                <app-call-to-action1></app-call-to-action1>
-                <!-- call to action end -->
-
-                <!-- footer -->
-                <app-footer></app-footer>
-                <!-- footer end -->
-
-                <!-- hidden elements -->
-                <app-hidden-elements></app-hidden-elements>
-                <!-- hidden elements end -->
-
-            </div>
-        </div>
-        <!-- content -->
+      <!-- hidden elements -->
+      <app-hidden-elements></app-hidden-elements>
+      <!-- hidden elements end -->
     </div>
-    <!-- wrapper end -->
-
+  </div>
+  <!-- content -->
+</div>
+<!-- wrapper end -->

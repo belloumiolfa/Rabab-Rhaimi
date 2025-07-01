@@ -1,7 +1,6 @@
 <!-- PORTFOLIO (statique) -->
 <section class="mil-portfolio-slider-frame full-width-carousel">
   <div class="carousel-container">
-
     <!-- Carousel -->
     <owl-carousel-o
       #owlCarousel
@@ -27,17 +26,18 @@
         <h5 class="mil-title">{{ currentProjectName }}</h5>
       </div>
 
-      <a href="services.html" class="mil-view-btn">
+      <a href="/main/services" class="mil-view-btn">
         Nos services <span class="arrow-circle">→</span>
       </a>
 
       <!-- Pagination / navigation -->
       <div class="mil-pagination-style">
-        <span class="page-count">{{ activeSlideIndex }} / {{ totalSlides }}</span>
+        <span class="page-count"
+          >{{ activeSlideIndex }} / {{ totalSlides }}</span
+        >
         <button class="nav-arrow black" (click)="owlCarousel.prev()">←</button>
         <button class="nav-arrow black" (click)="owlCarousel.next()">→</button>
       </div>
     </div>
-
   </div>
 </section>

@@ -1,33 +1,42 @@
 <section class="mil-soft-bg">
   <div class="container mil-p-120-120" id="temoignages">
     <h2 class="mil-center mil-up mil-mb-60">
-      Ce que disent <span class="mil-thin">nos</span> <br />patients
+      Ce que disent <span class="mil-thin">nos </span> <br />patients
     </h2>
 
     <div class="mil-revi-pagination mil-center">
-      <div class="swiper-pagination-bullet"
+      <div
+        class="swiper-pagination-bullet"
         *ngFor="let review of reviews; let i = index"
         [class.active]="selectedReviewIndex === i"
-        (click)="selectReview(i)">
-        <img [src]="review.avatar" class="mil-avatar" alt="{{review.name}}">
+        (click)="selectReview(i)"
+      >
+        <img [src]="review.avatar" class="mil-avatar" alt="{{ review.name }}" />
       </div>
     </div>
 
     <div class="svgw mil-center mil-mt-20">
       <svg width="40px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-        <path fill="#f90" d="M13.5 10A8.5 8.5 0 0013.5 27 8.5 8.5 0 0018.291 25.52C17.422 29.223 15.878 31.803 14.357 33.59 12.068 36.28 9.943 37.107 9.943 37.107A1.5 1.5 0 1011.057 39.893s2.875-1.172 5.586-4.357C19.354 32.35 22 27.073 22 19a1.5 1.5 0 00-.016-.219A8.5 8.5 0 0013.5 10zm21 0A8.5 8.5 0 0034.5 27a8.5 8.5 0 004.791-1.48c-.869 3.704-2.413 6.283-3.934 8.07-2.289 2.69-4.414 3.517-4.414 3.517a1.5 1.5 0 101.113 2.786s2.875-1.172 5.586-4.357C40.354 32.35 43 27.073 43 19a1.5 1.5 0 00-.016-.219A8.5 8.5 0 0034.5 10z"/>
+        <path
+          fill="#f90"
+          d="M13.5 10A8.5 8.5 0 0013.5 27 8.5 8.5 0 0018.291 25.52C17.422 29.223 15.878 31.803 14.357 33.59 12.068 36.28 9.943 37.107 9.943 37.107A1.5 1.5 0 1011.057 39.893s2.875-1.172 5.586-4.357C19.354 32.35 22 27.073 22 19a1.5 1.5 0 00-.016-.219A8.5 8.5 0 0013.5 10zm21 0A8.5 8.5 0 0034.5 27a8.5 8.5 0 004.791-1.48c-.869 3.704-2.413 6.283-3.934 8.07-2.289 2.69-4.414 3.517-4.414 3.517a1.5 1.5 0 101.113 2.786s2.875-1.172 5.586-4.357C40.354 32.35 43 27.073 43 19a1.5 1.5 0 00-.016-.219A8.5 8.5 0 0034.5 10z"
+        />
       </svg>
     </div>
 
     <div class="review-container mil-mt-40">
-      <div class="mil-slider-arrow mil-prev" (click)="prevReview()">&#9664;</div>
+      <div class="mil-slider-arrow mil-prev" (click)="prevReview()">
+        &#9664;
+      </div>
 
       <div class="mil-review-frame">
         <h5>{{ reviews[selectedReviewIndex].name }}</h5>
         <p>{{ reviews[selectedReviewIndex].text }}</p>
       </div>
 
-      <div class="mil-slider-arrow mil-next" (click)="nextReview()">&#9654;</div>
+      <div class="mil-slider-arrow mil-next" (click)="nextReview()">
+        &#9654;
+      </div>
     </div>
   </div>
 </section>
