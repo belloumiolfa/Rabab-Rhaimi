@@ -15,7 +15,6 @@ import { ServiceeComponent } from '../../components/servicee/servicee.component'
   selector: 'app-service1',
   imports: [
     CurtainComponent,
-    MenuComponent,
     ScrollbarComponent,
     CursorComponent,
     FooterComponent,

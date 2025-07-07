@@ -16,7 +16,6 @@
   visibility: visible;
 }
 .mil-logo img {
-<<<<<<< HEAD
   height: 40px;
   max-width: 100%;
   object-fit: contain;
@@ -32,18 +31,13 @@
   height: auto;
   display: block;
 }
-=======
-    height: 40px;
-    max-width: 100%;
-    object-fit: contain;
-  }
+
 /* Réduction de taille du logo sur les petits écrans */
 @media (max-width: 576px) {
   .hero-logo img {
     width: 70px; /* ou la taille que tu veux, par exemple 100px */
     height: 80px;
     margin-left: -15px;
-
   }
 }
 .mil-back-to-top .mil-link {
@@ -55,9 +49,7 @@
   color: #fff; /* Blanc quand scrollé */
 }
 
-
-
-  /*
+/*
     .mil-back-to-top a {
   color: #fff; 
   background-color: #ff9900; 
@@ -72,4 +64,3 @@
   background-color: #e58200;
 }
 */
->>>>>>> 34bdf21cfec4c92819728ea8f69e8204e2fe9fbe
