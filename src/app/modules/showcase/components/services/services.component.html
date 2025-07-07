@@ -44,7 +44,7 @@
           </h2>
 
           <div class="button-container">
-            <a href="main/services" class="thin-service-btn">
+            <a routerLink="/main/services" class="thin-service-btn">
               <span class="text">NOS SERVICES</span>
               <span class="circle"><span class="arrow">→</span></span>
             </a>
@@ -54,19 +54,22 @@
 
       <!-- Liste des certifications -->
       <div class="mil-services-scroll-wrapper">
-        <button class="scroll-btn left" (click)="scrollLeft()">←</button>
+        <button class="scroll-btn left" (click)="scrollLeft(scrollContainer)">
+          ←
+        </button>
 
         <div class="mil-services-scroll" #scrollContainer>
           <div class="mil-services-grid-item" *ngFor="let service of services">
             <a class="mil-service-card-sm mil-up">
               <h5 class="mil-title">{{ service.title }}</h5>
               <p class="mil-desc">{{ service.description }}</p>
-              <!-- <div class="mil-arrow-circle">→</div> -->
             </a>
           </div>
         </div>
 
-        <button class="scroll-btn right" (click)="scrollRight()">→</button>
+        <button class="scroll-btn right" (click)="scrollRight(scrollContainer)">
+          →
+        </button>
       </div>
     </div>
   </div>

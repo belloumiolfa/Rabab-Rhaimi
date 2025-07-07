@@ -1,17 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.css'],
 })
 export class ServicesComponent {
-  @ViewChild('scrollContainer') scrollContainer!: ElementRef;
+  @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
 
-  /** ➜ Contenu désormais 100 % statique */
   services = [
     {
       title: 'Implantologie dentaire avec le système Straumann®',
@@ -22,8 +22,7 @@ export class ServicesComponent {
       description: 'Tunis, Tunisie | 2017',
     },
     {
-      title:
-        'Formation Fradeani Education – Réhabilitation esthétique et fonctionnelle',
+      title: 'Réhabilitation esthétique et fonctionnelle Fradeani Education',
       description: 'Pesaro (Italie), 2017',
     },
     {
@@ -38,14 +37,14 @@ export class ServicesComponent {
     { title: 'Injection d’acide hyaluronique', description: 'Tunis | 2016' },
   ];
 
-  scrollLeft() {
-    this.scrollContainer.nativeElement.scrollBy({
+  scrollLeft(scrollContainer: any) {
+    scrollContainer?.scrollBy({
       left: -300,
       behavior: 'smooth',
     });
   }
-  scrollRight() {
-    this.scrollContainer.nativeElement.scrollBy({
+  scrollRight(scrollContainer: any) {
+    scrollContainer?.scrollBy({
       left: 300,
       behavior: 'smooth',
     });

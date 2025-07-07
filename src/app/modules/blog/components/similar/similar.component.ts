@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';  // Import du Router
+import { Router, RouterModule } from '@angular/router'; // Import du Router
 
 @Component({
   selector: 'app-similar',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './similar.component.html',
-  styleUrl: './similar.component.css'
+  styleUrl: './similar.component.css',
 })
 export class SimilarComponent {
   constructor(private router: Router) {}

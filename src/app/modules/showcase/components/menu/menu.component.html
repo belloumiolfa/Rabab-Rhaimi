@@ -1,7 +1,14 @@
 <!-- frame -->
 <div class="mil-frame" style="z-index: 9999">
   <div class="mil-frame-top">
-    <a class="hero-logo" routerLink="/main">
+    <a
+      class="hero-logo"
+      [routerLink]="['/main']"
+      style="
+        cursor: pointer;
+        display: inline-block; /* ensures the style applies */
+      "
+    >
       <img src="/assets/img/logoRabeb3.png" alt="Logo" />
     </a>
     <div
@@ -29,17 +36,6 @@
   (click)="closeMenu()"
   id="menu"
 >
-  <!-- Frame Clone -->
-  <!--     <div class="mil-frame-top">
-        <a routerLink="/" class="mil-logo">          </a>
-          
-        <button #menuBtn class="mil-menu-btn" 
-                (click)="toggleMenu(); $event.stopPropagation()">
-          <span></span>
-        </button>
-      </div>     -->
-
-  <!-- Menu Content -->
   <div class="container">
     <div class="mil-menu-content">
       <div class="row">
@@ -47,64 +43,12 @@
           <nav class="mil-main-menu" id="swupMenu">
             <ul>
               <li class="mil-has-children">
-                <!-- 
-                 (click)="
-                    toggleSubMenu('Accueil');
-                    $event.preventDefault();
-                    $event.stopPropagation()
-                  "
-                -->
                 <a
                   routerLink="main"
                   (click)="closeMenu()"
                   class="mil-submenu-link"
                   >Accueil</a
                 >
-                <!--    <ul
-                  class="mil-submenu"
-                  [class.mil-active]="isSubMenuActive('Accueil')"
-                >
-                  <li>
-                    <a
-                      routerLink='/'
-                      fragment="about"
-                      (click)="closeMenu()"
-                      >À propos</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      routerLink='/'
-                      fragment="certifications"
-                      (click)="closeMenu()"
-                      >Certifications</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      routerLink='/'
-                      fragment="temoignages"
-                      (click)="closeMenu()"
-                      >Temoignages</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      routerLink='/'
-                      fragment="associations"
-                      (click)="closeMenu()"
-                      >Associations</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      routerLink='/'
-                      fragment="blog"
-                      (click)="closeMenu()"
-                      >Blog Dentaire</a
-                    >
-                  </li>
-                </ul> -->
               </li>
               <li class="mil-has-children">
                 <a
@@ -113,16 +57,6 @@
                   class="mil-submenu-link"
                   >Galerie</a
                 >
-                <!--  <ul
-                  class="mil-submenu"
-                  [class.mil-active]="isSubMenuActive('galerie')"
-                >
-                  <li>
-                    <a routerLink="/main/gallery" (click)="toggleMenu()"
-                      >Galerie</a
-                    >
-                  </li>
-                </ul> -->
               </li>
 
               <li class="mil-has-children">
@@ -160,16 +94,6 @@
                   (click)="closeMenu()"
                   >Services</a
                 >
-                <!--  <ul
-                  class="mil-submenu"
-                  [class.mil-active]="isSubMenuActive('services')"
-                >
-                  <li>
-                    <a routerLink="/main/services" (click)="toggleMenu()"
-                      >Nos Services</a
-                    >
-                  </li>
-                </ul> -->
               </li>
 
               <li class="mil-has-children">
@@ -179,16 +103,6 @@
                   class="mil-submenu-link"
                   >Blogs</a
                 >
-                <!--  <ul
-                  class="mil-submenu"
-                  [class.mil-active]="isSubMenuActive('newsletter')"
-                >
-                  <li>
-                    <a routerLink="/main/blog" (click)="toggleMenu()"
-                      >Nos Blog</a
-                    >
-                  </li>
-                </ul> -->
               </li>
 
               <li class="mil-has-children">
@@ -198,72 +112,11 @@
                   class="mil-submenu-link"
                   >Contact</a
                 >
-                <!-- <ul
-                  class="mil-submenu"
-                  [class.mil-active]="isSubMenuActive('other')"
-                >
-                   <li><a routerLink="/team" data-swup-preload>Team</a></li>  
-                  <li>
-                    <a routerLink="/main/contact" (click)="toggleMenu()"
-                      >Contact</a
-                    >
-                  </li>
-                   <li><a href="404.html" data-swup-preload>404</a></li>
-                </ul> -->
               </li>
             </ul>
           </nav>
         </div>
-        <div class="col-xl-7">
-          <!--   <div class="mil-menu-right-frame">
-                        <div class="mil-animation-in">
-                            <div class="mil-animation-frame">
-                                <div class="mil-animation mil-position-1 mil-scale" data-value-1="2" data-value-2="2"></div>
-                            </div>
-                        </div>
-
-                        <div class="mil-menu-right">
-                            <div class="row">
-                                <div class="col-lg-8 mil-mb-60">
-                                    <h6 class="mil-muted mil-mb-30">Projects</h6>
-                                    <ul class="mil-menu-list">
-                                        <li><a routerLink="/project-1" class="mil-light-soft">Interior design studio</a></li>
-                                        <li><a routerLink="/project-2" class="mil-light-soft">Home Security Camera</a></li>
-                                        <li><a routerLink="/project-3" class="mil-light-soft">Kemia Honest Skincare</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-4 mil-mb-60">
-                                    <h6 class="mil-muted mil-mb-30">Useful links</h6>
-                                    <ul class="mil-menu-list">
-                                        <li><a href="#." class="mil-light-soft">Privacy Policy</a></li>
-                                        <li><a href="#." class="mil-light-soft">Terms and conditions</a></li>
-                                        <li><a href="#." class="mil-light-soft">Careers</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="mil-divider mil-mb-60"></div>
-
-                            <div class="row justify-content-between">
-                                <div class="col-lg-4 mil-mb-60">
-                                    <h6 class="mil-muted mil-mb-30">Canada</h6>
-                                    <p class="mil-light-soft mil-up">
-                                        71 South Los Carneros Road, California 
-                                        <span class="mil-no-wrap">+51 174 705 812</span>
-                                    </p>
-                                </div>
-                                <div class="col-lg-4 mil-mb-60">
-                                    <h6 class="mil-muted mil-mb-30">Germany</h6>
-                                    <p class="mil-light-soft">
-                                        Leehove 40, 2678 MC De Lier, Netherlands 
-                                        <span class="mil-no-wrap">+31 174 705 811</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div> -->
-        </div>
+        <div class="col-xl-7"></div>
       </div>
     </div>
   </div>

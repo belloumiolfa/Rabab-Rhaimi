@@ -1,107 +1,114 @@
 /* ✅ Container pour placer les formes à droite */
 .mil-floating-shapes {
-    position: absolute;
-    top: 50%;
-    right: 5%;
-    transform: translateY(-50%);
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ✅ Forme générique */
+.shape {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #ff9900;
+  opacity: 0.5;
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ✅ Variantes avec tailles et animations */
+.shape-1 {
+  animation-delay: 0s;
+  width: 30px;
+  height: 30px;
+}
+.shape-2 {
+  animation-delay: 1s;
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
+}
+.shape-3 {
+  animation-delay: 2s;
+  width: 60px;
+  height: 60px;
+  background: #000000;
+}
+
+/* ✅ Animation flottante */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
   }
-  
-  /* ✅ Forme générique */
-  .shape {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #ff9900;
-    opacity: 0.5;
-    animation: float 4s ease-in-out infinite;
+  50% {
+    transform: translateY(-20px) scale(1.1);
   }
-  
-  /* ✅ Variantes avec tailles et animations */
-  .shape-1 {
-    animation-delay: 0s;
-    width: 30px;
-    height: 30px;
-  }
-  .shape-2 {
-    animation-delay: 1s;
-    width: 40px;
-    height: 40px;
-    background: #ffffff;
-  }
-  .shape-3 {
-    animation-delay: 2s;
-    width: 60px;
-    height: 60px;
-    background: #000000;
-  }
-  
-  /* ✅ Animation flottante */
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0) scale(1);
-    }
-    50% {
-      transform: translateY(-20px) scale(1.1);
-    }
-  }
-  .mil-inner-banner {
+}
+.mil-inner-banner {
   position: relative;
   overflow: hidden;
 }
 .mil-floating-cube-wrapper {
-    position: absolute;
-    top: 50%;
-    right: 5%;
-    transform: translateY(-50%);
-    width: 100px;
-    height: 100px;
-    perspective: 800px;
-    z-index: 1;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  width: 100px;
+  height: 100px;
+  perspective: 800px;
+  z-index: 1;
+}
+
+.mil-floating-cube {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  transform-style: preserve-3d;
+  animation: rotateCube 6s infinite linear;
+}
+
+.face {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  opacity: 0.8;
+}
+
+/* Faces simulant 3D cube */
+.face.front {
+  background: #ff9900;
+  transform: rotateY(0deg) translateZ(50px);
+}
+.face.right {
+  background: #e67e22;
+  transform: rotateY(90deg) translateZ(50px);
+}
+.face.top {
+  background: #f39c12;
+  transform: rotateX(90deg) translateZ(50px);
+}
+
+/* Animation douce */
+@keyframes rotateCube {
+  0% {
+    transform: rotateX(15deg) rotateY(0deg);
   }
-  
-  .mil-floating-cube {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    transform-style: preserve-3d;
-    animation: rotateCube 6s infinite linear;
+  50% {
+    transform: rotateX(15deg) rotateY(180deg);
   }
-  
-  .face {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    opacity: 0.8;
+  100% {
+    transform: rotateX(15deg) rotateY(360deg);
   }
-  
-  /* Faces simulant 3D cube */
-  .face.front {
-    background: #ff9900;
-    transform: rotateY(0deg) translateZ(50px);
+}
+
+/* Hide the entire left column (col-lg-5) on small screens */
+@media (max-width: 767px) {
+  .title-c {
+    display: none !important;
   }
-  .face.right {
-    background: #e67e22;
-    transform: rotateY(90deg) translateZ(50px);
-  }
-  .face.top {
-    background: #f39c12;
-    transform: rotateX(90deg) translateZ(50px);
-  }
-  
-  /* Animation douce */
-  @keyframes rotateCube {
-    0% {
-      transform: rotateX(15deg) rotateY(0deg);
-    }
-    50% {
-      transform: rotateX(15deg) rotateY(180deg);
-    }
-    100% {
-      transform: rotateX(15deg) rotateY(360deg);
-    }
-  }
-  
+}

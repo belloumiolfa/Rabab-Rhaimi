@@ -27,7 +27,7 @@ export class Service22Component {
       subtitle: 'Université Toulouse III – Paul Sabatier, Toulouse',
       description:
         'Évaluation approfondie de l’expérience utilisateur et maîtrise des techniques d’implantologie avancées.',
-      start_year: 2018,
+      start_year: 2017,
       end_year: 2018,
       show: false,
     },
